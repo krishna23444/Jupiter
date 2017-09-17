@@ -1,0 +1,98 @@
+<div class="container row">
+  <div class=" col-sm-4">
+
+    <div class="form-group">
+      <strong >Name</strong> 
+
+      <label  type="text" >{{database.name}}</label> 
+    </div>
+
+
+    <div class="form-group">
+ <strong >Modality</strong> 
+ <label   type="text" >{{database.modality}}</label> 
+  
+    </div>
+
+    <div class="form-group">
+
+      <strong >Sensor</strong> 
+
+      <label    type="text" >{{database.sensor}}</label> 
+
+  </div>
+
+
+  <div class="form-group">
+     <strong >Image resolution</strong> 
+
+      <label    type="text" >{{database.resolution}}</label> 
+    
+  </div>
+
+  <div class="form-group">
+   <strong >Number of indivduals</strong> 
+      <label   type="text" >{{database.numberTot}}</label>   
+  </div>
+  <div class="form-group">
+   <strong >Number of scans by indivdual</strong> 
+  <label    type="text" >{{database.numberScans}}</label>   
+  </div>
+ 
+ 
+ 
+       <div class="row">
+   <div class="form-group col-sm-4">
+     <strong>Creation date</strong>
+     <label   type="text" > {{database.createdAt | date:'medium' }} </label>
+
+   </div>  
+   <div class="form-group col-sm-8">
+    <strong>Last modficiation date</strong>
+     <label   type="text"  >{{database.updatedAt | date:'medium'}}  </label>
+
+   </div>  </div>  
+</div>
+<div class="col-sm-8">
+ <div class="form-group row    feautres">
+     <i *ngIf="!itIsMe"  class="fa fa-envelope  fa-lg"  ></i>
+     <i    class="fa fa-list  fa-lg" (click)="goList()"></i>
+    <i   class="fa fa-download  fa-lg" (click)="download()"   ></i>
+    <i *ngIf="itIsMe" class="fa fa-edit  fa-lg"  ></i>
+    <i *ngIf="itIsMe" class="fa fa-trash fa-lg"></i> 
+
+  </div> 
+<p-dataGrid [value]="files" [paginator]="true" [rows]="12" >
+    <p-header>
+        List of images
+    </p-header>
+    <ng-template let-file pTemplate="item">
+        <div style="padding:3px ;   " class="ui-g-12 ui-md-3 preview">
+            <p-panel align="center" [header]="file.name" [style]="{'text-align':'center','fontWeight':'blod' }">
+              <div style="display: block;" align="center"> 
+                <img    [src]="file.file" width="80"  >  
+              <i class="fa fa-search-plus"   (click)="selectImage(file)" style="cursor:pointer; display:block;"></i>
+          </div>
+          </p-panel>
+        </div>
+    </ng-template>
+</p-dataGrid>
+
+<p-dialog header="Image Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400" (onAfterHide)="onDialogHide()">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="displayDialog" style="font-size:16px;text-align:center;padding:20px">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12" style="text-align:center"><img [src]="selectedImage.file"> </div>
+        </div> 
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-8">{{selectedImage.name}}</div>
+        </div>
+         
+    </div>
+</p-dialog>
+
+
+   </div>
+  </div>
+
+ 
+ 

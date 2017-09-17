@@ -1,0 +1,56 @@
+ @import '../../../theme/sass/conf/conf';
+
+ .codematlab{
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+  max-height: 500px;
+
+}
+.fa
+ {
+     cursor: pointer;
+ }
+.feautres {
+    margin-left: 460px;
+
+  *
+{
+    margin-left: 20px;
+
+}
+}
+div.options
+{     
+  display:inline;
+  padding:  8px 12px 8px 0px !important;
+  margin:0 !important;
+  *{
+   display:inline;
+   margin-bottom:20px !important;
+
+ }
+}
+section
+{
+
+ overflow-y: auto !important;
+ overflow-x: auto !important;
+ max-height: 500px;
+}
+
+a {
+  color:$primary;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color:$codeColor;
+  text-decoration: none;
+}
+.matlab{
+ overflow-y: auto !important;
+ overflow-x: auto !important;
+ max-height: 500px;
+ 
+
+}

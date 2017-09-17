@@ -1,0 +1,297 @@
+\chapter{Système biométrique basé sur l’empreinte digitale}
+\label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\section{Introduction}
+Parmi les nombreuses modalités biométriques existantes, les empreintes digitales (appelée aussi « dermatoglyphe ») sont la plus utilisée pour la reconnaissance des personnes grâce à son unicité, son universalité, aisance de son acquisition et sa permanence \citep{maltoni2009handbook}.\\
+Dans ce chapitre, nous présentons les caractéristiques d'empreinte digitale, nous détaillons les différentes étapes de son processus de reconnaissance et nous présentons une variété de méthodes utilisées dans chaque étape.
+\section{Caractéristiques des empreintes digitales}
+
+L’empreinte digitale se compose de motifs dessinés par les crêtes et les vallées de la peau. Les caractéristiques liées à l’empreinte digitale sont généralement catégorisées en trois niveaux \citep{hasan2013fingerprint} :
+\begin{enumerate}
+	
+	\noindent\begin{minipage}{0.7\textwidth}% adapt widths of minipages to your needs
+		\item 	\textbf{Les détails de niveau 1: }les caractéristiques globales (les points singuliers) visibles à l'œil, il en existe deux types : les points cores (un core est de lieu de courbure maximale des lignes d'empreinte les plus internes), et les deltas (un delta est le lieu de divergence des lignes les plus internes. En d’autres termes un delta est proche du lieu où se séparent deux lignes), et sont considérés comme le centre de l'empreinte digitale, c'est-à-dire celui qui est utilisé pour l'alignement des empreintes digitales lors de la phase d’appariement (voir figure \ref{fig:chapitre2fingerprintlevel1}).   
+		
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}{0.3\textwidth}\raggedleft
+		\begin{center}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.50\linewidth]{fingerlevel1}
+				\captionsetup{justification=centering}
+				\caption{Les points singuliers d'empreintes digitales.}
+				\label{fig:chapitre2fingerprintlevel1}
+			\end{figure}
+		\end{center}
+		
+	\end{minipage}%
+	\item \textbf{Les détails de niveau 2 : }sont les minuties (caractéristiques locales) composées de fins de ligne (terminaisons), bifurcations, lacs, îlots. Elles sont utilisées par la plupart des systèmes automatisés de reconnaissance et peuvent être extraites de manière fiable à partir des images d'empreintes digitales avec une faible résolution (~ 500 dpi (dot per inch = pixels par pixel)) qui est également la résolution standard adoptée par le Federal Bureau d’Investigation (FBI) dans leurs systèmes automatiques d’identification (AFIS) \citep{jain2007pores}.
+	
+	
+	\item \textbf{Les détails de niveau 3 :} sont la forme des bords de crêtes, les crêtes immatures, le contour des arêtes, etc. ce niveau est peu utilisé par les systèmes de reconnaissance, car les images capturées pour extraire les détails de ce niveau sont de haute résolution (1 000 (dpi)) (voir figure \ref{fig:chapitre2fingerprintlevel3}). 
+	
+	\begin{center}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.56\linewidth]{fingerlevel3}
+			\caption{Les caractéristiques visibles dans le niveau 3.}
+			\label{fig:chapitre2fingerprintlevel3}
+		\end{figure}
+	\end{center}
+\end{enumerate}
+
+Le processus de la reconnaissance des empreintes digitales passe par plusieurs phases, la première phase est l’acquisition d’images d’empreintes de l’utilisateur, ensuite un prétraitement des images est faites acquises afin d’améliorer leur qualité est suivi par une extraction de données utiles, et enfin après une comparaison entre le modèle de l’utilisateur et le modèle enrôlé une décision est prise. Et pour réduire le nombre de comparaison d'une empreinte digitale avec les empreintes digitales stockées dans une grande base de données, les images doivent être classifiées en suivant des méthodes de classification.
+Il existe trois types d'approches des systèmes de reconnaissance : approches basées sur la corrélation, approches basées sur les minuties et approches basées sur les textures. 
+Les approches basées sur les minuties sont les plus utilisés par les systèmes biométriques \citep{jiang2000fingerprint}car elles donnent des résultats plus précises \citep{o1998overview}, et ce sont les approches auxquelles nous nous intéressons le plus dans notre travail. 
+
+\section{Extraction des minuties}
+Une fois toutes les étapes de prétraitement (voir annexe \ref{pretrait}) sont appliquées et l’image binarisée amincie de l’empreinte digitale est obtenue, on extrait les minuties \citep{tisse2001systeme}. Il existe deux types de méthodes d'extraction des minuties : les méthodes basées sur la binarisation et les méthodes directes. Cependant la technique du nombre de connexions CN (Crossing Number) est la plus utilisée, comme dans \citep{Thai2003} notamment dans \citep{amengual1997real} , \citep{mehtre1993fingerprint} et \citep{kasaei1997fingerprint}.
+\\
+Le nombre CN d’un pixel P dans une image binarisée est calculé comme suit \citep{maltoni2009handbook} :
+\begin{center}
+	\begin{equation}\label{eq:cn}
+	CN (P) = \frac{1}{2}\sum_{i=1}^{8}|val (P_{i mod 8 } )-  val(P_{i-1}) |
+	\end{equation}
+\end{center}
+$ P_{i} $ est la valeur du pixel voisin à celui pour qui le CN est calculé.
+\\En utilisant les propriétés du CN, chaque pixel d'une crête peut être classé comme un point intermédiaire (non-minutie), une terminaison ou une bifurcation.
+
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{cn}
+		\caption{Nombre de connexions ; a). Point intermédiaire b). Terminaison ; c). Bifurcation \citep{maltoni2009handbook}.}
+		\label{fig:chapitre2cn}
+	\end{figure}
+\end{center}
+Dans certaines méthodes d’extraction, nous procédons par une étape d’élimination des fausses minuties qu’on présente dans l’annexe \ref{posttrait}.
+\section{Appariement}
+L'appariement des empreintes digitales est une étape cruciale dans les problèmes d'authentification et d'identification qui consiste à comparer entre deux empreintes digitales et retourne un degré de similarité(un nombre réel appartient à un intervalle) ou décision binaire  (accepté ou non-accepté).
+\\
+\subsection{Formulation du problème}
+Nous représentons dans ce qui suit le modèle enrôlé d’une empreinte digitale par $ (T) $ et le modèle en entrée par$  (E) $. Et chaque élément du vecteur de caractéristiques (vecteur de minuties) en sortie de par $ (M) $, où chaque élément est désigné par : son type (Terminaison ou Bifurcation), ses coordonnées cartésiennes $ (x, y)  $et son orientation($\theta$)(voir Figure \ref{fig:chapitre2minutiarepresentation}). 
+\begin{center}
+	\begin{equation}\label{eq:t}
+		\abovedisplayskip
+	\belowdisplayskip
+	T=(M_{1},M_{2}, ..., M_{n})\qquad M_{i}=(x_{i},y_{i},\theta_{i})\quad i = 1 .. n
+	\end{equation}
+\end{center}
+\begin{center}
+	\begin{equation}\label{eq:e}
+	E=(M\prime_{1},M\prime_{2}, ..., M\prime_{n\prime})\qquad M\prime _{i\prime }=(x\prime _{j },y\prime_{j},\theta\prime_{j}) \quad j = 1 .. n\prime
+	\end{equation}
+\end{center}
+
+
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{minutiarepresentation}
+		\captionsetup{justification=centering}
+		\caption{Représentation basique des minuties a) une terminaison, b) une bifurcation \citep{maltoni2009handbook}.}
+		\label{fig:chapitre2minutiarepresentation}
+	\end{figure}
+\end{center}
+Une minutie $ M_{j} $ dans $  T $ et une minutie $  M_{i} $ dans $ E $ sont considérées appariées, si $ M_{j} $  tombe dans la zone de tolérance de $ M_{i} $ ,une zone de tolérance qui définie par  une distance spatiale ($ sd $) maximale et une différence directionnelle ($ dd $) permet de compenser les erreurs inévitables faites lors de la phase d'extraction des minuties ou par les changements de positionnement produits par des distorsions dans l'empreinte digitale (voir les équations \ref{eq:sd} et \ref{eq:dd}). Pour maximiser le nombre de minuties de $ E $ qui correspondent à $ T $ le modèle enrôlé, il est obligatoire d'aligner les deux modèles. Cela inclut également le déplacement, la rotation et d'autres transformations géométriques. Après l'alignement, un score de similarité pour les deux modèles est calculé en utilisant une fonction d'appariement.
+
+\begin{center}
+	\begin{equation}	
+	\label{eq:sd}	
+	sd(M_{i},M\prime_{j})=\sqrt{(x_{i}-x\prime _{j})^{2}+(y_{i}-y\prime _{j})^{2}} \; \leq r_{0}
+	\end{equation}
+\end{center}
+\begin{center}
+	\begin{equation}\label{eq:dd}	
+	dd(M_{i},M'_{j})=\min(\mid\theta_{i}-\theta \prime _{j}\mid, 360^{o} - \mid\theta_{i}-\theta \prime _{j}\mid) \; \leq \theta_{0}
+	\end{equation}
+\end{center}
+Le score de similarité est souvent formulé comme suit \citep{maltoni2009handbook} :
+\begin{center}
+	\begin{equation}\label{eq:ss}	
+Score\;de\; similarite=\dfrac{k}{\dfrac{n+n \prime}{2}}
+	\end{equation}
+\end{center}
+\textbf{$ k : $} représente le nombre de minuties appariées.
+\\
+Il existe deux grandes approches pour l'appariement des minuties  : une approche globale et une approche locale \citep{maltoni2009handbook}.
+\subsection{Approches globales }
+L’alignement dans ces approches est une étape obligatoire afin de maximiser le nombre de minuties appariées, et il est exécuté en prenant en considération toutes les minuties dans leur ensemble global par retrouver les paramètres de transformation : déplacement (en $ x $ et $ y $), rotation ($ \theta $) et d’autres informations comme le changement d’échelle dans le cas où les deux empreintes sont acquises par des capteurs de résolutions différentes.
+La figure \ref{fig:alignement} suivante présente les étape d'un processus d'appariement global : 
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.55\linewidth]{alignement}}
+		\caption{Processus générique d'un appariement global \citep{Jianjiang2010Finger}.}
+		\label{fig:alignement}
+	\end{figure}
+\end{center}
+
+Certaines approches globales proposent une phase de pré-alignement est basé sur d'autres caractéristiques extraites telles que les points singuliers ou la carte d'orientation. Ces caractéristiques seront sauvegardées dans la base de données en même temps que le modèle. 
+Nous présentons les approches globales suivantes : 
+\subsubsection{Approche basée sur la transformée de Hough}
+Ratha et al. (1996) ont proposé une approche d’appariement basé sur la transformée généralisée de Hough (voir annexe \ref{Hough}), dont la transformation d'alignement est estimée en discrétisant l’espace de recherche. Cette approche est la plus représentative de l'appariement global \citep{maltoni2009handbook}.
+
+\subsubsection{Approche basée sur la géométrie algébrique}
+Est une approche plus simple que l'approche précédente \citep{maltoni2009handbook}, elle été introduite par \citep{udupa2001fast} qui ont considérablement amélioré une idée précédemment publiée par  \citep{weber1992cost}, les changements d'échelle (transformations rigides) dans cette approche ne sont pas autorisés. 
+\subsubsection{Approche basée sur le pré-alignement absolu}
+Un pré-alignement est opéré sur $ I $ indépendamment des autres, ensuite le résultat d’alignement est apparié avec les autres templates, La méthode de M82 du FBI est la méthode la plus populaire de cette approche, elle effectue un pré-alignement absolu en fonction de la position du core détectée par la méthode R92 (voir annexe).
+
+\subsubsection{Approche basée sur le pré-alignement relatif}
+Le pré-alignement de $ I $ dépend de chaque modèle $ E $ dans la base de données. Cette approche est plus robuste que l’approche précédente, mais moins rapide et il peut être effectué de plusieurs manières dont :
+\begin{itemize}
+	\item en superposant les points singuliers après la détection de la position du point singulier central (core ou delta).
+	\item en corrélant les images d'orientation en calculant la similarité entre la carte d’orientation (voir annexe \ref{carteOM}) de T avec toute transformation possible de la carte d'orientation de E.
+	\item en comparant les caractéristiques des crêtes (par exemple, la longueur et l'orientation des crêtes).
+\end{itemize}
+\subsubsection{Autres}
+Il existent plusieurs d'autres approches basées sur l'appariement global des minuties dans la littératures comme l'approche basée sur la modélisation de Warping \citep{meenen2006utilization}, \citep{liang2006fingerprint} et \citep{shi2009minucode} , et l'approche basée sur les algorithmes évolutifs \citep{sheng2009consensus}, \citep{sheng2007memetic} et \citep{tan2006fingerprint}, et autres approches expliquées dans le livre « \textit{Guide de la reconnaissance d'empreintes digitales} \citep{maltoni2009handbook}».
+\subsection{Approches locales }
+    elles consistent à comparer deux empreintes digitales selon les structures locales des minuties qui sont caractérisées par des propriétés invariantes par rapport à la transformation globale, telles que les déplacements et les rotations.
+	Tandis que l'approche globale conduit une distinctivité plus élevée(car elle prend en considération  les relations spatiales entre les minuties sur le plan global qui sont extrêmement discriminantes, ces approches sont plus simples et possèdent une faible complexité de calcul et une tolérance à la distorsion vu qu'elles nous permet d'apparier deux minuties même avec des informations partielles.
+	\\Pour obtenir les avantages des deux types d'approches, on utilise des stratégies \textit{\textbf{hybrides}} qui effectuent un appariement des structures locales suivi d'une étape de consolidation. La première étape détermine les paires de minuties qui correspondent localement, et extrait un sous-ensemble d'alignements candidats pour $ (T) $ et $ (E) $, et la deuxième étape, vise à vérifier dans quelle mesure les correspondances locales détiennent au niveau global. 
+
+	Les techniques d’appariement locales qui existent dans la littératures se différencient entre elles dans la topologie de la structure locale, le type de consolidation, l’utilisation des caractéristiques supplémentaires, l’utilisation de particularités des minuties et l’apprentissage des paramètres \citep{Peralta2015a} :
+	\subsubsection{Topologie de la structure locale  }
+
+	 L'appariement local est basé sur le calcul de la similarité entre les régions locales de $ T $ et $ E $, dans le but d'obtenir l'invariance souhaitée en ce qui concerne les déplacements et les rotations. Ces régions sont associées à des sous-ensembles de minuties sont classés en structures locales et ils peuvent être construits sous différentes manières dont :
+	 	\begin{itemize}
+	 	\item \textbf{Les plus proches voisins :} les structures locales sont formées par une minutie centrale et un certain nombre prédéterminé de ses plus proches minuties, les structures locales sont généralement définies par des distances, des directions et des angles entre les paires de minuties \citep{jiang2000fingerprint}.
+	 	\item \textbf{Le rayon fixe :} la  structure locale est créée à partir d'une minutie centrale et ses voisins dans un courbe de rayon R \citep{ratha2000robust}.
+	 	\item \textbf{La texture mixte :} la structure locale est définie comme un vecteur de caractéristique qui contient des informations appropriées extraites de la minutie et d'autres types d'informations provenant d'autres caractéristiques extraites de l'image d'empreinte, telles que l'orientation locale, la fréquence des crêtes, la représentation d'image au niveau de gris ou autres \citep{benhammadi2007fingerprint}.
+	 	\item \textbf{Les triplets des minuties : }appelée aussi les triangles des minuties, les triplés sont construits sous forme de triangulation, en suite les structures locales utilisent d’informations extraites à partir de ces triangles concernant les angles des sommets, la longueur des côtés et certaines propriétés du triangle telles que la direction et l'orientation \citep{maltoni2009handbook}.
+	 	\item \textbf{K-Plet :} c'est une dérivation de la structure locale «  plus proches voisins » présentée par \citep{chikkerur2006k}, où les minuties les plus proches voisins sont également répartis dans les quatre quadrants autour de la minutie centrale.
+	 	 \item \textbf{Le cylindre de minutie :} une extension de la structure locale à rayon fixe, il permet d’encoder les relations spatiales et directionnelles pour chaque minutie qui rendre le calcul de la similarité des structures locales plus simple. \citep{cappelli2010minutia}.
+	 	
+	 	La figure \ref{fig:chapitre2localTypes} illustre les différents structures locales précédemment présentées.
+	 	 
+	 	 	\begin{figure}[H]
+	 	 	\centering
+	 	 	\includegraphics[width=0.9\linewidth]{localTypes}
+	 	 	\caption{ Types des structures locales.}
+	 	 	\label{fig:chapitre2localTypes}
+	 	 \end{figure}
+ 	\end{itemize}	
+	 	\subsubsection{Consolidation}
+	 	Bien que, à partir les scores partiels de la comparaison des structures locales on peut avoir un score final, généralement, on utilise une phase supplémentaire afin de vérifier si l’appariement local de deux minuties correspond au niveau global \citep{maltoni2009handbook}. Parmi les différentes techniques de consolidation qui ont été proposées dans la littérature les suivantes :
+	 	\begin{itemize}
+	 		\item \textbf{La transformation unique :} basée sur l'alignement de minuties centrales de T et E en utilisant la meilleure transformation (le déplacement et la rotation) provenue de minuties qui possèdent le meilleur score d'appariement locale \citep{jiang2000fingerprint}.
+	 		\item 	La transformation multiple : plusieurs transformations sont effectuées dans l’alignement des deux structures locales pour une empreinte digitale de mauvaise qualité ou l'empreinte déformées \citep{maltoni2009handbook}.
+	 		\item \textbf{Le consensus des transformations : }consiste à trouver le  maximum  nombre de transformations cohérentes pour chaque structure locale \citep{maltoni2009handbook}.
+	 		\item \textbf{La consolidation incrémentale :} ce type est compatible avec les structures locales arrangées sous forme des graphes orientés où les K-plets sont les nœuds. L'appariement est effectué en parcourant les graphes en largeur et enfin on retourne le nombre des nœuds appariés, ce processus est répété pour chaque paire de minutie est le pair avec le meilleur score est choisi \citep{chikkerur2006k}.
+	 	\end{itemize}
+ \subsubsection{L’utilisation des caractéristiques supplémentaires}
+ Dans certaines méthodes d'appariement, il est possible d'utiliser des caractéristiques supplémentaires recueillies auprès d'autres sources externes comme les informations extraites à partir de l'image d'orientation locale ou l'estimation locale de fréquence de crête \citep{Peralta2015a}. Les caractéristiques supplémentaires qui peuvent être utilisées sont les suivantes :
+ \begin{itemize}
+ 	\item \textbf{La fréquence des crêtes : }représente la distance moyenne locale entre les crêtes sur un bloc et peut être utilisée comme une caractéristique locale associée aux minuties, quand elle est relativisée par rapport à la fréquence des crêtes globales de l'empreinte digitale ou pour normaliser les distances entre deux minuties \citep{chikkerur2007fingerprint}.
+ 	\item \textbf{Les points singuliers :} les positions et les orientations des points singuliers peuvent être utilisées dans l’appariement local notamment dans l’article \citep{zhang2002core} et \citep{feng2008combining}.
+ 	\item \textbf{L’orientation locale des crêtes :} l’image est divisée en blocs qui ne se chevauchent pas et une valeur d’orientation calculée à partir d’orientations de chaque pixel composant le bloc. La valeur d’orientation du bloc  peut être associée à la minutie centrale d'une structure locale \citep{maltoni2009handbook}. 
+ 	\item \textbf{L’image en niveau de gris :} elle inclue des informations sur la texture telles que les régions d'image d'empreinte améliorée par des filtres \citep{Peralta2015a}.
+ \end{itemize}
+\subsubsection{Particularités dans les minuties}
+Sont les informations complémentaires étroitement liées à la minutie. Dans ce qui suit, nous présentons les plus importantes :
+\begin{itemize}
+	\item \textbf{Types de minutie :} il existe plusieurs types les plus importants sont les \textit{\textbf{bifurcations}} et les \textit{\textbf{terminaisons}} car les autres types de minuties ne sont que les résultats des combinaisons des minuties de terminaison et de bifurcation. Par exemple, les boucles peuvent être visualisées en tant que deux bifurcations (voir  Figure \ref{fig:chapitre2types}). 
+		\begin{center}
+		\begin{figure}[H]
+			\centering
+			\fbox{\includegraphics[width=0.55\linewidth]{chapitre2types}}
+			\caption{Différents types de minuties : (a)terminaison (b) bifurcation, (c) pont, (d) lac et (e) ile.}
+			\label{fig:chapitre2types}
+		\end{figure}
+	\end{center}
+\item\textbf{Nombre de crêtes :} représente le nombre de crêtes associées à chaque minutie centrale de la structure locale.
+\item \textbf{Propriétés des crêtes :} comme le rayon de courbure de crête à laquelle la minutie appartient.
+\end{itemize}
+\subsubsection{Apprentissage de paramètres }
+Des techniques d’apprentissage qui basent sur les machines learning sont généralement employées dans l'optimisation du score de similarité qui détermine la décision finale, les formes d'apprentissage des paramètres sont les suivantes :
+\begin{itemize}
+	\item \textbf{Score de similarité :} une fonction qui reçoit les vecteurs de caractéristique qui représentent deux structures locales de $ E $ et $ T $ et donne comme résultat le score de similarité optimisé qui est appris à l'aide de réseaux de neurones ou d'autres schémas de régression.
+	\item \textbf{Similitude locale :} un processus d'apprentissage hors ligne est effectué pour apprendre la vraie similitude entre les structures locales ou pour ajuster les poids de contribution associés à chaque élément du vecteur de caractéristiques.	
+\end{itemize}
+\subsubsection{Synthèse des travaux sur l’appariement local basé sur les minuties}
+Dans la littérature plus de 80 méthodes d'appariement local basées sur des minuties ont été proposées \citep{Peralta2015a}.
+ Le tableau \ref{tab:chapitre2fingermatching} résume quelques travaux de recherche.
+ 
+ 	\begin{sidewaystable}[h!]
+ 		\centering
+ 		 \caption{Quelques travaux de recherche sur l'appariement local basé sur les minuties.}% Add 'table' caption	
+  		\label{tab:chapitre2fingermatching}
+ 		\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|p{3cm}|p{3cm}|p{4cm}|}
+ 			\hline
+ 		\begin{center}
+ 				\textbf{Topologie de la structure locale}
+ 		\end{center} &\begin{center}
+ 		 \textbf{Le type de consolidation}
+ 	\end{center} &\begin{center}
+ 	 \textbf{Caractéristiques supplémentaires utilisés}
+ \end{center} & \begin{center}
+ \textbf{Les particularités dans les minuties} 
+\end{center}& \begin{center}
+\textbf{La forme d’apprentissage des paramètres}
+\end{center} &\begin{center}
+ \textbf{La référence}\begin{center}
+ 	
+ \end{center}
+\end{center} \\ \hline
+ 			La texture mixte & Transformation unique & 
+ 				 L’orientation locale des crêtes
+ 		  & Types de minutie et Propriétés des crêtes & Aucune & \citep{he2003image} \\ \hline
+ 			K-Plet & Incrémentale & Les points singuliers & Types de minutie & Aucune & \citep{chikkerur2005impact} \\ \hline
+ 			La texture mixte et les triplets des minuties & Le consensus des transformations & L’orientation locale des crêtes & Aucune & Similitude locale & \citep{chen2006algorithm} \\ \hline
+ 			La texture mixte & Transformation multiple & L’image en niveau de gris & Aucune & Aucune & \citep{benhammadi2007fingerprint} \\ \hline
+ 			Les plus proches voisins & Incrémentale & Aucune & Aucune & Aucune & \citep{Watson2010} \\ \hline
+ 			Le rayon fixe et la texture mixte & Transformation multiple & La fréquence des crêtes et l’orientation locale des crêtes & Propriétés des crêtes & Score de similarité & \citep{cao2009fingerprint} \\ \hline
+ 			Les plus proches voisins & Transformation unique & Aucune & Les types de minutie et le nombre de crêtes & Aucune & \citep{jiang2000fingerprint} et \citep{bengueddoudj2013improving} \\ \hline
+ 			La texture mixte et les triplets des minuties & Aucun & L’image en niveau de gris et les points singuliers & Aucune & Aucune & \citep{mistry2013fusion} \\ \hline
+ 		\end{tabular}
+
+ \end{sidewaystable}
+ \clearpage
+\section{Classification d'empreintes digitales}
+La classification des empreintes digitales est une technique efficace qui permet de réduire le nombre de comparaison d'une empreinte digitale avec des empreintes digitales stockées dans une grande base de données, par conséquent cela va permettre de réduire le temps de recherche. Le principe de classification est de partitionner la base de données en plusieurs classes en utilisant des caractéristiques d’empreinte digitale (par exemple : le nombre et la position de points singuliers, les orientations, les réponses aux filtres de Gabor, etc.), et ensuite attribuer chaque empreinte digitale enrôlée à une classe.  \\
+Les premières recherches scientifiques sur la classification des empreintes digitales ont été faites par \citep{galton1892finger} , qui a divisé les empreintes digitales en trois grandes classes \citep{henry1905classification}. Plus tard, Henry et Edward Richard  ont redéfini la classification de Galton en augmentant le nombre des classes à  cinq: la boucle droite (Right Loop (R)), la boucle gauche (Left Loop (L)), la volute (Whorl (W)), l'arche (Arch (A)) et l'arche lentiforme (Tented Arch (T))(Edward Richard, 1900),Ces classes d'empreintes digitales sont inégalement réparties dans la population (3,7\%, 2,9\%, 31,7\%, 33,8\% et 27,9\%, respectivement \citep{JIANG2009}). des exemples pour chaque classe sont présentés dans la (voir figure ref{fig:chapitre2henryclasses}). la plus part des approches de classification actuellement utilisés sont des variantes de celui de Henry \citep{galar2015survey}. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{chapitre2henryclasses}
+	\caption{Classes d'empreinte digitale : a) boucle, b) boucle droite, c) volute, d) arche, e) arche lentiforme.}
+	\label{fig:chapitre2henryclasses}
+\end{figure}
+
+	Les approches de classification des empreintes digitales existantes peuvent être attribuées à l'une des catégories suivantes : les approches syntaxiques, les approches structurales, les approches statistiques, les approches neuronales, les approches qui utilisent de SVM et autres approches, ces approches sont soit des approches fixes ou basées sur des techniques d’apprentissage, nous les présentons dans ce qui suit :
+	\subsection{Approches syntaxiques}
+	Ces approches sont basées sur l'extraction des symboles à partir de caractéristiques d'empreinte. L’idée de base consiste à définir une grammaire pour chaque classe d'empreinte digitale, la classification est effectuée par une analyse syntaxique pour déterminer quelle grammaire génère le plus probablement les symboles extraits\citep{mridula2014review}.Le figure \ref{fig:chapitre2classificationsyntax} présente une méthode introduite par Rao et Balck 1980 basée sur l'analyse des flux de ligne de crête \citep{karu1996fingerprint}.
+
+
+	\begin{center}
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.55\linewidth]{chapitre2classificationsyntax}}
+		\caption{Un schéma de l'approche chaîne de la construction de Rao et Balck  \citep{karu1996fingerprint}.}
+		\label{fig:chapitre2classificationsyntax}
+	\end{figure}
+\end{center}
+	\subsection{Approches structurales}
+	Sont les approches qui basent sur l'organisation relationnelle des caractéristiques qui est représentée par des structures de données symboliques, telles que des arbres et des graphes, qui permettent une organisation hiérarchique de l'information \citep{maio1996structural}. Des exemples de ces organisations : les arbres de décision ($ DT $ Decision Trees) et les modèles de Markov cachés ($ HMM $ Hidden Markov Model)).
+	\subsection{Approches statistiques}
+	Dans cette approche, on extrait un vecteur de caractéristiques numérique de taille fixe à partir d'une empreinte digitale on se basant sur le champ d'orientation ou sur la réponse aux filtres Gabor, et on utilise un classificateur statistique pour la classification, parmi les classificateurs le plus utilisés est le plus proche voisin (($ k-NN $) $ k $- nearest neighbor ).
+	\subsection{Approches des réseaux de neurones }
+	L'approche du réseau neuronal ($ NN $) est basée sur le perceptron multicouches (MultiLayer Perceptrons $ MLPs $) et les éléments d'image d'orientation comme entrée. Il se compose de plusieurs perceptrons multicouches dont chacun est formé pour reconnaître différentes classes d'empreintes digitales. 
+	\subsection{Approches de $ SVM $}
+	Plusieurs des approches les plus récentes pour la classification des empreintes digitales sont basées sur les $ SVM $. Le $ SVM $ est un classifieur binaire qui ne traite que des données appartenant à deux classes. Cependant la classification des empreintes digitales est un problème multi-classe, alors ces approches doivent définir différents mécanismes pour aborder plusieurs classes, par exemple en utilisant des techniques de décomposition \citep{lorena2008review}.
+	\subsection{Autres}
+	Toutes les approches qui ne sont pas présentées précédemment telles que l'analyse discriminante linéaire, les classificateurs bayésiens, approches basées sur les règles et etc, pour plus de détails sur la classification des empreintes digitales, vous pouvez vous référer vers l'article \citep{galar2015survey}.
+	
+	
+	
+ \section{Conclusion}
+ 
+L’empreinte digitale est considérée comme la modalité biométrique la plus utilisée (voir figure \ref{fig:chapitre2fingerstat}). Dans ce chapitre, nous avons abordé une introduction sur les empreintes digitales. Ensuite, nous avons présenté les trois niveaux de ses caractéristiques. Et enfin,  nous avons expliqué le processus de reconnaissance en mettant l'accent sur l'approche basée sur les minuties et aussi nous avons présenté différentes méthodes d’extraction et d’appariement de cette. Dans le chapitre suivant nous allons présenter le processus de la reconnaissance d'empreinte palmaire.
+  \begin{figure}[H]
+ 	\centering
+ 	\fbox{\includegraphics[width=0.7\linewidth]{fingerstat}}
+ 	\caption{Statistiques sur l’utilisation des modalités dans les systèmes biométriques\citep{Counter2016}.}
+ 	\label{fig:chapitre2fingerstat}
+ \end{figure}

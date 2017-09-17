@@ -1,0 +1,205 @@
+  
+  <div class="container" *ngIf="fail"> 
+  <ba-card title="Some thing went worng !" baCardClass="with-scroll table-panel"> 
+    <div  class="card-header clearfix">
+      <h3 class="card-title" translate>
+        <div class=" actions pull-right">
+        <i    (click)="create($event)" class="fa fa-plus-circle fa-lg"></i>
+        <i *ngIf="itIsMe" class="fa fa-times-circle  fa-lg" data-toggle="modal" data-target="#myModal" aria-hidden="true"></i>
+        <i *ngIf="!itIsMe"  class="fa fa-envelope  fa-lg" aria-hidden="true"></i>
+        <i   class="fa fa-download  fa-lg" (click)="download()"  aria-hidden="true"></i>
+        <i *ngIf="itIsMe" class="fa fa-trash fa-lg"></i> 
+        <i    class="fa fa-list  fa-lg" (click)="goList()"></i>
+
+       </div> 
+     </h3> 
+   </div>
+   <div class="card-body pie-chart-item row">
+    <div class="description   col-xlg-3 col-lg-3 col-md-6 col-sm-6 col-6">
+      <div class="form-group ">
+        <label ><strong>Type : </strong> </label> 
+        <label   type="text" class="form-control"  >{{item.infos.type}}</label> 
+        <label ><strong>Total time (s): </strong> </label> 
+        <label   type="text" class="form-control"  >{{ errorTime}}</label> 
+         <label ><strong>Date : </strong> </label> 
+        <label   type="text" class="form-control"  >{{ item.infos.createdAt | date:'medium'}}</label> 
+       
+        </div>
+      </div>
+       <div  class=" col-xlg-8 col-lg-8 col-md-6 col-sm-6 col-6" >
+        <label ><strong>Fail reason : </strong> </label> 
+        <div class="alert alert-danger  ">
+    {{item.infos.errorCode}} <a href="#" class="alert-link">Go for FAQ section for more informations.</a>.
+  </div>
+  </div>
+  </div>
+
+  </ba-card> 
+
+</div>
+
+
+<div *ngIf="!fail">
+<div *ngIf="complete;then contents else other_content">here is ignored</div>
+<ng-template #contents>
+<ba-card title="" baCardClass="with-scroll table-panel">
+   <div  class="card-header clearfix">
+      <h3 class="card-title" translate>
+        <div class=" actions pull-right">
+        <i    (click)="create($event)" class="fa fa-plus-circle fa-lg"></i>
+        <i *ngIf="itIsMe" class="fa fa-times-circle  fa-lg" data-toggle="modal" data-target="#myModal" aria-hidden="true"></i>
+        <i *ngIf="!itIsMe"  class="fa fa-envelope  fa-lg" aria-hidden="true"></i>
+        <i   class="fa fa-download  fa-lg" (click)="download()"  aria-hidden="true"></i>
+        <i *ngIf="itIsMe" class="fa fa-trash fa-lg"></i> 
+        <i    class="fa fa-list  fa-lg" (click)="goList()"></i>
+
+       </div> 
+     </h3> 
+   </div>
+     <div class="row card-body">
+    <div class="description    col-xlg-4 col-lg-4 col-md-4 col-sm-4 col-4">
+      <div class="form-group ">
+        <label ><strong>Type : </strong> </label> 
+        <label   type="text" class="form-control"  >{{item.infos.type}}</label> 
+        <label ><strong>Compelete process : </strong> </label> 
+        <label   type="text" class="form-control"  >{{ item.infos.complete}}</label> 
+        <label ><strong>Modality : </strong> </label> 
+        <label   type="text" class="form-control"  >{{ item.infos.modality}}</label> 
+      
+        </div>
+      </div>
+      <div class="  col-xlg-4 col-lg-4 col-md-4 col-sm-4 col-4" >
+                <label ><strong>ERR : </strong> </label> 
+        <label   type="text" class="form-control"  >{{ EER_er}}</label> 
+          <label ><strong>Total pretraitement time (s): </strong> </label> 
+        <label   type="text" class="form-control"  >{{  totalPretrait}}</label> 
+             <label ><strong>Average pretraitement time (s): </strong> </label> 
+        <label   type="text" class="form-control"  >{{  avaragePretrait}}</label>
+
+      </div>
+       <div  class="  col-xlg-4 col-lg-4 col-md-4 col-sm-4 col-4" >
+ 
+            <label ><strong>Total matching time (s): </strong> </label> 
+        <label   type="text" class="form-control"  >{{ totalMatching}}</label> 
+             <label ><strong>Average matching time (s): </strong> </label> 
+        <label   type="text" class="form-control"  >{{  avarageMatching}}</label>
+        <label ><strong>Date : </strong> </label> 
+        <label   type="text" class="form-control"  >{{ item.infos.createdAt | date:'medium'}}</label> 
+  </div>
+  
+  </div>
+   <div class=" row">
+   <div class=" col-xlg-6 col-lg-6 col-md-6 col-sm-6 col-6"> 
+    <p-chart  type="line" [data]="data" ></p-chart></div>
+       <div class="col-xlg-6 col-lg-6 col-md-6 col-sm-6 col-6"> 
+
+    <p-chart   type="line" [data]="data2"  ></p-chart></div>
+
+</div>
+</ba-card >
+</ng-template>
+<ng-template  class="container" #other_content>
+    <ba-card title="" baCardClass="with-scroll table-panel">
+   <div  class="card-header clearfix">
+      <h3 class="card-title" translate>
+        <div class=" actions pull-right">
+        <i    (click)="create($event)" class="fa fa-plus-circle fa-lg"></i>
+        <i *ngIf="itIsMe" class="fa fa-times-circle  fa-lg" data-toggle="modal" data-target="#myModal" aria-hidden="true"></i>
+        <i *ngIf="!itIsMe"  class="fa fa-envelope  fa-lg" aria-hidden="true"></i>
+        <i   class="fa fa-download  fa-lg" (click)="download()"  aria-hidden="true"></i>
+        <i *ngIf="itIsMe" class="fa fa-trash fa-lg"></i> 
+        <i    class="fa fa-list  fa-lg" (click)="goList()"></i>
+
+       </div> 
+     </h3> 
+   </div>
+    <div class=" row card-body">
+    <div class="description   col-xlg-4 col-lg-4 col-md-4 col-sm-4 col-4">
+      <div class="form-group ">
+        <label ><strong>Type : </strong> </label> 
+        <label   type="text" class="form-control"  >{{item.infos.type}}</label> 
+        <label ><strong>Compelete process : </strong> </label> 
+        <label   type="text" class="form-control"  >{{ item.infos.complete}}</label> 
+        <label ><strong>Modality : </strong> </label> 
+        <label   type="text" class="form-control"  >{{ item.infos.modality}}</label> 
+      
+        </div>
+      </div>
+      <div class=" col-xlg-1 col-lg-1 col-md-1" ></div>
+       <div  class=" col-xlg-4 col-lg-4 col-md-4 col-sm-4 col-4" >
+        <label ><strong>Total time : </strong> </label> 
+        <label   type="text" class="form-control"  >{{ totalPretrait}}</label> 
+             <label ><strong>Average time : </strong> </label> 
+        <label   type="text" class="form-control"  >{{ avaragePretrait }}</label>
+        <label ><strong>Date : </strong> </label> 
+        <label   type="text" class="form-control"  >{{ item.infos.createdAt | date:'medium'}}</label> 
+     
+  </div>
+
+
+  </div>
+
+</ba-card >
+
+</ng-template>
+ 
+  <div *ngIf="showImages" class="row">
+    <ba-card  title="List of folders" class="folders col-xlg-12 col-lg-12 col-md-12">
+    <div *ngFor="let folder of folders; let i='index'"  (click)='getFilesOfFolder(folder,i)'>
+ 
+      <div class="description " >
+ 
+        <img class="img-responsive" src="assets/images/folder.png">
+         <div class="description-number" >{{folder}}</div>
+      </div>
+     </div>
+
+  </ba-card>
+
+  <div class=" col-xlg-12 col-lg-12 col-md-12" *ngIf="showImagesClicked" >
+<p-dataGrid [value]="files" [paginator]="true" [rows]="20" >
+    <p-header>
+        List of images
+    </p-header>
+    <ng-template let-file pTemplate="item">
+        <div style="padding:3px ;   " class="ui-g-12 ui-md-3 preview">
+            <p-panel align="center" [header]="file.name" [style]="{'text-align':'center','fontWeight':'blod' }">
+              <div style="display: block;" align="center"> 
+                <img    [src]="file.file" width="80"  >  
+              <i class="fa fa-search-plus"   (click)="selectImage(file)" style="cursor:pointer; display:block;"></i>
+          </div>
+          </p-panel>
+        </div>
+    </ng-template>
+</p-dataGrid>
+
+<p-dialog header="Image Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400" (onAfterHide)="onDialogHide()">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="displayDialog" style="font-size:16px;text-align:center;padding:20px">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12" style="text-align:center"><img [src]="selectedImage.file"> </div>
+        </div> 
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-8">{{selectedImage.name}}</div>
+        </div>
+         
+    </div>
+</p-dialog>
+</div>
+
+</div>
+
+
+</div>
+
+ <p-dataTable *ngIf="done" [value]="methodes"  [rows]="20" >
+    <p-header>
+        List of methods
+    </p-header>
+    <p-column field="module" header="Module"    [sortable]="true"></p-column>
+    <p-column field="category" header="Category" [sortable]="true"></p-column>
+    <p-column field="name" header="Name" [sortable]="true"></p-column>
+
+</p-dataTable>
+
+   <!-- Routed views go here -->
+

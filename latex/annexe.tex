@@ -1,0 +1,124 @@
+\chapter{La reconnaissance des empreintes digitales et palmaires} % Main appendix title
+\lhead{ANNEXE A.}
+\newcommand{\hbAppendixPrefix}{A.}
+%
+\renewcommand{\thefigure}{\hbAppendixPrefix\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{\hbAppendixPrefix\arabic{table}} 
+\setcounter{table}{0}
+\renewcommand{\theequation}{\hbAppendixPrefix\arabic{equation}} 
+\setcounter{equation}{0}
+\label{Appendix1} % Change X to a consecutive letter; for referencing this appendix elsewhere, use \ref{AppendixX}
+
+
+\section{Capture des empreintes}
+La capture est la première phase dans la reconnaissance, l’utilisateur pose ou passe son index (ou plus rarement son pouce) ou sa main sur la surface active du système de capture. Généralement, il existe deux méthodes pour collecter une empreinte, une méthode hors-ligne ou en ligne :
+\begin{itemize}
+	\item \textbf{Acquisition hors-ligne :} obtenir une empreinte encrée sur un papier et la scanne par un scanner.
+	\item \textbf{Acquisition en ligne :} capturer l'empreinte  directement en utilisant un capteur d'empreinte.
+\end{itemize}
+La première méthode a été largement utilisée. Cependant, avec le développement des capteurs, récemment, sont de plus en plus utilisés dans la collecte des empreintes \citep{Bhanu2004}, les types de capteurs existants sur le marché se divisent en trois grandes familles de capteurs : les capteurs optiques, les capteurs thermoélectriques et les capteurs échographiques.
+\section{Prétraitement}
+\label{pretrait}
+C’est une phase essentielle avant d’effectuer l’étape d’extraction des caractéristiques dans la reconnaissance dont l’objectif est de réduire le bruit et les différentes altérations des empreintes capturées, sans affecter la structure globale et locale des crêtes et des vallées du système  \citep{hong1998integrating}. Le prétraitement des empreintes comprend cinq étapes : la segmentation, la normalisation, le filtrage, la binarisation, et la squelettisation. 
+\subsection{Segmentation}
+Les images sont décrites par deux régions les images du premier plan et d’arrière-plan. La segmentation consiste à séparer des régions du premier plan qui contient les crêtes et les vallées. Ces régions sont souvent appelées la région d'intérêt (RoI :Region Of Interest) \citep{Babatunde2012}. Elle permet de limiter la région à traiter par élimination des régions en dehors des bords de la ROI où se trouve le bruit introduit pendant l’acquisition des images, Donc réduire le temps de traitement et l'extraction de fausses caractéristiques. Une segmentation correcte peut être, dans certains cas, très difficile, en particulier dans une image d'empreinte  de mauvaise qualité ou des images bruitées, comme la présence de latents. 
+\begin{center}
+	\begin{figure}[H]
+		\centering
+			\fbox{\includegraphics[width=0.55\linewidth]{Resources/fingersegmented}}
+		\caption{Empreinte digitale segmentée.}
+		\label{fig:annexefingersegmented}
+	\end{figure}
+\end{center}
+\subsection{Normalisation}
+La normalisation a un objectif d’améliorer la qualité de l’image en éliminant le bruit et en corrigeant les déformations de l'intensité de l'image causée lorsque l’utilisateur pose son doigt incorrectement pendant l’acquisition d’image d’empreinte digitale.
+\subsection{Filtrage}
+L'image d'empreinte  normalisée sont filtrées pour éliminer le bruit et les caractéristiques parasites d’empreinte, et également pour conserver les véritables structures de crêtes et de vallées.
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.55\linewidth]{Resources/fingerfiltred}
+		\caption{Filtre appliqué sur un empreinte digitale \citep{saveski2010development}.}
+		\label{fig:annexefingerfiltred}
+	\end{figure}
+\end{center}
+\subsection{Binarisation}
+Les images en 256 niveaux de gris seront transformées en des images binaires de deux niveaux (noir ou blanc). Les pixels en noir correspondent aux crêtes et les pixels en blanc correspondent aux vallées. La binarisation peut être classée en deux catégories de seuillage : 
+\begin{itemize}
+	\item \textbf{Seuillage globale :} un seul seuil est utilisé dans toute l’image.
+    \item \textbf{Seuillage local :} les valeurs des seuils sont déterminées localement, pixel par pixel ou bien région par région. 
+    
+\end{itemize}
+ Le seuillage consiste à comparer les niveaux de gris d'une image avec un seuil pré-calculé pour décider à quelle des deux classes appartient ce point.
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.55\linewidth]{Resources/fingerbinar}}
+				    \captionsetup{justification=centering}
+		\caption{a). Image avant la binarisation, b). Binarisation avec un seuillage local, c). Binarisation avec un seuillage global \citep{saveski2010development}.}
+		\label{fig:annexefingerbinar}
+	\end{figure}
+\end{center}
+\subsection{Squelettisation}
+La squelettisation est une procédure qui s’effectue sur l’image binaire pour réduire l’épaisseur des lignes à 1 pixel, tout en conservant la connexité des crêtes (c'est-à-dire que la continuité des crêtes doit être respectée, il ne faut pas introduire de trous).
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.45\linewidth]{fingersquel}}
+		    \captionsetup{justification=centering}
+		\caption{La squelettisation d'une image binaire : a). L’image avant la squelettisation, b). L’image après la squelettisation \citep{maltoni2009handbook}.}
+		\label{fig:annexefingersquel}
+	\end{figure}
+\end{center}
+\section{Post-traitement}
+\label{posttrait}
+Une étape d'élimination des fausses minuties qui peuvent être détectées pendant l'étape d'extraction, afin d'améliorer les résultats de la phase d'appariement et d'augmenter les performances de la reconnaissance. Il existe plusieurs types de fausses minuties, dont : les segments trop courts, les branches parasites, les ponts, …etc (voir figure \ref{fig:annexfalse}).
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{Resources/annexfalse}
+		\captionsetup{justification=centering}
+		\caption{Les types de fausses minuties et les résultats d'élimination.\citep{maltoni2009handbook}.}
+		\label{fig:annexfalse}
+	\end{figure}
+\end{center}
+ 
+\section{Extraction de la carte d'orientations OM }
+\label{carteOM}
+Consiste à obtenir une représentation du flux de crête locale pour chaque sous-région (bloc) dans l'empreinte digitale. Pour une image donné de $ N*M $ pixels et des blocs d'orientation de dimension de $ n*m $ , la carte d'orientations OM est une matrice de dimension de $  N/n * M/m $ dans les éléments sont les angles en radians qui appartient à l'intervalle. 
+
+\section{Transformée de Hough}
+\label{Hough}
+Transformée de HoughLa transformée de Hough est utilisée pour détecter la présence de relations structurelles spécifiques entre des pixels dans une image. Hough propose une méthode de détection basée sur une transformation d’image permettant la reconnaissance de structures simples (droite, cercle, ...) liant des pixels entre eux. Pour limiter la charge de calcul, l’image originale est préalablement limitée aux contours des objets puis binarisée (2 niveaux possibles pour coder l’intensité pixel) \citep{bergounioux2008quelques}.\\
+Cependant les méthodes qui utilisent cette transformation étaient limitées aux images de bord binaire. Pour cela une méthode généralisés introduite par \citep{bergounioux2008quelques}, qui permet à détecter certaines courbes analytiques dans les images en niveau de gris, en particulier les lignes, cercles et les paraboles. Le cas de détection de lignes est le plus exploité dans l’appariement des minuties.
+\section{Classification}
+Nous présentons une autre méthode de classification appliquée sur l'empreinte palmaire sous sa représentation spectrale :
+\subsection{Filtre à corrélations}
+\label{filterPalm}
+Cette méthode de classification propose d’appliquer plusieurs filtres de corrélations par classe (une classe par paume de main d’un individu) afin d’améliorer la précision de la reconnaissance.
+Un filtre de corrélation est un filtre à deux classes qui produit un pic aigu s’il a en entrée sa classe (i.e. si l’image et le filtre sont corrélés) et un bruit sinon (voir les figures \ref{fig:chapitre3filtrecorrelation1} et \ref{fig:chapitre3filtrecorrelation2}) \citep{hennings2007palmprint}.
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{chapitre3filtrecorrelation1}
+		\caption{ Sortie du filtre de corrélation au cas d’une image d’empreinte palmaire authentique.}
+		\label{fig:chapitre3filtrecorrelation1}
+	\end{figure}
+\end{center}
+`\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{chapitre3filtrecorrelation2}
+		\caption{Sortie du filtre de corrélation au cas d’une image d’empreinte palmaire non authentique.}
+		\label{fig:chapitre3filtrecorrelation2}
+	\end{figure}
+\end{center}
+\section{Extraction des caractéristiques avec DCT}
+\label{dct}
+Généralement, les images sont décomposées en blocs et sur lesquelles des transformations peuvent être effectuées. La Transformée en cosinus discrète (DCT) convertit les variations spatiales en variations de fréquence en calculant des coefficients de DCT, ces coefficients peuvent être utilisés en tant que vecteurs de caractéristiques \citep{bai2013analyse}.
+ \section{Extraction des caractéristiques avec SIFT}
+ \label{sift}
+ La méthodes des SIFT (scale-invariant feature transform= transformation de caractéristiques visuelles invariante à l'échelle), est une méthode développée par
+David Lowe en 2004, permettant de transformer une image en ensemble de vecteurs de caractéristiques qui sont invariants par transformations géométriques usuelles (homothétie, rotation) et de manière moins fiables aux transformations affines et à l'illumination \citep{mikolajczyk2005performance}.
+ 

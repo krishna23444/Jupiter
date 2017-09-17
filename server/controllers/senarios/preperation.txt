@@ -1,0 +1,19 @@
+tic
+try
+%----------------------------Leberation of workspace--------------------------------------%
+ clear all; close all; clc;
+%----------------------------Reading images from database---------------------------------%
+[files,fileNames]=getAllFiles('pathBDDToReplace');
+dirResults='pathResultsToReplace';
+scans=numberTotToChange;
+scan=numberScansToChange;
+savingResults=savningToChange;
+features=[];
+for a = 1:scans
+path=files{a,1};
+name=fileNames{1,a+2};
+%Laoding image
+img = imread(path);
+img=im2double(img);
+%Applying grayscale if color image
+if ndims(img) == 3; img = rgb2gray(img); end  

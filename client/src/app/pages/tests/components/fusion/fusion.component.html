@@ -1,0 +1,65 @@
+ 
+
+
+    <form [formGroup]="form" class="form-horizontal row"    (ngSubmit)="onSubmit(form.value)" >
+      <div class="col-sm-4"></div>
+<div class="col-sm-4">
+        <div class="form-group">
+           <label >Fusion level</label>
+           <select formControlName='type' (change)="onChange($event.target.value)" class="form-control" id="exampleSelect1">
+            <option value="" selected disabled>Choose level of fusion</option>
+            <option value="Features Fusion">Features Fusion</option>
+            <option value="Scores Fusion" >Scores Fusion</option>
+          </select>
+        </div>
+         <div  class="form-group">
+         <label>Database</label>
+         <select  *ngIf="done" formControlName='database'  (change)="getDatabase($event.target.value)" class="form-control">
+          <option value="" selected disabled>Database</option>
+          <option *ngFor=" let item of databases" [value]="item._id">{{item.name}}</option>
+        </select>
+      </div>
+ <div *ngIf="scoreValue;else other_content">
+   
+        <div  class="form-group">
+         <label>Category</label>
+           <select formControlName='name'  class="form-control" id="exampleSelect1">
+            <option value="" selected disabled>Choose method</option>
+            <option *ngFor=" let item of scoresCategory" [value]="item.name">{{item.name}}</option>
+          </select>
+      </div> 
+        <div  class="form-group">
+         <label>Name of method</label>
+           <select formControlName='fusionMethod'  class="form-control" id="exampleSelect1">
+            <option value="" selected disabled>Choose method</option>
+            <option *ngFor=" let item of scoresMethods" [value]="item.name">{{item.name}}</option>
+          </select>
+      </div> 
+  </div>
+   <ng-template #other_content>
+   
+    <div  class="form-group">
+         <label>Name of fusion method</label>
+           <select formControlName='category'  class="form-control" id="exampleSelect1">
+            <option value="" selected disabled>Choose method</option>
+            <option *ngFor=" let item of methodsFeatures" [value]="item.name">{{item.name}}</option>
+          </select>
+      </div> 
+      <div  class="form-group">
+         <label>Name of matching method</label>
+           <select formControlName='matcher'  class="form-control" id="exampleSelect1">
+            <option value="" selected disabled>Choose method</option>
+            <option *ngFor=" let item of methodsDistance" [value]="item.name">{{item.name}}</option>
+          </select>
+      </div> 
+    
+</ng-template>
+<div>
+</div>
+  <div   class="pagerDiv form-group pull-right">
+   <button type="button"  class="btn btn-default "  (click)="cancel($event)">Cancel</button>
+   <button  type="submit"   class=" btn btn-primary  round play" *ngIf="done"   >Start <i class=" fa fa-play" > </i></button>
+ </div>
+ </div>
+ </form>
+ <div [ngBusy]="busy"></div>

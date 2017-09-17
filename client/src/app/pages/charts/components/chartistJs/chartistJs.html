@@ -1,0 +1,31 @@
+<section class="chartist">
+  <div class="row">
+    <div class="col-md-6 ">
+      <ba-card title=" " baCardClass="with-scroll">
+        <h5 translate>ROC Curve</h5>
+        <ba-chartist-chart baChartistChartClass="ct-chart"
+                           baChartistChartType="Line"
+                           [baChartistChartData]="data['simpleLineData']"
+                           [baChartistChartOptions]="data['simpleLineOptions']">
+        </ba-chartist-chart>
+
+      
+      </ba-card>
+    </div>
+
+    <div class="col-md-6 ">
+      <ba-card title=" " baCardClass="with-scroll">
+
+     <h5 translate>Users tested</h5>
+            <ba-chartist-chart baChartistChartClass="ct-chart stacked-bar"
+                               baChartistChartType="Pie"
+                               [baChartistChartData]="data['simplePieData']"
+                               [baChartistChartOptions]="data['simplePieOptions']"
+                               [baChartistChartResponsive]="getResponsive(20, 80)">
+            </ba-chartist-chart>
+
+      </ba-card>
+    </div>
+  </div>
+
+</section>

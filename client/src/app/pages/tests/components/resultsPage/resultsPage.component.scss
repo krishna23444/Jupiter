@@ -1,0 +1,37 @@
+ @import '../../../../theme/sass/conf/conf';
+ .img-responsive
+ {
+ 	width:30%;
+ }
+ .folders
+ {
+ 	width:100%;
+ 	.description
+ 	{
+ 		  cursor:pointer;
+ 		width:20%;
+ 		float:left;
+ 		*{
+ 			float:none;
+ 			display:block;
+ 		}
+ 	}
+ }
+ .preview
+ {
+ 	*{
+
+ 	}
+
+ }
+ .form-control {
+    color: #364B73;
+    border: 1px solid rgb(241, 237, 237);
+    border-radius: 5px;
+    background-color: #f4f4f4;
+
+}
+.fa
+ {
+     cursor: pointer;
+ }

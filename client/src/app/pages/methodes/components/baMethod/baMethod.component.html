@@ -1,0 +1,109 @@
+ 
+<form [formGroup]='form' (ngSubmit)="onSubmit(form.value)" class=" row form-horizontal" > 
+
+  <div class="col-sm-4">
+   <div class="row">
+     <p class="text-danger" style="margin-bottom: 10px;"> {{keyError}}</p>
+     <div class="form-group col-sm-8">
+       <input formControlName='name'  type="text" class="form-control" id="inputFirstName" placeholder="Name"  (keypress)="checkKey($event.target.value)" >
+     </div>
+     <div class="form-group col-sm-4">   
+      <p-fileUpload mode="basic"     maxFileSize="1000000" (onSelect)="onFileChange($event)"></p-fileUpload>
+    </div>
+  </div>
+
+<div  class="form-group row options">
+
+ <select   formControlName='modality'  (change)="updateSelectModality($event.target.value)"  class="form-control col-sm-11" id="exampleSelect1">
+  <option value="" selected disabled>Modality</option>
+  <option *ngFor=" let item of modalities" [value]="item.name">{{item.name}}</option>
+
+</select>
+<a  data-toggle="modal" data-target="#modalityModal"><i class="fa fa-plus-circle fa-lg"></i></a> 
+
+</div> 
+<div  class="form-group ">
+ <select    formControlName='module' (change)="updateSelectModule($event.target.value)"  class="form-control" id="exampleSelect1">
+  <option value="" selected disabled>Module</option>
+  <option *ngFor=" let item of modules" [value]="item">{{item}}</option>
+
+
+</select>
+</div>
+  <div *ngIf="bddNeeed">
+  <div class="form-group">
+    <label for="inputWebsite">Does it need a traitement on database?</label>
+    <div class="pull-right">
+      <ui-switch  formControlName="needBDD" size="small" color="#39527b" (change)="onChangeSwitch2($event)" [checked]="false"></ui-switch>
+    </div>
+  </div>
+  <div *ngIf="needed">
+   <div class="row">
+    <div class="form-group col-sm-8">
+     <input formControlName='name2'  type="text" class="form-control" id="inputFirstName" placeholder="Name of BDD routine" >
+   </div>
+   <div class="form-group col-sm-4">  
+
+
+    <p-fileUpload mode="basic"     maxFileSize="1000000" (onSelect)="onFileChange2($event)"></p-fileUpload>
+  </div>
+</div>
+
+</div>
+</div>
+<div  class="form-group options row">
+
+  <select  *ngIf="done" formControlName='category' (change)="updateSelect()" class="form-control col-sm-11" id="exampleSelect1">
+    <option value="" selected disabled>Category</option>
+    <option *ngFor=" let item of categories" [value]="item.name">{{item.name}}</option>
+
+  </select>
+  <a  data-toggle="modal" data-target="#categoryModal"><i class="  fa fa-plus-circle fa-lg"></i></a> 
+</div>
+<div class="form-group">
+  <label for="inputWebsite">Public</label>
+  <div class="pull-right"> 
+    <ui-switch  formControlName="publicMethod" size="small" color="#39527b" (change)="onChangeSwitch($event)" [checked]="false"></ui-switch>
+  </div>
+</div>
+<div class="form-group">
+ <textarea   formControlName='ref' type="text" class="form-control" id="inputFirstName" placeholder="Réf"></textarea>
+</div>
+
+<div class="form-group">
+ <textarea    formControlName='description' class="form-control" id="inputWebsite" placeholder="Description"></textarea>
+</div>
+</div>
+
+
+<div   class="col-sm-8" >
+
+  <div class="col-sm-6" style="position:  fixed;">
+   <codemirror   formControlName='code' class="" id="scriptMatlab"
+   [config]="octaveConfig" >
+ </codemirror>
+ 
+<!--
+ <section  highlight-js-content=".highlight" class=" form-control " id="  "  >
+   <pre>
+    <code [innerHtml]="scriptMatlab" id="scriptMatlab" formControlName='codeMatlab' contenteditable="true" class="matlab">
+
+    </code>
+  </pre>
+
+</section> 
+!-->
+<div class="row pull-right footer">
+ <button type="button"  class="btn btn-default "  (click)="cancel($event)">Cancel</button>
+ <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button> 
+</div>
+</div>
+</div>
+
+
+
+</form>
+
+<nga-add-modality></nga-add-modality>
+<p-growl [(value)]="msgs"></p-growl>
+<nga-add-category></nga-add-category>

@@ -1,0 +1,78 @@
+
+
+\chapter{Tests et résultats}
+\lhead{ANNEXE B.}
+\label{annexeb}
+
+\section{Base de données de test}
+\label{exemplebddtest}
+Exemple des propriétés de la base de données \textbf{\textit{FVC2000-DB1}}\footnote{\href{http://bias.csr.unibo.it/fvc2000/db1.asp}{http://bias.csr.unibo.it/fvc2000/db1.asp}} :\\
+\begin{itemize}
+	\item \textbf{Le nom de la base de données :} CASIA-FingerprintV5.
+	\item	\textbf{Le contenue : }880  images d'un 110 individus, 8 scan par individu. 
+	\item	\textbf{Le capteur :} les images sont scannées en utilisant un capteur optique à faible coût de mark "Secure Desktop Scanner" par KeyTronic.
+	\item	\textbf{Les propriétés d’image : }les images sont en niveau de gris avec une résolution de 300x300, l'extension est tif.
+	\item	\textbf{Le pattern de nommage :} \verb|préfixeYY_X.tif|  
+\begin{itemize}
+ \item \textbf{YY :} Indique l'Id ou l'index de l'individu.
+\item \textbf{X :} numéro du scan.
+\end{itemize}
+\end{itemize}
+Le tableau \ref{databsetable} présente les bases de données existantes de tests des empreintes digitales et palmaires.
+\begin{sidewaystable}[h!]
+	\centering
+
+\begin{tabular}{|p{3cm}|p{1cm}|p{1cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{3cm}|}
+	\hline
+	\textbf{Organisation} & \textbf{Nom} & \textbf{Date} & \textbf{Modalité} & \textbf{Capteur} & \textbf{Résolution} & \textbf{Taille d'image} & \textbf{Format} & \textbf{Nombre d'individus} & \textbf{Nombre de scans par individu} \\ \hline
+	FVC & DB1 & 2000 & Empreinte digitale & Optique & 500 dpi & 300x300 & tif & 110 & 8 \\ \hline
+	FVC & DB2 & 2000 & Empreinte digitale & Capacitif & 500 dpi & 256x364 & tif & 110 & 8 \\ \hline
+	FVC & DB3 & 2000 & Empreinte digitale & Optique & 500 dpi & 448x478 & tif & 110 & 8 \\ \hline
+	FVC & DB4 & 2000 & Empreinte digitale & Synthetic Generator & 500 dpi & 240x320 & tif & 110 & 8 \\ \hline
+	FVC & DB1 & 2002 & Empreinte digitale & Optique & 500 dpi & 388x374 & tif & 110 & 8 \\ \hline
+	FVC & DB2 & 2002 & Empreinte digitale & Optique & 569 dpi & 296x560 & tif & 110 & 8 \\ \hline
+	FVC & DB3 & 2002 & Empreinte digitale & Capacitif & 500 dpi & 300x300 & tif & 110 & 8 \\ \hline
+	FVC & DB4 & 2002 & Empreinte digitale & SFinGe v2.51 & about 500 dpi & 288x384 & tif & 110 & 8 \\ \hline
+	FVC & DB1 & 2004 & Empreinte digitale & Optique & 500 dpi & 640x480 & tif & 120 & 12 \\ \hline
+	FVC & DB2 & 2004 & Empreinte digitale & Optique & 500 dpi & 328x364 & tif & 120 & 12 \\ \hline
+	FVC & DB3 & 2004 & Empreinte digitale & Thermique & 512 dpi & 300x480 & tif & 120 & 12 \\ \hline
+	FVC & DB4 & 2004 & Empreinte digitale & SFinGe v3.0 & 500 dpi & 288x384 & tif & 120 & 12 \\ \hline
+	FVC & DB1 & 2006 & Empreinte digitale & Électrique & 250 dpi & 96x96 & tif & 150 & 12 \\ \hline
+
+\end{tabular}
+
+ 
+
+\end{sidewaystable}
+\begin{sidewaystable}[h!]
+	\centering
+	\begin{tabular}{|p{4cm}|p{4cm}|p{1cm}|p{2cm}|p{3cm}|p{1cm}|p{2cm}|p{1cm}|p{1cm}|p{1cm}|}
+	FVC & DB2 & 2006 & Empreinte digitale & Optique & 569 dpi & 400x560 & tif & 150 & 12 \\ \hline
+FVC & DB3 & 2006 & Empreinte digitale & Thermique & 500 dpi & 400x500 & tif & 150 & 12 \\ \hline
+FVC & DB4 & 2006 & Empreinte digitale & SFinGe v3.0 & 500 dpi & 288x384 & tif & 150 & 12 \\ \hline
+NIST & \begin{tabular}[c]{@{}c@{}}NIST Special 4\end{tabular} & 2002 & Empreinte digitale & Optique & 500 dpi & 512x512 & png & 2000 & 10 \\ \hline
+NIST & \begin{tabular}[c]{@{}c@{}}NIST Special 29\end{tabular} & 2001 & Empreinte digitale & Optique & 500 dpi & 512x512 & tif & 216 & 20 \\ \hline
+Le test idéal biométrique & \begin{tabular}[c]{@{}c@{}}CASIA V5\end{tabular} & 2002 & Empreinte digitale & Optique & 500 dpi & 328x356 & bmp & 500 & 40 \\ \hline
+Le test idéal biométrique & \begin{tabular}[c]{@{}c@{}}CASIA \end{tabular} & 2004 & Empreinte palmaire & Optique & 500 dpi & 328x356 & jpeg & 312 & 40 \\ \hline
+\begin{tabular}[c]{@{}c@{}}Le centre de recherche  \\ biométrique PolyU\\ (PolyU)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Base de données  \\ multispectral de \\  PolyU\end{tabular} & 2003 & Empreinte palmaire & Multispectral & 500 dpi & 300x300 & bmp & 500 & 12 \\ \hline
+\begin{tabular}[c]{@{}c@{}} \\ IIT Delhi\end{tabular} & \begin{tabular}[c]{@{}c@{}}IIT Delhi \\ Touchless Palmprint \\ 
+	 (Version 1.0)\end{tabular} & 2007 & Empreinte palmaire & Multispectral & 500 dpi & 800x600 & bmp & 235 & 7 \\ \hline
+ 
+\end{tabular}
+	\caption{Les bases de données existantes de tests. \label{databsetable}}
+ 
+
+\end{sidewaystable}
+\section{Protocole}
+\label{protocol}
+Est un corps ou bien un squelette à suivre dans l’écriture des implémentation d’une méthode, un protocole contient la manière de définition des entrées et des sorties et l’emplacement d’envoyer un code d’erreur. Il est imposé pour conserver l’uniformité des méthodes et faciliter le test.
+\section{Résultats}
+Nous présentons le scénario qu'on génère après la sélection des méthodes et la base de données par le chercheur dans le lancement de tests. 
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.6\linewidth]{captures/exempleSenario}}
+	\caption{Exemple d’un script Matlab d'un scénario généré.}
+	\label{fig:senario}
+\end{figure}
+
+

@@ -1,0 +1,367 @@
+ \lhead{SYSTEME BIOMETRIQUE BASE SUR L'EMPREINTE PALMAIRE}
+\chapter{Système biométrique basé sur l'empreinte palmaire }
+\label{Chapter3}
+\section{Introduction}
+\tab La première recherche faite sur la reconnaissance d'empreintes palmaires a été introduite par \citep{shu1998automated}, afin de pallier les problèmes liés à la non visibilité d'empreintes digitales ou bien le coût élevé des appareils de capture des images de l'iris et de la rétine ou encore les faibles taux de reconnaissance des autres modalités biométriques \citep{Wassila2007}.
+\\L'empreinte palmaire ou « palmprint » est cette surface très interne de la main, elle contient plusieurs traits caractéristiques tels que les lignes principales, les plis et les textures \citep{pavevsic2004personal} (Voir la figure \ref{fig:chapitre3anatomy}). Il existe plusieurs approches afin de reconnaitre les individus en utilisant leurs empreintes palmaires, celles qui utilisent des images d'empreintes palmaires de haute résolution (i.e. résolution supérieure à 500 dpi) et celles qui utilisent des images de basse résolution (résolution inférieure à 100 dpi). La reconnaissance par des approches à basse résolution est exploitée dans les applications civiles et commerciales comme le contrôle d'accès. Cependant, la reconnaissance par des approches à haute résolution convient aux applications du secteur de la justice comme la détection des criminels.
+
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.55\linewidth]{chapitre3anatomy}
+		\caption{Anatomie de l'empreinte palmaire.}
+		\label{fig:chapitre3anatomy}
+	\end{figure}
+\end{center}
+\clearpage
+Le tableau \ref{tab:palmcomparaison} compare entre une image de haute résolution et une autre de basse résolution d'une empreinte palmaire :
+\begin{table}[H]
+	\centering
+	
+	\begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}
+		\hline
+		\textbf{Approche} & \textbf{Basse résolution} & \textbf{Haute résolution} \\ \hline
+		\textbf{Résolution des Images traitées} & Inférieure à 100(500) dpi & Supérieure à 500(1000) dpi \\ \hline
+		\textbf{Caractéristiques pouvant être extraites} & Lignes principales, lignes secondaires & Toutes : lignes principales, lignes secondaires et lignes fines \\ \hline
+		\textbf{Applications} & Les applications civiles et commerciales comme le contrôle d'accès & Applications du secteur de la justice comme la détection des criminels \\ \hline
+		\textbf{Espace mémoire exploité} : applications temps réel & Plus petit & Plus grand \\ \hline
+		\textbf{Processeur }: applications temps réel & Plus rapide & Plus lente \\ \hline
+	\end{tabular}
+	\caption{Comparaison entre une image de haute et une image de basse résolution d'une empreinte palmaire.}
+	\label{tab:palmcomparaison}
+\end{table}
+Dans ce qui suit, nous détaillons les différents algorithmes à basse résolution qui sont les plus utilisés dans la reconnaissance de l'empreinte palmaire \citep{kong2002palmprint}, qui interviennent essentiellement dans l'étape d'extraction. Ces algorithmes se catégorisent en trois grandes approches : l'approche holistique, l'approche à base des caractéristiques locales de la paume de main et l'approche hybride.
+\section{Approche holistique (globale)}
+Les algorithmes appartenant à cette approche manipulent les images comme un tout, des matrices de valeurs de pixels, à traiter d'une manière globale et il n'est pas nécessaire de repérer certains points \citep{meyer2009} pour effectuer la reconnaissance. Cette approche se base sur des techniques d'analyse statistique bien connues. Elles peuvent être linéaires ou non linéaires, supervisées ou non supervisées. Dans ce qui suit nous parlerons des méthodes d'extraction et des exemples d'algorithmes suivant l'approche holistique.
+\subsection{Méthodes d'analyse des sous-espaces }
+\label{spacemethodes}
+Le but de ces méthodes est de transformer les données de l'image d'entrée représentées dans un espace de grande dimension en une représentation dans un espace de dimension plus faible et d'extraire l'information pertinente afin de faciliter l'étape de classification. 
+
+\subsubsection{Analyse en composantes principales (ACP)}
+\label{ACP}
+L’ACP est une méthode linéaire\footnote{Une méthode linéaire : s’applique sur des données qui ont une structure linaire (vecteurs, matrices …etc.).} non supervisée\footnote{Une méthode non supervisée : c’est une méthode qu’on ne sait pas les classes des données dans la phase d’apprentissage.} utilisée pour projeter les images dans un espace de données de dimension inférieure d’une manière à garder que la donnée discriminante, cette méthode exploite la liaison entre les colonnes de l’image, et minimise le nombre de colonnes, si c’est possible, pour qu’elles soient non corrélées deux à deux\citep{lu2003palmprint}. 
+\\Considérant un ensemble de $ M $ images d'empreintes palmaires $ x_{1}, x_{2},…..,x_{m} $, de dimension $ N * N $.
+La moyenne des $ M $ images $\mu $ est calculée par :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq1}
+	\mu = \frac{1}{M}\sum_{i=1}^{M}x_{i}
+	\end{equation}
+\end{center}
+Chaque image $ {x_{i}}$ de l'ensemble diffère de l'image moyenne de : $ Q_{i}=x_{i}-\mu$.
+La matrice de covariance de la matrice est de dimension $N^{2}*N^{2}$, elle est calculée comme suit :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq2}
+	C = \frac{1}{M}\sum_{i=1}^{M}(x_{i}-\mu)(x_{i}-\mu)^{T}=\frac{1}{M}XX^{T} \qquad tel que : \! X= [Q_{1} Q_{2}… Q_{M}]
+	\end{equation}
+\end{center}
+
+C'est évident que les vecteurs propres de la matrice $C$ forment l'espace propre (matrice) qui représente la meilleure approximation de l'ensemble des images de départ en terme de l'erreur quadratique moyenne.
+\\Trouver les vecteurs propres et les valeurs propres d'une image est une tache insoluble pour une image de dimension typique assez grande. La formule suivante est satisfaite pour la matrice $C$ : $Cu_{k}= \lambda_{k}u_{k}$, tels que $u_{k}$ sont les vecteurs propres de la matrice $C $ et $\lambda_{k}$ sont les valeurs propres de $C$.
+En pratique le nombre $M$ des images de l'ensemble de départ est relativement petit, les vecteurs propres $(v_{k})$ et les valeurs propres$(a_{k})$ de la matrice $ L=X^{T}X(L \in\Re)$ sont beaucoup plus facile à calculer, donc nous avons : 
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq3}
+	X^{T}Xv_{k}=a_{k}v{k} \rightarrow XX^{T}(Xv_{k})=a_{k}(Xv{k})
+	\end{equation}
+\end{center}
+Nous obtenons par la suite les valeurs propres de $C$ $u_{k}=Xv_{k}$, tels que $ U=\begin{Bmatrix}u_{k},k=1,..,M \end{Bmatrix} $ dénote les vecteurs de bases qui correspondent aux images d'empreinte palmaire originales formant un espace propre unitaire.
+\\ L'utilisation de la méthode d'analyse en composante principale nous permet de choisir les vecteurs propres correspondant aux valeurs propres les plus grandes qui permettent de mieux représenter les images d'empreinte palmaire du départ. Les $ {M}'$ vecteurs propre significatifs $({u}'_{k})$ associés aux valeurs propres les plus grandes sont sélectionnés comme composante des paumes propres (eigenpalm) $ {U}'=\begin{Bmatrix} {u}'_{k},k=1,..,{M}'\end{Bmatrix} $, donc une image d'empreinte palmaire est transformée en composantes de paume propre en appliquant la formule suivante : $f_{i}={U}'(x_{i}-\mu) \qquad tels que :\qquad (i=1,..M)$
+
+Où le poids de la projection $f_{i}(f_{i} \in \Re ^{{M}'*1}))$ réfère au vecteur des caractéristiques de chaque personne et $ {M}'$ est la longueur de caractéristiques\citep{lu2003palmprint}.
+
+La figure suivante \ref{fig:chapitre3eigenpalms} illustre les « eigenpalms » dérivées des images d'empreinte palmaires de test :
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{chapitre3eigenpalms}
+		\caption{a) : les images d'empreintes palmaires de test, b) : les eigenpalms dérivées \citep{lu2003palmprint}.}
+		\label{fig:chapitre3eigenpalms}
+	\end{figure}
+\end{center}
+\subsubsection{Analyse en composantes indépendantes (ACI)}
+\label{ACI}
+L'analyse en composantes indépendantes traite des observations vectorielles (multivariées) afin d’en extraire des composantes linéaires qui soient « aussi indépendantes que possible » \citep{cardoso2002analyse}.
+Une image d’empreinte palmaire est considérée comme un ensemble inconnu de sources d’images statistiquement indépendantes mélangées par une matrice de mixage.
+L’ACI donc trouve une matrice de séparation afin de de transformer un signal mixte à un ensemble de signaux linéairement indépendants \citep{connie2003palmprint}.
+La figure suivante \ref{fig:chapitre3etapesACI} illustre les étapes globales de l’application de l’analyse en composantes indépendantes pour la reconnaissante d’empreinte palmaire:
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{chapitre3etapesACI}
+		\caption{Implémentation de l’ACI sur la reconnaissance d’empreinte palmaire.}
+		\label{fig:chapitre3etapesACI}
+	\end{figure}
+\end{center}
+Soit S, le vecteur des images sources inconnues, x le vecteur des mélanges observés.
+Si A est la matrice de mixage alors le processus de mixage est décrit par :$x=A\hat{s}$.
+\\
+Le but de l'ACI est de trouver la matrice de séparation W telle que :
+$\hat{s}=Wx$.
+\\
+
+Néanmoins, il n’y a pas de méthodes exactes pour calculer la matrice W, plutôt des méthodes itératives sont utilisées pour trouver une approximation à W de telle manière à optimiser l’estimation de $\hat{s}$.
+
+Il existe plusieurs implémentations de ACI, parmi ces implémentations, l’algorithme InfoMax décrit dans l’article \citep{bartlett2002face}, qui est appliqué pour trouver la valeur de $\hat{s}$ d’abord, puis la valeur de X.
+La figure \ref{fig:chapitre3ACPACI} représente les résultats obtenus après l’application de l’ACP et de l’ACI sur les mêmes images de test.
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{chapitre3ACPACI}
+		\caption{a) Résultats générés après l’application de l’algorithme d’analyse en composantes principales (ACP), b) Résultats générés après l’application de l’algorithme d’analyse en composantes indépendantes (ACI).}
+		\label{fig:chapitre3ACPACI}
+	\end{figure}
+\end{center}
+
+\subsubsection{Analyse discriminante linéaire (ADL)}
+\label{ADL}
+C’est une méthode linéaire supervisée où la base d’apprentissage d’images est organisée en plusieurs classes : une classe par personne et plusieurs images par classe. L'ADL analyse les vecteurs propres de la matrice de dispersion des données, pour maximiser les variations interclasses tout en minimisant les variations intra-classes \citep{morizet2006revue}.
+Supposons que nous avons $ C $ classes connues dans un espace de dimension N, le nombre de templates par la ième classe est noté par $l_{i}$, le nombre total des templates de toutes les classes est L,
+$x_j^i$ est la $j^{eme}$ template de la $i^{eme}$ classe, $1\leq i\leq c,1\leq j\leq l_{i}$, $x_{i}$ est la $i^{eme}$ template, telle que $1\leq i\leq L$.
+\\
+Mathématiquement, l’objectif de l’ADL est de calculer la matrice rectangulaire $W\in R^{N*n}$qui maximise le critère de Fisher:
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq4}
+	J(W)=\frac{\left | W^Ts_b W \right |}{\left | W^Ts_w W\right |}
+	\end{equation}
+\end{center}
+Telles que $S_{b}$ et $S_{W}$ sont les matrices dispersions interclasses et intra classes, respectivement
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq5}
+	S_b=\sum_{i=1}^{c}P_i(m_i -m)(m_i-m)^T
+	\end{equation}
+\end{center}
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq6}
+	S_w=\sum_{i=1}^{c}\sum_{j=1}^{l_{i}}(x_{j}^{i}-m_{i})(x_{j}^{i}-m_{i})^{T}
+	\end{equation}
+\end{center}
+où $m_i=\frac{1}{l_i}\sum_{j=1}^{l_i}x_{j}^{i}$, $m=\sum_{k=1}^{L}x_{k}=\sum_{i=1}^{c}p_{i}m_{i}$ Sont la moyenne des templates de la $i^{eme}$ classe et la moyenne de toutes les templates respectivement.
+$W$ doit être composée des vecteurs propres correspondants aux valeurs propres de l’équation :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq7}
+	S_b \alpha _i=\lambda_i S_w \alpha_i
+	\end{equation}
+\end{center}
+Si $S_{W}$ est une matrice non singulière, les $k$ vecteurs discriminants seront les $k$ vecteurs propres correspondants aux $k$ plus grandes valeurs propres de la matrice $S_{w}^{-1}S_{b}$.
+\subsubsection{Analyse en composantes principales à noyaux (ACP à noyaux)}
+L'un des inconvénients de l'ACP réside dans sa linéarité. Des vecteurs principaux sont obtenus indépendamment du fait que des lois non-linéaires puissent régir le comportement du système étudié (le changement de luminosité, de position) \citep{honeine2007methodes}. Dans l'analyse en composantes principales à noyaux qui est une méthode non linéaire\footnote{Une méthode non linéaire : c'est une méthode qui s'applique sur des données non linéaires (arbre par exemple), les données (non linéaires) sont transformées non linéairement par une fonction mathématique vers un espace d’une plus grande dimension où les données non linéaires peuvent être linéairement séparable \citep{diederich2001face}.}.
+Étant donné un ensemble de $ m $ variables centrées $x_{k}$, $x_{k}=[x_{k1},...,x_{kn}]^{T}\in R^{n}$.
+\\
+Dans la méthode ACP (voir la section \ref{ACP}), l’équation: $w\lambda =Cw$ est vérifiée, telles que $\lambda \geq 0$, et les $\lambda$ sont les valeurs propres et $W\in R^{n}$ sont les vecteurs propres correspondants.
+Dans la méthodes ACP à noyau, les vecteurs $ x $ sont projetés de l’espace d’entrée $R^{n}$ vers un espace de dimension plus grande $R^{f}$ par une fontion non lineaire :
+\begin{center}
+	\begin{equation}
+	\label{eq:chapitre3eq8}
+	\Phi :R^{n}\rightarrow R^{f}, f\gg n	
+	\end{equation}
+\end{center}
+Dans $R^{f}$ trouver les valeurs propres revient à résoudre l’équation \ref{eq:chapitre3eq9} :
+\begin{center}
+	\begin{equation}
+	\label{eq:chapitre3eq9}
+	\lambda W^{\Phi }=C^{\Phi }W^{\Phi } 
+	\end{equation}
+\end{center}
+Telle que $C^{\Phi }$ est la matrice de covariance. Les solutions $W^{\Phi }$, $\lambda \neq 0$ s’étendent vers $\Phi \left (x_{1} \right),...,\Phi \left (x_{m} \right)$ et il existe des coefficients $\alpha _{i}$ tels que 
+
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq10}
+	w^{\Phi }=\sum_{i=1}^{m}\alpha_{i}\Phi \left (x_{i} \right)
+	\end{equation}
+\end{center}
+Notons la matrice $K$ de dimension $m*m$:
+
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq11}
+	K_{ij}=k(x_{i},x_{j})=\Phi (x_{i}).\Phi(x_{j})
+	\end{equation}
+\end{center}
+Donc, le problème de l’ACP à noyau devient :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq12}
+	\lambda K\alpha=K^2 \alpha
+	\end{equation}
+\end{center}
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq13}
+	m\lambda \alpha=K\alpha
+	\end{equation}
+\end{center}
+Tel que $\alpha$ est le vecteur colonne qui regroupe les coefficients $\alpha _{1},...,\alpha _{m}$.
+C’est possible maintenant de projeter les vecteurs de $R_{f}$ vers un espace de dimension plus petite engendré par les vecteurs propres $W^{\Phi }$.
+Soit $x$ une template(une image d’empreinte palmaire) et $\Phi (x)$, sa projection dans $ R^{f} $, la projection de $\Phi (x)$ sur $W\left (\Phi \right)$ est constituée des composantes principales non linéaires correspondantes à $ \Phi $ :
+\begin{center}
+	\begin{equation}
+	\label{eq:chapitre3eq14}
+	W^{\Phi }\Phi(x)=\sum_{m=1}^{m}\alpha_{i}(\Phi(x_{i}).\Phi(x))=\sum_{m=1}^{m}\alpha_{i}k(x_1,x)
+	\end{equation}
+\end{center}
+Autrement dit, nous pouvons extraire les $q$ premières ($1\leq q\leq m$) composantes principales non linéaires, i.e. les vecteurs propres $W^\Phi$ en utilisant la fonction noyau sans projeter les templates d’empreintes palmaires explicitement vers un espace de dimension grande, ce qui est très couteux.
+\subsubsection{Méthode basée sur les tenseurs }
+Dans les méthodes précédentes, l’image doit être transformée en vecteur pour pouvoir les appliquer \citep{wang2006palmprint}, mais en réalité l’image est une matrice, i.e. un tenseur de deuxième ordre. La relation entre les lignes et les colonnes de cette matrice peut être importante dans la recherche d’une projection de l’image vers un espace d’une dimension réduite \citep{xiao2010novel}. Dans ce qui suit nous présentons la méthode l’analyse en composantes principale en deux dimensions (ACP2D).
+Notons $X$ un vecteur colonne unitaire de dimension $n$ l’idée de ACP2D est de projeter une image $A$, une matrice de dimension $w*h$ sur $X$ par la transformation linéaire suivante :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq15}
+	Y=AX
+	\end{equation}
+\end{center}
+La projection de $A$ sur $X$ produit un vecteur projeté $Y$ de dimension $m$.
+Le but de ACP2D est de sélectionner un bon vecteur de projection $X$, la question qui se pose est comment décider si un vecteur $X$ est bon ou non ?\\
+La dispersion totale des templates projetées est introduite comme mesure de forme discriminatoire du vecteur de projection $X$. La dispersion totale des templates projetées peut être caractérisée par la trace de la matrice de covariance des vecteurs projetés, donc le but est de maximiser :
+
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq16}
+	J(X)=tr(S_x)
+	\end{equation}
+\end{center}
+Telle que $S_x $ est la matrice de covariance des vecteurs projetés et $tr(S_x)$ est sa trace :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq17}
+	S_x=E(Y-EY)(Y-EY)^T=E[(A-EA)X][(A-EA)X]^T
+	\end{equation}
+\end{center}
+Donc :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq18}
+	j(X)=tr(S_x)=X^T [E(A-EA)^T (A-EA)]X
+	\end{equation}
+\end{center}
+Notons :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq19}
+	G_t=E[(A-EA)^T (A-EA)]
+	\end{equation}
+\end{center}
+La matrice $G_t$ s’appelle la matrice de covariance de l’image $A$.
+Si nous avons $N$ images d’empreintes palmaires $A$ au départ, la moyenne de toutes ces images est notée $\bar{A}$, nous aurons :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq20}
+	G_t=\frac{1}{N}\sum_{i=1}^{N}(A_i-\bar{A})^T(A_i-\bar{A})
+	\end{equation}
+\end{center}
+Le critère décrit dans l’expression \ref{eq:chapitre3eq16} sera :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq21}
+	J(X)=X^T G_t X  
+	\end{equation}
+\end{center}
+La projection optimale $X_{opt}$ est le vecteur unitaire $X$ qui maximise $J(X)$, ie, le vecteur propre de $G_t$ correspondant à la plus grande valeur propre de $G_t$. Pratiquement, nous avons besoin de choisir plusieurs vecteurs $X$ orthonormaux, qui sont les vecteurs propres de $G_t$ correspondants aux $d$ premières plus grandes valeurs propres et qui vérifient :
+\begin{center}
+	
+	\begin{equation}\label{eq:chapitre3eq22}
+	\begin{cases}\left\{X_{1},..,X_{d}\right\}=argmaxJ(X)
+	\\ X_i^TX_j=0,i\neq j , i,j=1,..,d\end{cases}
+	\end{equation}
+\end{center}
+\subsection{Méthode de moments invariants}
+Les moments invariants d’une image sont capables de capturer l’essentiel de son contenu, ils fournissent des propriétés invariantes face aux transformations comme la translation et rotation \citep{ma2009palmprint}. 
+Étant donnée une image $f(i,j)$ de dimension $M*N$, le moment $ m_{pq} $ d’ordre p+q est défini par :
+
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq23}
+	m_{pq}=\sum_{j=0}^{M=1}\sum_{i=0}^{N=1}i^p j^q f(i,j) 
+	\end{equation}
+\end{center}
+Le moment centré correspondant est :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq24}
+	\mu _{pq}=\sum_{j=0}^{M=1}\sum_{i=0}^{N=1}(x-\bar{x})^p(y-\bar{y})^qf(x,y)
+	\end{equation}
+\end{center}
+Normaliser la formule \ref{eq:chapitre3eq24} donne :
+\begin{center}
+	\begin{equation}\label{eq:chapitre3eq25}
+	u_{pq}=\frac{\mu_{pq}}{(\mu_{00})^{(p+q+2)/2}},p+q=2,3,... 
+	\end{equation}
+\end{center}
+Pour réduire le bruit dû à la translation ou la rotation, les moments invariants présentés par Hu, Ming-Kuei. dans son article\citep{hu1962visual}, afin d’améliorer la robustesse de la reconnaissance, parce que les moments invariants sont stables par rapport à la translation et la rotation \citep{ma2009palmprint} \citep{noh2005palmprint}.
+\subsection{Méthode basée sur une représentation spectrale}
+Après avoir transformé l’image de l’empreinte palmaire vers son domaine de transformation fréquentiel de Fourier, des caractéristiques fréquentielles peuvent être extraites et sont efficaces pour la distinction entre les empreintes palmaires \citep{zhang2012comparative}.
+\subsubsection{Méthode basée sur les signatures d’ondelettes }
+Une image d’empreinte palmaire possède des caractéristiques particulières comme la forme, la distribution des lignes principales et secondaires, pour mesurer ces caractéristiques, des signatures statistiques basées sur les ondelettes où la densité, l’énergie et la dispersivité spatiale sont utilisées.
+Cette méthode transforme l’image de l’empreinte palmaire vers le domaine d’ondelettes pour calculer des coefficients d’ondelettes puis extrait les signatures statistiques nécessaires.
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{chapitre3Ondelettes}
+		\caption{a) Image d’empreinte palmaire originale, b) Les coefficients d’ondelettes après la transformation de l’image vers le domaine d’ondelettes.}
+		\label{fig:chapitre3Ondelettes}
+	\end{figure}
+\end{center}
+\section{Approche locale }
+Elle se base sur la détection de certains points caractéristiques de la paume de la main : les trois lignes principales, les lignes secondaires et les lignes fines. Ces méthodes ont été mises en œuvre pour prendre en compte la non linéarité des données \citep{zhang2012comparative}. Dans les sections suivantes, nous présentons quelques méthodes faisant partie de l’approche locale.
+\subsection{Méthode basée sur les lignes de paume}
+Pour extraire les lignes principales de la paume de main, cette méthode utilise les dérivées gaussiennes du second ordre pour présenter l’ampleur de ligne et les dérivées gaussiennes du premier ordre pour détecter l’emplacement de la ligne, parce que les lignes de la paume sont une sorte de contours, qui sont généralement définis par une discontinuité de la dérivée première de profil de niveau de gris, autrement dit, la position des points de contour sont les points d’annulation de la dérivée première \citep{wu2006palm}.
+Le résultat final est obtenu en combinant tous les résultats les lignes de toutes les directions, puis les encoder en utilisant « chain code » qui est une méthode pour présenter les segments de ligne de paume en codifiant les directions des segments. 
+
+Nous présentons le détecteur à ligne large, une méthode d’extraction basée sur les lignes de paumes, et la méthode d’appariement des lignes locaux, utilisée pour apparier les images d’empreintes palmaires.
+
+\subsubsection{Détecteur à ligne large}
+Cette méthode permet l’extraction de lignes de paume complétement sans négliger l’information de la largeur des lignes. Afin d’extraire l’emplacement et l’ampleur de la ligne de paume simultanément, le détecteur de lignes larges utilise un filtre isotopique non linéaire sans utiliser aucune dérivée.
+Étant donné une image d’empreinte palmaire, cette méthode mesure d’abord la luminosité dans un masque circulaire et la luminosité du centre de ce masque, puis calcule l’épaisseur de la ligne palmaire, qui possède une luminosité inferieure par rapport à la luminosité de son arrière-plan \citep{liu2007detecting}. 
+\subsubsection{Méthode d’appariement des lignes locaux}
+Pour comparer deux images d’empreintes palmaires et générer le score de similarité, une méthode ordinaire est utilisée : calculer la proportion des pixels qui sont dans la même position dans les deux images par rapport au nombre total de pixels, cette méthode n’est pas efficace à cause des facteurs de translation, rotation et déformation \citep{zhang2012comparative}.Pour palier à ces problèmes, la distance de Hausdorff est utilisé, sans faire une correspondance pixel à pixel explicite, conçue pour tolérer le bruit, les erreurs de changements de position que subit une image \citep{rucklidge1997efficiently}.
+
+\subsection{Méthode basée sur la codification}
+\label{codificationchp2}
+Autre approche de reconnaissance palmaire, le principe est encoder les réponses de banques du filtre du Gabor à 2 dimensions en code binaire, parce qu’il est rapide et consomme moins d’espace mémoire \citep{yue2010survey}. Cependant, les palmcodes des différentes paumes ont encore une corrélation évidente ce qui peut dégrader les performances des palmcodes. Pour améliorer ces performances, la méthode fusion code apparait, qui exploite une banque de filtres de Gabor à plusieurs orientations, puis encoder la réponse du filtre dont l’ampleur est maximale en code binaire.
+Des travaux ont démontrés l’importance de l’information de l’orientation dans la reconnaissance des empreintes palmaires. De point de vue globale, il y a trois volets principaux de la codification basée sur l’orientation, le filtre, schéma de codification et l’approche d’appariement. Dans ce contexte, \citep{kong2004competitive} propose une méthode du code compétitif où des filtres de Gabor basés sur l’évidence neurophysiologique du Cortex visuel du cerveau mammalien et la théorie des ondelettes est utilisée pour extraire l’information de l’orientation. Dans l’étape de codification, un schéma de codification compétitif est utilisé pour représenter les caractéristiques extraites de la paume dont la sortie de filtre est la plus dominante en code binaire sur 3 bits \citep{kong2004competitive}. Pour l’appariement, la distance angulaire est appliquée pour comparer deux codes compétitifs (Voir la figure \ref{fig:chapitre3competitivecode}).
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{chapitre3competitivecode}
+		\caption{Procédure du schéma du code compétitif.}
+		\label{fig:chapitre3competitivecode}
+	\end{figure}
+\end{center}
+Dans les trois onglets de la codification basée sur l’orientation, d’autres méthodes peuvent être appliquées : le filtre elliptique et le filtre de Radon.
+\\ 
+Pour le schéma de codification, ordinal code, integer coding, pour la méthode d’appariement: comparaison pixel à zone (pixel to area)\citep{zhang2012comparative}.
+\subsubsection{Descripteur de texture locale}
+Un descripteur de texture locale ordinaire divise l’image d’empreinte palmaire en petits blocs différents, calcule la moyenne, la variance, l’énergie ou l’histogramme de chaque bloc.
+Parmi les méthodes des descripteurs de texture locale, nous citons la méthode basée sur les caractéristiques directionnelles, où l’image de l’empreinte palmaire est normalisée, pour extraire la région d’intérêt, les vecteurs de directions sont calculés pour obtenir le domaine du vecteur gradient, calculer l’histogramme de direction locale pour avoir la représentation en graphe de l’image de l’empreinte palmaire (Voir la figure \ref{fig:chapitre3graphextraction}) \citep{han2007palmprint}.
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{chapitre3graphextraction}
+		\caption{Schéma d'extraction des caractéristiques de l'empreinte palmaire.}
+		\label{fig:chapitre3graphextraction}
+	\end{figure}
+\end{center}
+
+En ce qui concerne l’appariement, la méthode d’appariement à base de graphe est exploitée, l’image est divisée en blocs, ou deux blocs issus de la position de la même empreinte digitale supposée très similaires (un bloc d’une image est supposé similaire à son bloc correspondant dans une autre image si ses deux images sont issues de la même empreinte palmaire), chaque nœud du graphe possède deux attributs : l’histogramme de direction locale et sa relation spatiale avec les autres nœuds.
+Pour appliquer cette méthodes deux conditions sont à satisfaire \citep{han2007palmprint}:
+\begin{enumerate}
+	\item pour deux graphes $ A $ et $ B $, deux noueux à comparer, doivent avoir la même position spatiale (layout topologique) dans chaque graphe.
+	\item les blocs à comparer doivent avoir une distance minimale basée sur une métrique de similarité (Chi carrée par exemple), de plus leur distance doit être inférieur à un seuil préfixé.
+\end{enumerate}
+
+\section{Approche hybride}
+
+Les méthodes hybrides permettent d’associer les avantages des méthodes globales et locales en combinant la détection de caractéristiques géométriques (ou structurales) avec l’extraction de caractéristiques d’apparence locales. Elles permettent d’augmenter la stabilité de la performance de reconnaissance lors de changements de pose, d’éclairage \citep{meyer2009}. Nous présentons les méthodes hybrides suivantes :
+\\
+Les méthodes d’extraction des caractéristiques et de comparaison traditionnelles utilisent des schémas fixes, ce qui ne convient pas à la recherche dans des grandes bases de données mais une 
+extraction multiniveau des caractéristiques, nous citons ci-dessous les niveaux de l’appariement grossier à fin (coarse-to-fine matching) où à chaque niveau nous adoptons un critère de comparaison diffèrent pour maximiser les performances du système \citep{zhang2004hierarchical} , \citep{you2004On} :
+
+\begin{enumerate}
+	\item Niveau 1 : ou niveau grossier, où la région d’intérêt est extraite, puis nous appliquons une distance de mesure de frontière de la paume (distance de point clé basée sur la géométrie globale) pour guider la sélection dynamique de l’ensemble des images d’empreintes palmaires candidates similaires.
+	\item Niveau 2 : l’énergie de texture globale est exploitée pour la rapide recherche de la meilleure correspondante image. Cette représentation des caractéristiques en texture basée sur les masques, est caractérisé par une convergence élevée des similitudes internes des paumes, i.e., une bonne dispersion de discrimination inter-paumes.
+	\item Niveau 3 : pour détecter les lignes d’intérêt, la méthode de la ligne d’internet de Fuzzy est appliquée, afin de guider la recherche de la meilleure correspondance dans le niveau fin (niveau 4).
+	\item Niveau 4 : en utilisant l’énergie de la texture directionnelle locale, un vecteur des caractéristiques est établi pour la phase d’appariement.
+\end{enumerate}
+
+La figure \ref{fig:chapitre3taxo} présente la taxonomie des algorithmes à basse résolution de reconnaissance l'empreinte palmaire que nous avons présentés.
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{chapitre3taxo}
+		\captionsetup{justification=centering}
+		\caption{Taxonomie des algorithmes à basse résolution de reconnaissance l'empreinte palmaire.}
+		\label{fig:chapitre3taxo}
+	\end{figure}
+\end{center}
+\section{Classification des empreintes palmaires}
+La classification comme nous avons déjà présenté dans la section \ref{fingerprintclassification} permet de réduire le temps de comparaison pendant la phase d'appariement. Les méthodes de classification les plus utilisées dans les empreintes palmaires sont les méthodes basées sur les réseaux de neurones, SVM et Les plus proches voisins, toutes ces méthodes ont déjà été expliquées dans les sections \ref{NN}, \ref{SVM} et \ref{KNN} respectivement et une autre méthode expliquée dans l'annexe \ref{filterPalm}.
+\section{Conclusion} 
+L'empreinte palmaire est une des modalités physiologiques qui permet d'augmenter l'exactitude de reconnaissance grâce à sa richesse en caractéristiques. Dans ce chapitre, nous avons cité quelques méthodes de reconnaissance d'empreinte palmaire à basse résolution, qui sont catégorisées en trois types : méthodes globales, locales et hybrides. Néanmoins, cette modalité reste comme toute autre modalité : non idéale, et peut donner des résultats non satisfaisants selon la qualité de l'empreinte palmaire ou des résultats erronés en cas d'empreintes palmaires fraudées d'où la nécessité de profiter de la complémentarité entre les modalités et le besoin d'un moyen de test des systèmes multimodaux. 
+\\
+Dans ce qui suit nous proposons "jupiter" une plateforme de test des systèmes biométriques multimodaux qui combinent l'empreinte digitale et l'empreinte palmaire, sa conception, sa réalisation et ses tests.

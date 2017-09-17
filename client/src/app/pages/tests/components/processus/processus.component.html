@@ -1,0 +1,187 @@
+
+<!--<p-steps [model]="items"></p-steps> !-->
+<div *ngIf="testComplete">
+<div   class="wrapper" >
+  <ul class="steps">
+    <li [ngClass]="active1">
+      <span >
+       Database
+     </span>
+   </li>
+   <li [ngClass]="active2">
+    <span >
+      Pretraitement
+    </span>
+  </li>
+  <li [ngClass]="active3">
+    <span >
+     Extraction
+   </span>
+ </li>
+ <li [ngClass]="active4">
+  <span>
+    Matching    </span>
+  </li >
+  <li [ngClass]="active5">
+    <span>
+      Start test    </span>
+    </li>
+    
+  </ul>
+</div>
+<div class="container row">
+  <div class="col-sm-5"  >
+    <form [formGroup]='form' (ngSubmit)="onSubmit(form.value)" class="form-horizontal"  >
+      <div  class="fixDiv"  [ngSwitch]="step">
+
+        <div formGroupName="databaseForm" *ngSwitchCase="1" >
+         <div class="form-group">
+           <label >Modality</label>
+           <select formControlName='modality' (change)="onChange($event.target.value)" class="form-control" id="exampleSelect1">
+            <option value="" selected disabled>Modality</option>
+            <option value="Fingerprint" >Fingerprint</option>
+            <option value="Palmprint">Palmprint</option>
+          </select>
+        </div>
+        <div  class="form-group">
+         <label>Database</label>
+         <select  *ngIf="done" formControlName='database' (change)="getDatabase($event.target.value)" class="form-control" id="exampleSelect1">
+          <option value="" selected disabled>Database</option>
+          <option *ngFor=" let item of databases" [value]="item._id">{{item.name}}</option>
+        </select>
+      </div>
+
+      <div  class="form-group">
+       <label *ngIf="done2">This database has <strong>{{IndividualMax}}  </strong>individuals and <strong>{{scan}}  </strong>scan per individu</label>
+ 
+       <label>You can  change the number of indivduals bellow</label>
+       <input   formControlName='individuals' type="number" [max]="IndividualMax" min="1" step="1" class="form-control" id="inputWebsite" placeholder="Number of individuals">
+     </div>
+
+
+   </div>
+   <div formGroupName="pretraitForm" *ngSwitchCase="2">
+     <div class="form-group">
+       <label>Module</label>
+       <select  (change)="getCategory($event.target.value)"  formControlName='submodules' class="form-control" id="exampleSelect1">
+        <option value="" selected disabled>Module</option>
+        <option *ngFor=" let item of modules" [value]="item.header">{{item.header}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+     <label>Category</label>
+     <select *ngIf="done2" (change)="getPreMethod($event.target.value)"  formControlName='methodeCatPretrait' class="form-control" id="exampleSelect1">
+      <option value="" selected disabled>Category of method</option>
+      <option *ngFor=" let item of categories" [value]="item.name">{{item.name}}</option>
+
+    </select>
+  </div>
+  <div  class="form-group row options">
+    <label>Methode</label>
+    <select  *ngIf="done2"  formControlName='methodePretrait' class="form-control col-sm-11" id="exampleSelect1">
+      <option value="" selected disabled>Name of Method</option>
+      <option *ngFor=" let item of methods" [value]="item.name">{{item.name}}</option>
+
+    </select>
+    <a   (click)="preClick()"><i class="fa fa-plus-circle fa-lg"></i></a> 
+  </div> 
+</div>
+<div formGroupName="extractForm" *ngSwitchCase="3">
+  <div class="form-group">
+   <label>Cetegory</label>
+   <select *ngIf="done" formControlName='methodeCatExtract' (change)="getPreMethodExt($event.target.value)" class="form-control" id="exampleSelect1">
+    <option value="" selected disabled>Category of method</option>
+    <option *ngFor=" let item of categoriesExt" [value]="item.name">{{item.name}}</option>
+
+  </select>
+</div>
+<div class="form-group">
+ <label>Methode</label>
+ <select *ngIf="done2" formControlName='methodeExtract' (change)="getNextExt($event.target.value)" class="form-control" id="exampleSelect1">
+  <option value="" selected disabled>Name of method</option>
+  <option *ngFor=" let item of methodsExt" [value]="toStr(item)">{{item.name}}</option>
+
+</select>
+</div>
+<div *ngIf="cleaning" class="form-group">
+  <label for="inputWebsite">Cleaning phase</label>
+  <div class=" pull-right">
+   <ui-switch    formControlName='extractClean' size="small" color="#39527b" (change)="onChangeSwitch($event)" [checked]="false"></ui-switch>
+ </div>
+</div>
+</div>
+<div formGroupName="matchForm" *ngSwitchCase="4">
+ <div class="form-group">
+   <label>Cetegory</label>
+   <select *ngIf="done" formControlName='methodeCatMatch'  (change)="getPreMethodMatch($event.target.value)" class="form-control" id="exampleSelect1">
+    <option value="" selected disabled>Category of method</option>
+      <option *ngFor=" let item of categoriesMatch" [value]="item.name">{{item.name}}</option>
+
+  </select>
+</div>
+<div class="form-group">
+ <label>Methode</label>
+ <select *ngIf="done2" formControlName='methodeMatch' (change)="getNextMatch($event.target.value)"  class="form-control" id="exampleSelect1">
+  <option value="" selected disabled>Name of method</option>
+  <option *ngFor=" let item of methodsMatch" [value]="item.name">{{item.name}}</option>
+
+</select>
+</div>
+</div>
+<div formGroupName="resultForm"  *ngSwitchCase="5" >
+  <div class="form-group">
+    <label for="inputWebsite">Save images after pretraitement</label>
+    <div class=" pull-right">
+      <ui-switch    size="small" color="#39527b" (change)="onChangeSwitch($event)" [checked]="true"></ui-switch></div>   
+    </div>
+    <div class="form-group">
+      <label for="inputWebsite">Mark features</label>
+      <div class=" pull-right">
+        <ui-switch     size="small" color="#39527b" (change)="onChangeSwitch($event)" [checked]="true"></ui-switch></div>   
+      </div>
+      <div class="form-group">
+       <label>Pretraitement time</label>
+       <div class=" pull-right">
+        <ui-switch     size="small" color="#39527b" (change)="onChangeSwitch($event)" [checked]="true"></ui-switch></div>
+      </div>
+      <div class="form-group">
+       <label>Matching time</label>
+       <div class=" pull-right">
+        <ui-switch    size="small" color="#39527b" (change)="onChangeSwitch($event)" [checked]="true"></ui-switch></div>
+      </div>
+      <div class="form-group">
+       <label>Plot Roc curve</label>
+       <div class=" pull-right">
+        <ui-switch     size="small" color="#39527b" (change)="onChangeSwitch($event)" [checked]="true"></ui-switch></div>
+      </div>
+      <div class="form-group">
+       <label>Save generated senario script</label>
+       <div class=" pull-right">
+        <ui-switch    size="small" color="#39527b" (change)="onChangeSwitch($event)" [checked]="true"></ui-switch></div>
+      </div>
+    </div>
+    <div *ngSwitchDefault></div>
+  </div>
+  <div   class="pagerDiv form-group pull-right">
+   <button [disabled]="previousClass"  type="button" class="previous btn btn-primary round" *ngIf="done"  (click)="previous()">&#8249; Previous</button>
+   <button [disabled]="nextClass" type="button"  class="next btn btn-primary round"   *ngIf="done"  (click)="next()">Next &#8250; </button>  
+   <button  type="submit" [disabled]="playClass" class=" btn btn-primary  round play" *ngIf="done"   >Start <i class=" fa fa-play" > </i></button>
+
+ </div>
+
+</form>
+</div>
+<div class="col-sm-1"></div>
+<div class="col-sm-6">
+  <label> Process</label>
+  <p-dataTable [value]="process" *ngIf="visibleTable" >
+    <p-column field="order"[style]="{'width':'20px'}"  header=""></p-column>
+
+    <p-column field="module" header="Step" [style]="{'width':'100px'}"></p-column>
+    <p-column field="category" header="Category"></p-column>
+    <p-column field="name" header="Name"></p-column>
+  </p-dataTable>
+</div>
+</div>
+</div> 
+        <div [ngBusy]="busy"></div>

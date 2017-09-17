@@ -1,0 +1,142 @@
+   \lhead{TESTS}
+\chapter{Tests}
+\section{Introduction}
+\tab Après avoir présenté notre plateforme « Jupiter » et ses fonctionnalités, il est nécessaire d’évaluer notre solution afin de prouver son efficacité.
+Dans ce chapitre, nous présentons les tests faits sur notre plateforme. Nous commençons par présenter l'environnement de tests, ensuite, nous présentons les différentes bases de données sur lesquelles nous avons effectué nos tests d’évaluation. Enfin, nous montrons les résultats obtenus après expérimentation des méthodes implémentées. 
+\section{Environnement de tests}
+Les tests de performances des méthodes implémentées sont effectués sur une machine ayant les caractéristiques suivantes :
+\begin{itemize}
+	\item \textbf{Référence de la machine :} Toshiba Satellite L50. 
+	\item \textbf{Processeur :} Intel(R) Core (TM) i7-4510. 
+	\item \textbf{Ram :} 8.00 Go. 
+	\item \textbf{Système d’exploitation :} Windows 10 Entreprise.
+\end{itemize} 
+ 
+\section{Évaluation des méthodes implémentées}
+Dans ce qui suit, nous présentons une évaluation de méthodes que nous avons implémentées. En présentant les bases de données utilisées, les mesures de performances et les résultats des tests.
+\subsection{Bases de données de tests }
+Pour pouvoir évaluer un processus de test, nous avons besoin d’une base de données dédiée à cette évaluation. Cette base assure que tous les processus de même type seront testés avec les mêmes données. Nous présentons dans la suite les bases de données utilisées.
+\subsubsection{Empreintes digitales}
+Pour les empreintes digitales, nous avons utilisé la base de données de FVC2002 DB2\footnote{\href{http://bias.csr.unibo.it/fvc2002/databases.asp}{http://bias.csr.unibo.it/fvc2002}}. Cette base qui contient des scans capturés en utilisant un capteur optique, elle a été collectée pendant la compétition de reconnaissance d'empreinte digitale organisée par plusieurs universités en 2002. Il existe trois autres bases de données différentes (DB1, DB3 et DB4) qui ont été collectées la même année en utilisant d'autres types de capteurs, chaque base de données contient 110 empreintes digitales divisée en deux ensembles, un ensemble « A » contient 100 individus, et un ensemble « B » contient 10 individus et huit scans par individu. Nous avons effectué nos tests sur l’ensemble B (voir figure \ref{fig:bdd1}). FVC propose aussi d'autres bases de données présentées en annexe (voir annexe \ref{exemplebddtest}). 
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.8\linewidth]{logos/bdd1}}
+	\caption{Exemple d’empreintes digitales dans la base de données FVC2002 ensemble B.}
+	\label{fig:bdd1}
+\end{figure}
+\subsubsection{Empreintes palmaires }
+Nous avons utilisé la base de données prétraitée de Multi-spectral de PolyU (Université polytechnique de Hong Kong)\footnote{\href{http://www4.comp.polyu.edu.hk/~biometrics/MultispectralPalmprint/MSP.htm}{http://www4.comp.polyu.edu.hk/MultispectralPalmprint}}. Cette base contient des scans des empreintes palmaires collectées auprès de 500 individus, en utilisant un dispositif de capture d’images multi-spectral. Les images ont été prises dans deux sessions différentes, séparées par un intervalle de temps d’environ deux mois. Durant chaque session, les individus doivent prendre six images de ses empreintes palmaires, donc 12 scans par individu (voir figure \ref{fig:bdd2}).
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.8\linewidth]{logos/bdd2}}
+	\caption{Exemple d’empreintes palmaire dans la base de données Multi-spectral de PolyU.}
+	\label{fig:bdd2}
+\end{figure}
+\subsubsection{Fusion des caractéristiques}
+Nous n’avons pas trouvé plusieurs bases de données gratuites qui combinent l’empreintes digitales et palmaires. Nous avons demandé l’accès aux bases de données de MSU-Multimodal, de BIOMDATA et de MCYT, mais nous n'avons pas encore reçu leur accord. Donc, nous avons testé la fusion des caractéristiques en utilisant la base de données de PolyU\footnote{\href{http://bias.csr.unibo.it/fvc2002/databases.asp}{http://bias.csr.unibo.it/fvc2002}}. Cette base contient des coefficients de DCT extraits de 2000 empreintes palmaires et veines de paumes, issues de 500 étudiants de l’Université de l’ingénierie Pune en Inde (voir figure \ref{fig:bdd4}). 
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.8\linewidth]{logos/bdd4}}
+	\caption{Exemple des coefficients de DCT sauvegardés dans la base de données Pune.}
+	\label{fig:bdd4}
+\end{figure}
+\subsubsection{Fusion des scores }
+La base de données que nous avons utilisé pour la fusion des scores est celle de BioSecure DS2\footnote{\href{http://personal.ee.surrey.ac.uk/Personal/Norman.Poh/web/fusionq/main.php?bodyfile=entry_page.html}{http://personal.ee.surrey.ac.uk}}. Cette base contient 463 individus, où chaque individu a huit scores provenant des algorithmes d’appariement des modalités suivantes : visage (haute/basse qualité), empreinte digitale (capteur thermique/optique), iris, empreinte palmaire (haute qualité), signature et l'audio-vidéo. La structuration de cette base est un peu différente de celles présentées précédemment, elle est déjà divisée en deux : 51 clients et 412 imposteurs (voir figure \ref{fig:bdd3}).
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.8\linewidth]{logos/bdd3}}
+	\caption{Exemple des scores sauvegardés dans la base de données BioSecure DS2.}
+	\label{fig:bdd3}
+\end{figure}
+\subsection{Calcul de mesures de performance}
+Pour chaque processus de test d’un système biométrique de reconnaissance d’empreintes digitales, d’empreintes palmaires ou test de fusion multimodale, nous parcourons les $ N $ individus de la base de données, d’empreintes digitales, d’empreintes palmaires ou base de données multimodale, où nous avons $ m $ éléments par individu, nous les traitons et après nous extrayons les $ N*m $ vecteurs de caractéristiques (si la base de données est multimodale, cette étape est ignorée). Après l'obtention de ces vecteurs, nous calculons les scores intra et inter classes, pour générer les FMR et FNMR respectivement (expliqués dans la section \ref{performance}). À partir de ces données, nous pouvons trouver le EER et le TR\footnote{TR: Taux de reconnaissance.}, quand la distance entre le FMR et le FNMR dans un certain seuil est minimale :
+\begin{center}
+	\begin{equation}\label{EER}
+	EER=1/2(FNM[i]+FNMR[i])
+	\end{equation}
+\end{center}
+Cette valeur constitue un indicateur de la précision d’un système biométrique. En d’autres termes, plus l’EER est faible, plus le système est performant. 
+\subsection{Résultats des tests}
+Dans ce que suit, nous présentons les résultats d’exécution des tests effectués sur les méthodes d’extraction et d’appariement implémentées, en utilisant les bases de données de test précédentes.
+\subsubsection{Empreintes digitales}
+Rappelons que nous avons utilisé la base de données FVC, les images prétraitées ont été obtenues en utilisant l’approche de Hong \citep{hong1998fingerprint}. Le temps du prétraitement et d’extraction de vecteurs de minuties est égal à 6 mins et 43 s.	
+\begin{table}[H]
+	\centering
+ 
+	\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{4cm}|p{1cm}|p{1cm}|}
+		\hline
+		Approche & \textbf{Méthode}   & \textbf{Temps total d’appariement} & \textbf{Nombre de comparaisons} & \textbf{ERR} & \textbf{TR}\\ \hline
+	Globale & Basée sur la transformée de Hough & 9 mins et 43 s      & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Intra classes : 280\\ Inter classes : 45\end{tabular}} & 0.10   & 0.88   \\ \cline{1-3} \cline{5-6} 
+	Locale & Basée sur les structures MCC  & 14.40 s        &                         & 0.26   & 0.80   \\ \cline{1-3} \cline{5-6} 
+	\hline
+	\end{tabular}
+	\caption{Comparaison entre une méthode globale et une méthode locale d'empreinte digitale.\label{comp1}}
+\end{table}
+
+Comme attendu, le meilleur taux d’erreur est obtenu par la méthode globale. Cependant, la méthode locale est significativement plus rapide car, ce type de méthodes possède une faible complexité de calcul en comparant avec les méthodes qui appartient à l’approche globale qui prend en considération toutes les relations spatiales entre les minuties sur le plan global.	
+\subsubsection{Empreintes palmaires}
+La base de données choisie ne nécessite pas des prétraitements parce que les ROIs sont déjà extraites.
+
+\begin{table}[H]
+	\centering
+ 
+	\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{4cm}|p{1cm}|p{1cm}|}
+		\hline
+		\textbf{Approche} & \textbf{Méthode}  & \textbf{Temps total d’appariement et extraction} & \textbf{Nombre de comparaisons} & \textbf{ERR} & \textbf{TR} \\ \hline
+Globale & ACP & 57 mins et 51 s & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Intra classes : 33 000\\ Inter classes : 24 500\end{tabular}} & 0.36 & 0.64 \\ \cline{1-3} \cline{5-6} 
+Locale & Basée sur la codification & 11 mins et 22 s & & 0.39 & 0.61 \\ \hline
+	\end{tabular}
+	\caption{Comparaison entre une méthode globale et une méthode locale d'empreinte palmaire.\label{comp2}}
+\end{table}
+
+Nous observons que l’ACP donne un taux d’erreur meilleur que la méthode locale parce que la comparaison en utilisant l’ACP utilise des modèles mathématiques exploitant l’information existante sur l’ensembles des pixels de l’image d’empreinte palmaire, mais la méthode globale extrait d’abord un vecteur des caractéristiques qui est de taille beaucoup plus petite que l’empreinte palmaire qui représente l’image initiale à un certain pourcentage qui n’est pas $100\%$, cette légère différence peut engendrer une erreur dans la reconnaissance, mais elle permet en même temps de gagner en terme de temps, comme nous pouvons voir la méthode locale est cinq fois plus rapide que la méthode ACP qui malgré la réduction de la dimension des 6000 images de la base de données des empreintes palmaire, cette méthode effectue 57500 comparaisons ce qui consomme beaucoup de temps.	
+Il est à mentionner que nous pouvons améliorer le temps total et le taux d’erreur de la méthode ACP, en utilisant les machines learning et en combinant d’autres méthodes, pour avoir une méthode hybride comme c’est montré par \citep{5734132} et \citep{eleyan2007pca}.
+
+\subsubsection{Fusion des caractéristiques }
+Nous avons effectué le test sur deux modalités, les empreintes palmaires et les veines de paumes. La base de données contient les coefficients de DCT, donc nous avons reconstruit les vecteurs, ensuite les apparié en calculant la distance euclidienne. 
+
+
+\begin{table}[H]
+	\centering
+ 
+	\begin{tabular}{|l|p{3cm}|l|l|l|}
+		\hline
+		\textbf{Modalité} & \textbf{Temps total d’appariement (s)} & \textbf{Nombre de comparaisons} & \textbf{ERR} & \textbf{TR} \\ \hline
+	Empreintes palmaires & 4.21 & \multirow{3}{*}{Intra classes : 3 000} & 0.054 & 0.956 \\ \cline{1-2} \cline{4-5} 
+	Veines de paumes  & 3.29 &          & 0.048 & 0.964 \\ \cline{1-2} \cline{4-5} 
+	Fusion    & 5.57 &          & 0.046 & 0.965 \\ \hline	\end{tabular}
+	\caption{Comparaison entre des systèmes unimododaux et un système multimodale avec une fusion des caractéristiques.\label{comp3}}
+\end{table}
+Vu que les vecteurs sont déjà extraits avant d’effectuer l’appariement, ce dernier est fait dans un temps réduit. Nous remarquons que le taux d’erreur après la fusion des deux modalités est mieux. 
+\subsubsection{Fusion des scores }
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[H]
+	\centering
+
+	
+	\begin{tabular}{|l|p{2cm}|p{2cm}|p{3cm}|p{1cm}|p{1cm}|}
+		\hline
+		\multicolumn{2}{|l|}{\textbf{Modalité}}   & \textbf{Temps d’exécution (s)} & \textbf{Nombre de comparaisons}         & \textbf{ERR}  & \textbf{TR} \\ \hline
+		\multicolumn{2}{|l|}{Visage (haute qualité)}   & \multirow{8}{*}{$\sim$1.7} & \multirow{13}{*}{\begin{tabular}[c]{@{}l@{}}Intra classes : \\ 51\\ Inter classes :\\ 21012\end{tabular}} & 0.059   & 0.941    \\ \cline{1-2} \cline{5-6} 
+		\multicolumn{2}{|l|}{Visage (basse qualité)}   &    &             & 0.043   & 0.953    \\ \cline{1-2} \cline{5-6} 
+		\multicolumn{2}{|l|}{Empreinte digitale (capteur thermique)} &    &             & 0.057   & 0.944    \\ \cline{1-2} \cline{5-6} 
+		\multicolumn{2}{|l|}{Empreinte digitale (capteur optique)} &    &             & 0.037   & 0.945    \\ \cline{1-2} \cline{5-6} 
+		\multicolumn{2}{|l|}{Iris}     &    &             & 0.137   & 0.862    \\ \cline{1-2} \cline{5-6} 
+		\multicolumn{2}{|l|}{Empreinte palmaire}   &    &             & 0.290   & 0.714    \\ \cline{1-2} \cline{5-6} 
+		\multicolumn{2}{|l|}{Signature}    &    &             & 0.261   & 0.750    \\ \cline{1-2} \cline{5-6} 
+		\multicolumn{2}{|l|}{Audio-vidéo}    &    &             & 0.263   & 0.747    \\ \cline{1-3} \cline{5-6} 
+		\multirow{5}{*}{Fusion}  & Somme   & \multirow{5}{*}{$\sim$2.4} &             & 0.019   & 0.980    \\ \cline{2-2} \cline{5-6} 
+		& Max   &    &             & 0.019   & 0.981    \\ \cline{2-2} \cline{5-6} 
+		& Min   &    &             & 0.159  & 0.837    \\ \cline{2-2} \cline{5-6} 
+		& Produit   &    &             & 0.016   & 0.986    \\ \cline{2-2} \cline{5-6} 
+		& Somme pondérée  &    &             & 0.022 &  0.975   \\ \hline
+	\end{tabular}
+	\caption{Comparaison entre des systèmes unimododaux et des systèmes multimodaux avec une fusion des scores.\label{comp4}}
+\end{table}
+Nous observons que le taux EER est considérablement diminué et le taux de reconnaissance est amélioré après la fusion des scores. Le temps supplémentaire de la fusion des scores est négligeable car la méthode de fusion a une faible complexité de calcul.
+
+
+
+\section{Conclusion}
+Dans ce chapitre, nous avons présenté les tests effectués sur notre plateforme « Jupiter » pour l’évaluer, Nous avons décrit les bases de données d’empreintes digitales, d’empreintes palmaires et multimodales sur lesquelles nous avons effectué nos tests. Ensuite nous avons détaillé les résultats obtenus lors des test des méthodes de reconnaissance de l’empreinte digitale et de l'empreinte palmaire ce qui nous a permis de comparer entre les méthodes de chaque modalité, enfin, nous avons montré l’amélioration des résultats en appliquant la fusion multimodale au niveau caractéristiques et au niveau score qui est testé avec plusieurs règles et grâce à la règle produit que nous avons pu obtenir les meilleurs résultats pour le EER et pour le taux de reconnaissance.	

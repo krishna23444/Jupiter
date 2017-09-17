@@ -1,0 +1,315 @@
+[?25l[?25h[?25l[?25h
+@angular/animations                 😎  MINOR UP  Minor update available.
+                                                 npm install --save @angular/animations@4.2.5 to go from 4.1.0 to 4.2.5
+                                    😕  NOTUSED?  Still using @angular/animations?
+                                                 Depcheck did not find code similar to require('@angular/animations') or import from '@angular/animations'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save @angular/animations
+
+@angular/common                     😎  MINOR UP  Minor update available.
+                                                 npm install --save @angular/common@4.2.5 to go from 4.1.0 to 4.2.5
+
+@angular/compiler                   😎  MINOR UP  Minor update available.
+                                                 npm install --save @angular/compiler@4.2.5 to go from 4.1.0 to 4.2.5
+
+@angular/core                       😎  MINOR UP  Minor update available.
+                                                 npm install --save @angular/core@4.2.5 to go from 4.1.0 to 4.2.5
+
+@angular/forms                      😍  UPDATE!   Your local install is out of date.
+                                                 npm install --save @angular/forms@4.2.5 to go from 4.1.3 to 4.2.5
+
+@angular/http                       😎  MINOR UP  Minor update available.
+                                                 npm install --save @angular/http@4.2.5 to go from 4.1.0 to 4.2.5
+
+@angular/platform-browser           😎  MINOR UP  Minor update available.
+                                                 npm install --save @angular/platform-browser@4.2.5 to go from 4.1.0 to 4.2.5
+
+@angular/platform-browser-dynamic   😎  MINOR UP  Minor update available.
+                                                 npm install --save @angular/platform-browser-dynamic@4.2.5 to go from 4.1.0 to 4.2.5
+
+@angular/platform-server            😎  MINOR UP  Minor update available.
+                                                 npm install --save @angular/platform-server@4.2.5 to go from 4.1.0 to 4.2.5
+                                    😕  NOTUSED?  Still using @angular/platform-server?
+                                                 Depcheck did not find code similar to require('@angular/platform-server') or import from '@angular/platform-server'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save @angular/platform-server
+
+@angular/router                     😎  MINOR UP  Minor update available.
+                                                 npm install --save @angular/router@4.2.5 to go from 4.1.0 to 4.2.5
+
+@ngx-translate/core                 😎  MAJOR UP  Major update available.
+                                                 npm install --save @ngx-translate/core@7.0.0 to go from 6.0.1 to 7.0.0
+
+@ngx-translate/http-loader          😎  NEW VER!  NonSemver update available.
+                                                 npm install --save @ngx-translate/http-loader@0.1.0 to go from 0.0.3 to 0.1.0
+
+angular2-datatable                  😕  NOTUSED?  Still using angular2-datatable?
+                                                 Depcheck did not find code similar to require('angular2-datatable') or import from 'angular2-datatable'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save angular2-datatable
+
+animate.css                         😕  NOTUSED?  Still using animate.css?
+                                                 Depcheck did not find code similar to require('animate.css') or import from 'animate.css'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save animate.css
+
+bootstrap                           😕  NOTUSED?  Still using bootstrap?
+                                                 Depcheck did not find code similar to require('bootstrap') or import from 'bootstrap'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save bootstrap
+
+chart.js                            😎  MAJOR UP  Major update available.
+                                                 npm install --save chart.js@2.6.0 to go from 1.1.1 to 2.6.0
+                                    😕  NOTUSED?  Still using chart.js?
+                                                 Depcheck did not find code similar to require('chart.js') or import from 'chart.js'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save chart.js
+
+chartist                            😎  NEW VER!  NonSemver update available.
+                                                 npm install --save chartist@0.11.0 to go from 0.10.1 to 0.11.0
+
+chroma-js                           😎  PATCH UP  Patch update available.
+                                                 npm install --save chroma-js@1.3.4 to go from 1.3.3 to 1.3.4
+                                    😕  NOTUSED?  Still using chroma-js?
+                                                 Depcheck did not find code similar to require('chroma-js') or import from 'chroma-js'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save chroma-js
+
+ckeditor                            😎  MINOR UP  Minor update available.
+                                                 npm install --save ckeditor@4.7.1 to go from 4.6.2 to 4.7.1
+
+easy-pie-chart                      😕  NOTUSED?  Still using easy-pie-chart?
+                                                 Depcheck did not find code similar to require('easy-pie-chart') or import from 'easy-pie-chart'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save easy-pie-chart
+
+font-awesome                        😕  NOTUSED?  Still using font-awesome?
+                                                 Depcheck did not find code similar to require('font-awesome') or import from 'font-awesome'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save font-awesome
+
+fullcalendar                        😎  MINOR UP  Minor update available.
+                                                 npm install --save fullcalendar@3.4.0 to go from 3.3.1 to 3.4.0
+
+ionicons                            😎  MAJOR UP  Major update available.
+                                                 npm install --save ionicons@3.0.0 to go from 2.0.1 to 3.0.0
+                                    😕  NOTUSED?  Still using ionicons?
+                                                 Depcheck did not find code similar to require('ionicons') or import from 'ionicons'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save ionicons
+
+leaflet                             😎  MAJOR UP  Major update available.
+                                                 npm install --save leaflet@1.1.0 to go from 0.7.7 to 1.1.0
+                                    😕  NOTUSED?  Still using leaflet?
+                                                 Depcheck did not find code similar to require('leaflet') or import from 'leaflet'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save leaflet
+
+ng2-ckeditor                        😎  PATCH UP  Patch update available.
+                                                 npm install --save ng2-ckeditor@1.1.9 to go from 1.1.6 to 1.1.9
+
+ng2-completer                       😎  MINOR UP  Minor update available.
+                                                 npm install --save ng2-completer@1.5.2 to go from 1.3.1 to 1.5.2
+                                    😕  NOTUSED?  Still using ng2-completer?
+                                                 Depcheck did not find code similar to require('ng2-completer') or import from 'ng2-completer'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save ng2-completer
+
+ng2-file-upload                     😟  MISSING!  Not installed.
+                                    😕  NOTUSED?  Still using ng2-file-upload?
+                                                 Depcheck did not find code similar to require('ng2-file-upload') or import from 'ng2-file-upload'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save ng2-file-upload
+
+ng2-handsontable                    😎  MAJOR UP  Major update available.
+                                                 npm install --save ng2-handsontable@1.0.3 to go from 0.48.0 to 1.0.3
+
+ng2-smart-table                     😎  MINOR UP  Minor update available.
+                                                 npm install --save ng2-smart-table@1.2.1 to go from 1.0.3 to 1.2.1
+
+ngx-highlight-js                    😕  NOTUSED?  Still using ngx-highlight-js?
+                                                 Depcheck did not find code similar to require('ngx-highlight-js') or import from 'ngx-highlight-js'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save ngx-highlight-js
+
+ngx-uploader                        😎  MAJOR UP  Major update available.
+                                                 npm install --save ngx-uploader@3.2.1 to go from 2.2.5 to 3.2.1
+
+normalize.css                       😎  MAJOR UP  Major update available.
+                                                 npm install --save normalize.css@7.0.0 to go from 6.0.0 to 7.0.0
+                                    😕  NOTUSED?  Still using normalize.css?
+                                                 Depcheck did not find code similar to require('normalize.css') or import from 'normalize.css'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save normalize.css
+
+roboto-fontface                     😕  NOTUSED?  Still using roboto-fontface?
+                                                 Depcheck did not find code similar to require('roboto-fontface') or import from 'roboto-fontface'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save roboto-fontface
+
+rxjs                                😎  MINOR UP  Minor update available.
+                                                 npm install --save rxjs@5.4.2 to go from 5.1.1 to 5.4.2
+
+zone.js                             😎  NEW VER!  NonSemver update available.
+                                                 npm install --save zone.js@0.8.12 to go from 0.8.5 to 0.8.12
+
+@angular/cli                        😎  MINOR UP  Minor update available.
+                                                 npm install --save-dev @angular/cli@1.2.0 to go from 1.0.4 to 1.2.0
+
+@angular/compiler-cli               😎  MINOR UP  Minor update available.
+                                                 npm install --save-dev @angular/compiler-cli@4.2.5 to go from 4.1.0 to 4.2.5
+                                    😕  NOTUSED?  Still using @angular/compiler-cli?
+                                                 Depcheck did not find code similar to require('@angular/compiler-cli') or import from '@angular/compiler-cli'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev @angular/compiler-cli
+
+@types/fullcalendar                 😎  PATCH UP  Patch update available.
+                                                 npm install --save-dev @types/fullcalendar@2.7.44 to go from 2.7.40 to 2.7.44
+
+@types/jasmine                      😎  PATCH UP  Patch update available.
+                                                 npm install --save-dev @types/jasmine@2.5.53 to go from 2.5.38 to 2.5.53
+
+@types/jquery                       😎  MAJOR UP  Major update available.
+                                                 npm install --save-dev @types/jquery@3.2.6 to go from 2.0.41 to 3.2.6
+
+@types/jquery.slimscroll            😎  PATCH UP  Patch update available.
+                                                 npm install --save-dev @types/jquery.slimscroll@1.3.31 to go from 1.3.30 to 1.3.31
+
+@types/lodash                       😎  PATCH UP  Patch update available.
+                                                 npm install --save-dev @types/lodash@4.14.68 to go from 4.14.61 to 4.14.68
+
+@types/node                         😎  MAJOR UP  Major update available.
+                                                 npm install --save-dev @types/node@8.0.7 to go from 6.0.69 to 8.0.7
+
+codelyzer                           😎  MAJOR UP  Major update available.
+                                                 npm install --save-dev codelyzer@3.1.2 to go from 2.0.0 to 3.1.2
+                                    😕  NOTUSED?  Still using codelyzer?
+                                                 Depcheck did not find code similar to require('codelyzer') or import from 'codelyzer'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev codelyzer
+
+gh-pages                            😎  MAJOR UP  Major update available.
+                                                 npm install --save-dev gh-pages@1.0.0 to go from 0.12.0 to 1.0.0
+
+jasmine-core                        😎  MINOR UP  Minor update available.
+                                                 npm install --save-dev jasmine-core@2.6.4 to go from 2.5.2 to 2.6.4
+
+jasmine-spec-reporter               😎  MAJOR UP  Major update available.
+                                                 npm install --save-dev jasmine-spec-reporter@4.1.1 to go from 3.2.0 to 4.1.1
+
+karma                               😎  MINOR UP  Minor update available.
+                                                 npm install --save-dev karma@1.7.0 to go from 1.4.1 to 1.7.0
+
+karma-chrome-launcher               😎  MINOR UP  Minor update available.
+                                                 npm install --save-dev karma-chrome-launcher@2.2.0 to go from 2.0.0 to 2.2.0
+
+karma-coverage-istanbul-reporter    😎  MAJOR UP  Major update available.
+                                                 npm install --save-dev karma-coverage-istanbul-reporter@1.3.0 to go from 0.2.0 to 1.3.0
+
+npm-run-all                         😕  NOTUSED?  Still using npm-run-all?
+                                                 Depcheck did not find code similar to require('npm-run-all') or import from 'npm-run-all'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev npm-run-all
+
+protractor                          😎  PATCH UP  Patch update available.
+                                                 npm install --save-dev protractor@5.1.2 to go from 5.1.0 to 5.1.2
+
+rimraf                              😕  NOTUSED?  Still using rimraf?
+                                                 Depcheck did not find code similar to require('rimraf') or import from 'rimraf'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev rimraf
+
+standard-changelog                  😕  NOTUSED?  Still using standard-changelog?
+                                                 Depcheck did not find code similar to require('standard-changelog') or import from 'standard-changelog'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev standard-changelog
+
+stylelint                           😎  MINOR UP  Minor update available.
+                                                 npm install --save-dev stylelint@7.12.0 to go from 7.10.1 to 7.12.0
+                                    😕  NOTUSED?  Still using stylelint?
+                                                 Depcheck did not find code similar to require('stylelint') or import from 'stylelint'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev stylelint
+
+ts-node                             😎  MAJOR UP  Major update available.
+                                                 npm install --save-dev ts-node@3.2.0 to go from 2.0.0 to 3.2.0
+
+tslint                              😎  MAJOR UP  Major update available.
+                                                 npm install --save-dev tslint@5.5.0 to go from 4.5.0 to 5.5.0
+                                    😕  NOTUSED?  Still using tslint?
+                                                 Depcheck did not find code similar to require('tslint') or import from 'tslint'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev tslint
+
+tslint-eslint-rules                 😎  MAJOR UP  Major update available.
+                                                 npm install --save-dev tslint-eslint-rules@4.1.1 to go from 3.5.1 to 4.1.1
+                                    😕  NOTUSED?  Still using tslint-eslint-rules?
+                                                 Depcheck did not find code similar to require('tslint-eslint-rules') or import from 'tslint-eslint-rules'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev tslint-eslint-rules
+
+tslint-language-service             😎  NEW VER!  NonSemver update available.
+                                                 npm install --save-dev tslint-language-service@0.9.6 to go from 0.9.2 to 0.9.6
+                                    😕  NOTUSED?  Still using tslint-language-service?
+                                                 Depcheck did not find code similar to require('tslint-language-service') or import from 'tslint-language-service'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev tslint-language-service
+
+typescript                          😍  UPDATE!   Your local install is out of date.
+                                                 npm install --save-dev typescript@2.4.1 to go from 2.2.2 to 2.4.1
+                                    😕  NOTUSED?  Still using typescript?
+                                                 Depcheck did not find code similar to require('typescript') or import from 'typescript'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev typescript
+
+typogr                              😎  NEW VER!  NonSemver update available.
+                                                 npm install --save-dev typogr@0.6.7 to go from 0.6.6 to 0.6.7
+                                    😕  NOTUSED?  Still using typogr?
+                                                 Depcheck did not find code similar to require('typogr') or import from 'typogr'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev typogr
+
+underscore                          😕  NOTUSED?  Still using underscore?
+                                                 Depcheck did not find code similar to require('underscore') or import from 'underscore'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev underscore
+
+wintersmith                         😎  MINOR UP  Minor update available.
+                                                 npm install --save-dev wintersmith@2.4.1 to go from 2.2.5 to 2.4.1
+
+wintersmith-sassy                   😕  NOTUSED?  Still using wintersmith-sassy?
+                                                 Depcheck did not find code similar to require('wintersmith-sassy') or import from 'wintersmith-sassy'.
+                                                 Check your code before removing as depcheck isn't able to foresee all ways dependencies can be used.
+                                                 Use --skip-unused to skip this check.
+                                                 To remove this package: npm uninstall --save-dev wintersmith-sassy
+
+Use npm-check -u for interactive update.
+[?25h

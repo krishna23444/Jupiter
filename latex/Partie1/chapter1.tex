@@ -1,0 +1,410 @@
+\part{Synthèse bibliographique}
+\label{part1}
+\lhead{GENERALITES SUR LA BIOMETRIE}
+%\epigraph{I recall seeing a package to make quotes}{Snowball}
+\chapter{Généralités sur la biométrie}
+\label{Chapter1} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\section{Introduction}
+\tab Les méthodes traditionnelles utilisées pour authentifier un individu se basaient sur une connaissance « knowledge-based » (exemple : les mots de passe) ou sur une possession « token-based » (exemple : les badges, la pièce d'identité, les clés, etc.). Cependant, ces deux méthodes ont leurs inconvénients, tels que le risque d'oublier le mot de passe ou être deviné par tiers ou encore perdre le badge.
+Une alternative pratique et sécurisée pour répondre à ces problèmes est l'utilisation de la biométrie \citep{Perronnin2002} qui consiste à identifier une personne à partir de ses caractéristiques physiques, comportementales ou biologiques.
+Dans ce chapitre, nous allons nous intéresser à des généralités sur la biométrie, nous allons présenter les modalités biométriques, les systèmes biométriques, les domaines d'application de la biométrie et la multi-biométrie, nous présentons la définition de la multi-biométrie, ses formes et nous détaillons sa forme multimodale.
+\section{Modalités biométriques} 
+Les caractéristiques biométriques par lesquelles il est possible de vérifier l’identité d’un individu sont appelées modalités biométriques. Ces modalités sont classées en trois catégories :
+\begin{itemize}
+	\item \textbf{Modalités physiques : }
+	se basent sur la reconnaissance des différents traits physiques particuliers, qui sont permanents et uniques pour toute personne (empreinte digitale, visage, etc.).
+	\item \textbf{Modalités biologiques : }
+	se basent sur l’analyse des données biologiques liées à l’individu (ex : ADN, le salive, l'odeur, l'analyse du sang de différents signaux physiologiques, ainsi que la fréquence cardiaque ou EEG, etc.).
+	\item \textbf{Modalités comportementales : }
+	se basent sur l’analyse des comportements d’un individu (ex : la dynamique de frappe au clavier, la reconnaissance vocale, la reconnaissance dynamique des signatures, la démarche, etc.).
+\end{itemize}
+\vspace{1cm} 
+Pratiquement, pour qu'une caractéristique humaine soit considérée comme une caractéristique biométrique il faut qu'elle satisfasse les exigences suivantes \citep{Ross} :
+\begin{itemize}
+	\item \textbf{Universalité : }tous les individus à identifier doivent posséder cette caractéristique.
+	\item 
+	\textbf{Unicité : }les caractéristiques doivent être suffisamment distinctes d'un individu de la population à un autre.
+	\item 
+	\textbf{Permanence : }elle doit être suffisamment invariante sur une période de temps.
+	\item \textbf{Mesurabilité : }elle doit être mesurable quantitativement.
+\end{itemize}
+Du point de vue de système, les propriétés suivantes doivent être également prises en compte \citep{Ross} :
+\begin{itemize}
+	\item \textbf{Performance : }la précision de reconnaissance requise dans une application doit être réalisable en utilisant les caractéristiques.
+	\item 
+	\textbf{Acceptabilité : }désigne la volonté du sujet (l’individu) de présenter ses caractéristiques biométriques.
+	\item 
+	\textbf{Résistance aux attaques : }il s'agit de la difficulté d'utiliser des caractéristiques biométriques falsifiées (par exemple, des fausses empreintes digitales dans le cas des modalités physiologiques et de mimétisme dans le cas d'une modalités comportementales).
+	
+\end{itemize}
+\vspace{1cm} 
+Le tableau \ref{chap1:tab1} compare entre les modalités biométriques selon les propriétés citées précédemment :
+\begin{longtable}{|p{2cm}|c|c|c|c|c|c|c|} 
+	\hline
+	\rot{{\textbf{\begin{tabular}[c]{@{}l@{}}Modalité\\ biométrique\end{tabular}}}}&
+	\rot{\textbf{Universalité}}& \rot{\textbf{Unicité} }& \rot{\textbf{Permanence} }& \rot{\textbf{Mesurabilité}}& \rot{\textbf{Performance}}& \rot{\textbf{Acceptabilité} }& \rot{\textbf{\begin{tabular}[c]{@{}l@{}}Résistance aux\\ attaques\end{tabular}}} \\ \hline
+	ADN&Elevée&Elevée&Elevée&Faible&Elevée&Faible&Faible \\ \hline
+	Oreille&Moyenne&Moyenne&Elevée&Moyenne&Moyenne&Elevée&Moyenne \\ \hline
+	Visage&Elevée&Faible&Moyenne&Elevée&Faible&Elevée&Elevée \\ \hline
+	Thermo gramme du visage&Elevée&Elevée&Faible&Elevée&Moyenne&Elevée&Faible \\ \hline
+	Empreinte digitale&Moyenne&Elevée&Elevée&Moyenne&Elevée&Moyenne&Moyenne \\ \hline
+	Démarche&Moyenne&Faible&Faible&Elevée&Faible&Elevée&Moyenne \\ \hline
+	Géométrie de la main&Moyenne&Moyenne&Moyenne&Elevée&Moyenne&Moyenne&Moyenne \\ \hline
+	Veine de la main&Moyenne&Moyenne&Moyenne&Moyenne&Moyenne&Moyenne&Faible \\ \hline
+	Iris&Elevée&Elevée&Elevée&Moyenne&Elevée&Faible&Faible \\ \hline
+	Frappe de touche&Faible&Faible&Faible&Moyenne&Faible&Moyenne&Moyenne \\ \hline
+	Odeur&Elevée&Elevée&Elevée&Faible&Faible&Moyenne&Faible \\ \hline
+	Empreinte palmaire&Moyenne&Elevée&Elevée&Moyenne&Elevée&Moyenne&Moyenne \\ \hline
+	Rétine&Elevée&Elevée&Moyenne&Faible&Elevée&Faible&Faible \\ \hline
+	Signature&Faible&Faible&Faible&Elevée&Faible&Elevée&Elevée \\ \hline
+	Voix&Moyenne&Faible&Faible&Moyenne&Faible&Elevée&Elevée \\ \hline
+	
+	\caption{Comparaison entre les modalités biométriques \citep{Jain2004}.}
+	\label{chap1:tab1}
+\end{longtable}
+
+
+\clearpage
+\section{Domaines d’application de la biométrie}
+La biométrie peut être employée dans un grand nombre d'applications. Elle peut aider à rendre les opérations, les transactions et la vie quotidienne plus sûres et plus pratiques. Selon \citep{Jain2004}, les domaines d’applications de la biométrie peuvent être divisés en trois groupes :
+\begin{itemize}
+	\item \textbf{Applications commerciales : }telles que la connexion au réseau informatique, la sécurité des données électroniques, l'e-commerce, l’accès à Internet, les guichets automatiques, les cartes de crédit, le contrôle d'accès physique, la gestion des dossiers médicaux, etc.
+	\item \textbf{Applications gouvernementales : }telles que les cartes d'identité nationale, les permis de conduire, la sécurité sociale, l'aide sociale, le contrôle des frontières, le contrôle des passeports, etc.
+	\item \textbf{Applications médico-légales : }par exemple, l’identification des cadavres, les enquêtes criminelles, l’identification des terroristes, les tests de paternité et l’identification des enfants disparus, etc.
+\end{itemize}
+
+\section{Systèmes biométriques}
+
+Un système biométrique est un ensemble de composants matériels et de données. Les composants matériels sont les capteurs et les programmes de comparaison, de classification et etc. Et les données sont les modèles numériques qui permettent de gérer une modalité biométrique, à partir de l’étape de capture des informations biométriques des individus jusqu'à l’étape de prise de décision lors d’une tentative d’accès \citep{wayman2005introduction}. Dans cette section, nous allons présenter les processus fonctionnels d'un système biométrique ainsi que son architecture, ensuite, les mesures de performances d'un système biométrique, enfin, nous exposons ses limitations.
+\subsection{Processus fonctionnels d’un système biométrique}
+Les systèmes biométriques ont trois processus fonctionnels divisés en deux phases : une phase pour enrôler les modèles des individus de la population et une autre phase de reconnaissance\citep{Ross2004a}.
+
+\subsubsection{Phase d’enrôlement}
+Pendant cette première phase, l’individu est enregistré dans le système pour la première fois. Une ou plusieurs modalités biométriques sont capturées et enregistrées dans une base de données. Les données de la base sont les données non biométriques dites biographiques, comme le nom, le numéro de la carte d’identité nationale, etc. (voir la figure \ref{fig:chapitre1enrollement}) \citep{meyer2009}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{processusfonctionnels1}
+	\caption{Exemple d'enrôlement d’une empreinte digitale d'individu dans un système biométrique \citep{meyer2009}.}
+	\label{fig:chapitre1enrollement}
+\end{figure}
+\subsubsection{Phase de reconnaissance}
+La deuxième phase fonctionnelle d’un système biométrique peut être une authentification ou identification selon l’application concernée.
+\begin{itemize}
+	\item En mode d’authentification, le système doit répondre à une question de type : « Suis-je bien la personne que je prétends être ? ». L’utilisateur propose une identité au système et qui doit vérifier que l’identité de l’individu est bien celle proposée, il suffit donc de comparer le modèle extrait de l’identité prétendue. Si ce modèle a déjà une occurrence dans la base de données avec le modèle extrait de l’individu au moment de capture lors de la tentative d’authentification, on parle alors de correspondance 1:1 (voir la figure \ref{fig:chapitre1authentification}) \citep{Perronnin2002}.
+	\\ Prenant un exemple d'un individu X qui souhaite retirer de l’argent à un distributeur de billets, en entrant son code personnel d’identification (code PIN), et en présentant une modalité biométrique. Le système acquiert alors les données biométriques et va les comparer uniquement avec le modèle enregistré correspondant à X, pour décider si X est authentique ou imposteur \citep{meyer2009}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\linewidth]{processusfonctionnels3}
+		\caption{Exemple d'authentification d’une empreinte digitale d'individu dans un système biométrique \citep{meyer2009}.}
+		\label{fig:chapitre1authentification}
+	\end{figure}
+	\item En mode d’identification, le système doit deviner l’identité de l’individu qui affirme implicitement qu’il est déjà enrôlé par le système. Il répond donc à une question de type : « Qui suis- je ? ». Dans ce mode, le système compare le modèle de l’individu avec les différentes occurrences de la base de données. On parle alors de correspondance 1: N.
+	Le système biométrique va trouver l’identité de la personne dont le modèle possède le degré de similitude le plus élevé avec le modèle biométrique présenté en entrée lors de la tentative d’identification. Si le plus grand score de similarité du modèle biométrique présenté en entrée avec tous les modèles de la BDD est inférieur à un seuil minimum fixé, l’individu est rejeté. Ce qui implique que l’utilisateur n’était pas une des personnes enrôlées par le système. Dans le cas contraire, la personne est acceptée \citep{Perronnin2002} (voir la figure \ref{fig:chapitre1identification}).\\
+	Nous pouvons citer comme exemple, l’accès à un bâtiment sécurisé, où tous les utilisateurs autorisés à y entrer sont enrôlés par le système. Lorsqu’un individu essaye de pénétrer dans le bâtiment, il doit d’abord présenter ses données biométriques au système, et selon la résultat de l'identification de l’identité de l’utilisateur, le système lui accorde ou non le droit d’entrer \citep{meyer2009}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{processusfonctionnels2}
+		\caption{Exemple d'authentification d’une empreinte digitale d'individu dans un système biométrique \citep{meyer2009}.}
+		\label{fig:chapitre1identification}
+	\end{figure}
+	
+\end{itemize}
+\subsection{Architecture des systèmes biométriques}
+Les systèmes biométriques diffèrent l'un des autres en fonction du matériel de capture de l'information biométrique utilisé, des technologies exploitées et des algorithmes appliqués. 
+Dans ce qui suit, nous allons décrire la structure générale d’un système biométrique indépendamment de toute modalité, de tout matériel, de toute méthode et de toute technologie, donc un système biométrique qui est générique. Ce système biométrique dit génétique se compose principalement de cinq sous-systèmes (ou modules)\citep{iso2006iec}. La figure \ref{fig:archiofbiometricsys} illustre le flux d'informations dans un système biométrique, ses composants et ses différents modes de fonctionnements.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{archiofbiometricsys}
+	\caption{Architecture du système biométrique \citep{iso2006iec}.}
+	\label{fig:archiofbiometricsys}
+\end{figure}
+\subsubsection{Sous système de collecte de données }
+Ce système se charge de l’opération d’acquisition ou de capture de l'information biométrique. Les sous-systèmes de collecte de données se différencient par :
+\begin{itemize}
+	\item Le type du capteur utilisé suivant la modalité biométrique du système global.
+	\item Ses caractéristiques techniques.
+	\item La manière de présenter le signal d’entrée. Exemple : image d’empreinte digitale ou enregistrement vocal.
+	\item Le processus de conversion du signal d’entrée en une forme standard qui peut être manipulée par un ordinateur.
+	\item La nécessité de coopération de l’individu ou non. Par exemple, prendre une image faciale ou scanner l’empreinte digitale.
+\end{itemize}
+\subsubsection{Sous système de traitement du signal 	}
+Ce système traite d'abord les données biométriques capturées pour garder uniquement les données pertinentes qui peuvent distinguer les individus, il procède comme suit:
+\begin{itemize}
+	\item Élimine le bruit des données en sortie du sous-système précédent,qui peut étre généré à cause de la qualité du capteur et la résolution de l'image, les conditions d'éclairage et la position de capture.
+	\item Applique une segmentation en utilisant un modèle prédéfini de segmentation afin de faciliter la phase de reconnaissance.
+	\item Pour améliorer la qualité du modèle et optimiser sa taille de stockage, une opération d’extraction des caractéristiques est effectuée sur les données biométriques.
+\end{itemize}
+
+\subsubsection{Sous système de stockage de données}
+Ce sous système sauvegarde les modèles biométriques des individus enrôlés. A la demande du sous système de comparaison(expliqué ci-dessous), il récupére un ou plusieurs modèles biométriques pendant la phase reconnaissance (authentification ou identification). Il s'occupe aussi de la mise à jour du modèle biométrique après une authentification ou identification si le nouveau modèle acquis est de meilleure qualité par rapport à celui déjà enrôlé du même individu.
+Les modèles biométriques peuvent être enregistrés avec leurs données non biométriques, dans des bases de données souvent séparées logiquement ou physiquement pour des raisons de sécurité, sur des cartes intelligentes ou des dispositifs comme un ordinateur ou un téléphone mobile.
+\subsubsection{Sous système de comparaison}
+Ce système compare entre deux modèles biométriques en entrée, et selon la similarité entre eux, il donne en sortie : un score \footnote{Les scores indiquent la correspondance entre le modèle d’acquisition de chaque modalité biométrique composant le système avec le modèle enrôlé.} en cas d'une authentification, et un ensemble de scores au cas d'une identification.
+\subsubsection{Sous système de prise de décision}
+À partir de(s) score(s) trouvé(s) dans le précédant sous système et d’une politique de décision l’individu sera accepté ou considéré comme imposteur.\\
+La politique de décision peut :
+\begin{itemize}
+\item Rejeter l’identité proclamée de tout individu dont le modèle biométrique n’a pas été acquis (enrôlé).
+\item Accepter l’identité enrôlée, si le score est supérieur à un seuil prédéfini et le considérer comme imposteur dans le cas contraire.
+\item Accepter les modèles biométriques dont les scores sont inférieurs à un seuil qui dépend de \citep{davida2002infrastructure} :	
+\begin{list}{$\bullet$}{} 
+	\item \textbf{L’individu : }il y des individus qui possèdent des caractéristiques distinctives plus que d’autres individus. C’est pour cette raison que le système utilise un seuil préfixé qui dépend de la distinctivité des caractéristiques de l’individu. Une distinctivité élevée engendre un seuil élevé et vice versa tout en tenant en compte des paramètres de la sécurité du système,un système biométrique avec un niveau de sécurité bas, peut tolérer les fausses acceptations alors le seuil fixé sera plus grand qu'un système biométrique de niveau de sécurité élevé.
+	\item \textbf{La transaction : }pour une même application on peut voir plusieurs fonctionnalités à des droits d’accès différents, on peut associer à chaque droit d’accès un seuil pour contrôler plus l’accès à une opération ou à une donnée.
+	\item \textbf{Le contexte : }d’autres informations peuvent être prises en considération pour fixer un seuil variant, comme les moments habituels d’accès au système, quand la dernière tentative d’accès était faite.
+\end{list}
+\item Donner à tous les individus un nombre fixe de tentatives possibles pour retourner un ou plusieurs scores inférieurs au seuil.
+\end{itemize}
+
+\subsection{Performances des systèmes biométriques }
+\label{performance}
+Il existe plusieurs métriques pour mesurer les performances d'un système biométrique. Dans cette section, nous présentons les mesures des taux d'erreur et les courbes de performance.
+\subsubsection{Mesures des taux d’erreur }
+Selon \citep{mansfield2002best}, les mesures des taux d’erreur sont divisées en trois groupes : les taux d’erreur de correspondance, taux d’erreur d'acquisition d'images et taux d’erreur de décision.
+\begin{itemize}	
+	\item \textbf{Taux d'erreur de correspondance} 
+	\begin{list}{$\bullet$}{} 
+		\item \textbf{Taux de fausses correspondances\footnote{Appelé en Anglais False Matching Rate (FMR).} : } c'est le taux introduit par l’algorithme de comparaison, entre la donnée biométrique acquise d'un individu et un modèle correspondant à un autre individu \citep{Jain2004}. 
+		\item \textbf{Taux de fausses non-correspondances\footnote{Appelé en Anglais False Non-Matching Rate (FNMR).} : }c'est le taux introduit par l’algorithme de comparaison entre la donnée biométrique acquise d'un individu et le modèle correspondant au même individu \citep{Jain2004}.
+	\end{list}
+	\item \textbf{Taux d'erreur d'acquisition d'images} 
+	\begin{list}{$\bullet$}{} 
+		\item \textbf{Taux d'échec à acquérir : } reflète les tentatives de vérification ou d’identification pour lesquelles le système biométrique n’a pas pu acquérir l’information biométrique causé par les défauts de matériel, l'absence de l'individu, les conditions environnementales ...etc \citep{mansfield2002best}.
+		\item \textbf{Taux d'échec à enrôler : }indique la proportion des individus pour lesquels la donnée biométrique n’a pas pu être générée correctement durant la phase d’enrôlement. Par exemple le cas où les personnes n’ont pas d’empreintes pour des raisons génétiques, ou des empreintes quasi-inexistantes pour des raisons médicales \citep{mansfield2002best}.
+	\end{list}
+	\item \textbf{Taux d'erreur de décision} 
+	Les deux erreurs qui peuvent se produire pendant la phase de décision sont le rejet des utilisateurs \textit{légitimes} ou l'acceptation des \textit{imposteurs}.
+	\begin{list}{$\bullet$}{} 
+		\item \textbf{Taux de fausse acceptation : }pourcentage des imposteurs acceptés par erreur. Il est calculé comme suit :
+		\begin{center}
+			\begin{equation}\label{eq:TFA}
+			TFA=\dfrac{Nombre \; de\; fausses \;acceptations\; (imposteurs\; acceptes)}{Nombre\; de\; tentatives \;d'acces\; non\; legitimes}
+			\end{equation}
+		\end{center}
+		\item \textbf{Taux de faux rejets : }pourcentage des utilisateurs légitimes rejetés par erreur. Il est calculé comme suit :
+		\begin{center}
+			\begin{equation}\label{eq:TFR}
+			TFR=\dfrac{Nombre\; de\; faux\; rejets \;(utilisateurs\; legitimes)}{Nombre\; de \;tentatives\; d'acces\; legitimes}
+			\end{equation}
+		\end{center}
+		\item \textbf{Taux d'égale erreur : }concerne le point où FMR et FNMR sont égaux. Ce taux est fréquemment utilisé pour donner un aperçu sur la performance d'un système biométrique. Plus la valeur de ce taux d'erreur est faible, plus la précision du système biométrique est élevée \citep{liu2001practical} (voir figure \ref{fig:chapitre1err}). 
+		\begin{center}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.75\linewidth]{eer}
+				\caption{Equal Error Rate (EER).}
+				\label{fig:chapitre1err}
+			\end{figure}
+		\end{center}
+	\item \textbf{Taux de reconnaissance :} indique le nombre de comparaisons non erronés, il est calculé comme suit : 1 - la valeur de FNMR dans le seuil où nous avons trouvé le ERR.
+		\item \textbf{Taux d'identification : }le taux d’identification au rang r est la proportion de transactions d’identification, par des utilisateurs enrôlés dans le système, pour lesquels l’identifiant de l’utilisateur est dans les r identifiants retournés.
+		\item \textbf{Taux de fausse-positive identifications : }la probabilité de retourner une liste non vide dans l'identification des utilisateurs non enrôlés.
+		\item \textbf{Taux de fausse-négative identifications : }le pourcentage d'échec d'identification d'un individu enrôlé où l’identifiant de l'individu ne figure pas dans la liste des identifiants retournée.
+		
+	\end{list}
+	
+\end{itemize}
+\subsubsection{Courbes de performance }
+\begin{itemize}
+	\item \textbf{Courbe ROC : }représente graphiquement la relation entre le taux de vrais rejets FRR et taux de fausses acceptations FAR pour des différentes valeurs du seuil de décision \citep{egan1975signal}.\\
+(voir figure \ref{fig:chapitre1roc}). 
+	\begin{center}
+		\begin{figure}[H]
+			\centering
+			\fbox{\includegraphics[width=0.5\linewidth]{roc}}
+			\caption{Exemple de la courbe (ROC) \citep{Mainguet2017}.}
+			\label{fig:chapitre1roc}
+		\end{figure}
+	\end{center}
+	\item \textbf{Courbe DET: }c'est par essence une courbe ROC dont on représente directement l’évolution d’un taux d’erreur en fonction d’un autre pour la rendre plus lisible et plus exploitable. Le seuil de décision doit être ajusté en fonction de l'application ciblée : haute sécurité, basse sécurité ou compromis entre les deux (voir figure \ref{fig:chapitre1det}). 
+	\begin{center}
+		\begin{figure}[H]
+			\centering
+			\fbox{\includegraphics[width=0.5\linewidth]{det}}
+			\caption{Exemple La courbe (DET) \citep{Mainguet2017}.}
+			\label{fig:chapitre1det}
+		\end{figure}
+	\end{center}
+	\item \textbf{Courbe cumulative des correspondances CMC : }représente les valeurs du rang d’identification et les probabilités d’une identification correcte inférieure ou égale à ces valeurs (voir figure \ref{fig:chapitre1cmc}). 
+	\begin{center}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.6\linewidth]{cmc}
+			\caption{Courbe de caractéristiques cumulatives de correspondance montrant la performance du rang 1 au rang 15 \citep{Hu2015}.}
+			\label{fig:chapitre1cmc}
+		\end{figure}
+	\end{center}
+\end{itemize}
+
+\subsection{Limites des systèmes biométriques}
+\label{section:limitation}
+
+Bien que les systèmes biométriques offrent une solution fiable pour la reconnaissance et en pratique, ces systèmes sont utilisés dans nombreux systèmes commerciaux, Ils souffrent souvent des limitations suivantes \citep{jain2004multibiometric} :
+\begin{itemize}
+	\item \textbf{Bruit dans les données acquises : }introduit par le capteur pendant l’acquisition, il peut résulter d'un capteur défectueux ou mal entretenu. Par exemple, une image d'empreinte digitale avec une cicatrice, un échantillon de voix altéré par le froid ...etc.
+	\item \textbf{Variation intra-classe : }variation entre les échantillons de la même modalité biométrique d’un même individu, elle peut être causée par une mauvaise interaction de l'utilisateur avec le capteur comme les changements de pose et d'expression faciale lorsque l'utilisateur se tient devant une caméra; elle augmente généralement le taux de faux rejets (FRR) de système biométrique. 
+	\item \textbf{Similarité interclasse : }les caractéristiques extraites à partir de données biométriques d'individus différents peuvent être relativement similaires. Par exemple, une certaine partie de la population peut avoir une apparence faciale similaire due à des facteurs génétiques. Cela peut augmenter le taux de fausses acceptations (FAR) du système.
+	\item \textbf{Non-universalité : }certains individus de population peuvent être incapables de présenter une modalité biométrique pour le système biométrique en raison d'une maladie ou d'une incapacité. 
+	\item \textbf{Sensibilité aux attaques : }implique la falsification des modalités biométrique afin d'effectuer la reconnaissance. Les modalités les plus sensibles à ce genre d'attaque sont les modalités biométriques comportementales telles que la signature et la voix.
+\end{itemize}
+\section{Multi-biométrie}
+Pour pallier aux limites des systèmes biométriques uni-modaux qu'on a déjà présentées dans la section \ref{section:limitation}, les systèmes multi-biométriques qui combinent des informations issues de multiples sources d’information sont une solution fiable pour aborder ces problèmes. En combinant plusieurs informations discriminantes, on souhaite améliorer le pouvoir de reconnaissance du système et augmenter la robustesse aux fraudes.\\
+Dans ce qui suit, nous allons étudier les systèmes multi-biométriques, en commençant par présenter les différentes formes des systèmes multi-biométriques. Nous détaillerons par la suite une de ses formes à savoir « les systèmes multimodaux » en présentant ses avantages et ses différentes architectures. Enfin, nous exposerons la fusion multimodale et ses niveaux.
+\subsection{Formes des systèmes multi-biométriques}
+
+La reconnaissance dans un système multi-biométrique est effectuée à partir de multiples sources d'informations biométriques. Selon la nature de ces sources, les systèmes multi-biométriques peuvent être divisés en six formes \citep{ross2008introduction} : multi-capteur, multi-algorithme, multi-instance, multi-échantillon, multimodaux et forme hybride (voir figure \ref{fig:chapitre1sysmultibio})
+\begin{center}
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.75\linewidth]{sysmultibio}}
+		\caption{Formes de systèmes multi-biométriques \citep{jain2007technology}.}
+		\label{fig:chapitre1sysmultibio}
+	\end{figure}
+\end{center}
+
+Le tableau \ref{tab:comparaisonFormes} présente une comparaison entre les formes de systèmes multi-biométriques selon le nombre de sources d'information utilisées.
+\begin{table}[H]
+	\centering
+	
+	
+	\begin{tabular}{|p{3cm}|p{3.2cm}|p{3.2cm}|p{4cm}|p{2cm}|}
+		
+		% header and footer information
+		\hline
+		
+		\centering\textbf{Système multi-biométrique }
+		& \centering	\textbf{Capteur}
+		& \centering \textbf{Algorithme}
+		& \centering \textbf{Instance} 
+		& \textbf{Modalité} \\ \hline
+		Multi-capteur&Toujours 2 &Généralement 1 \textbf{*}&Toujours 1 même modalité et même instance&Toujours 1\\ \hline
+		Multi-algorithme&Toujours 1 &Toujours 2 &Toujours 1 &Toujours 1 \\ \hline
+		Multi-instance&Généralement 1 \textbf{**}&Toujours 1 &2 instances d'une seule modalité&Toujours 1 \\ \hline
+		Multi-échantillon&Toujours 1 &Toujours 1 &2 échantillons d'un seule modalité&Toujours 1 \\ \hline
+		Multimodal&Généralement 2 \textbf{***}&Plusieurs&2 toujours&Plusieurs \\ \hline
+	\end{tabular}
+	\caption{Comparaison entre les différents formes de la multi-biométriques selon la source d'information \citep{dhamala2012multibiometric}.}	
+	\label{tab:comparaisonFormes}
+\end{table} 
+
+\textbf{Exceptions : }
+\begin{itemize}
+	\item \textbf{* }Il est possible que deux échantillons provenant de différents capteurs soient traités en utilisant deux différents algorithmes d'extraction de caractéristiques biométriques. Puis, un algorithme d'appariement commun.
+	\item \textbf{** }Dans certains cas, on peut utiliser deux capteurs capturant chacun une instance.
+	\item \textbf{*** }Un système multimodal avec un seul capteur utilisé pour capturer deux modalités différentes, par exemple une image d’une résolution élevée utilisée pour extraire le visage et l'iris.
+\end{itemize}
+\subsubsection{Système multi capteur }
+Plusieurs capteurs sont utilisés dans l'acquisition d'une seule modalité biométrique dans le but d'acquérir des informations complémentaires pour accroître les performances des systèmes uni-modaux. Comme exemple, nous pouvons citer l’utilisation d’un capteur optique et d’un autre capacitif pour l'acquisition de l’empreinte digitale.
+\subsubsection{Système multi algorithme}
+Ce type correspond aux systèmes qui utilisent plusieurs algorithmes pour traiter la même image acquise d'une même modalité biométrique. A titre d'exemple l'utilisation de deux algorithmes pour la reconnaissance des empreintes digitales, le premier traite les caractéristiques texturales, le seconde traite les minuties d’une empreinte digitale. 
+\subsubsection{Système multi instance}
+Ce type désigne les systèmes qui capturent plusieurs unités ou instances de la même modalité biométrique (les modalités qui possèdent plusieurs instances), et avec le même capteur. Par exemple le système de reconnaissance multi-instance d’iris utilise l’iris de l’œil droit ainsi que l’iris de l’œil gauche.
+\subsubsection{Système multi échantillon }
+Les systèmes où un seul capteur est utilisé pour capturer plusieurs copies de la même modalité biométrique, dans différentes positions et sous différents angles, pour obtenir une représentation plus complète. Par exemple, le cas de la reconnaissance du visage, plusieurs profils du visage sont capturés, tels que le profil frontal, le profil droit et gauche, afin de prendre en compte les variations de la pose faciale.
+\subsubsection{Système multimodal}
+Ce type de système combine différentes modalités biométriques du même individu. Par exemple les systèmes de reconnaissance qui fusionnent entre le visage et l'iris tel que le système présenté dans \citep{rattani2009robust}, ou l'empreinte digitale et l'empreinte palmaire \citep{chin2009integrating}.
+\subsubsection{Système hybride}
+Le terme système \textit{hybride} est utilisé pour décrire les systèmes qui intègrent un sous-ensemble des cinq systèmes présentés précédemment \citep{chang2005evaluation}. Par exemple, le système multimodale et multi-algorithme de \citep{brunelli1995person} qui comprend deux algorithmes pour la reconnaissance du locuteur et trois pour la reconnaissance du visage.
+
+\subsection{Les systèmes multimodaux}
+La multi-modalité consiste à combiner plusieurs preuves présentées par différentes modalités
+biométriques, afin d’établir l’identité d’un individu, et d’obtenir des meilleures performances de
+reconnaissance que les systèmes monomodaux \citep{ross2003information}.
+Pour construire un système multimodal, une variété de facteurs doit être prise en compte lors de la conception d'un système biométrique multimodal \citep{Ross2004a}, on cite :
+\begin{itemize}
+	\item Le choix des modalités biométriques de base, on peut s'attendre à une amélioration de la performance en utilisant des modalités physiquement non corrélées (par exemple, l'empreinte digitale et l'iris) que l'utilisation des modalités corrélées (par exemple, le mouvement de la voix et des lèvres).
+	\item Le niveau de fusion des informations fournies par multiple sources biométriques.
+	\item La méthodologie adoptée pour intégrer l’information.
+	Le compromis entre le coût supplémentaire et l’amélioration de la performance du système.
+\end{itemize}
+\subsubsection{Avantages et inconvénients de la multi-modalité }
+Les systèmes multimodaux présentent plusieurs avantages, que nous présentons dans ce qui suit :
+\begin{itemize}
+	\item 	Les systèmes biométriques multimodaux sont capables de résoudre le problème de non universalité. Dans un système multimodal si un individu ne possède pas une modalité, on peut utiliser l’autre modalité comme alternative.
+	\item 	Augmenter la précision en utilisant une stratégie de fusion afin de combiner la décision de chaque sous-système et arriver à une décision finale \citep{1_trader_2017}.
+	\item 	Diminuer la possibilité des attaques en compliquant la tâche de la reconnaissance d’un individu. 
+\end{itemize}	
+\vspace{1cm} 
+Cependant, les systèmes multimodaux ont, par rapport aux systèmes monomodaux, une période de développement et une complexité plus élevées, un coût supplémentaire résultant par l’ajout de nouveaux capteurs et une taille de données plus grande. Ainsi, un temps supplémentaire est nécessaire pour acquérir et traiter plusieurs modalités pendant la phase d’enrôlement et de reconnaissance. 
+\subsubsection{Architecture des systèmes multimodaux}
+Les systèmes multimodaux fusionnent plusieurs systèmes monomodaux, et nécessitent donc l'acquisition et le traitement de modalités différentes qui peuvent se faire successivement ou simultanément. On parle alors d’architecture \textbf{\textit{séquentielle}}, ou d'architecture \textbf{\textit{parallèle}}.
+\paragraph*{Architecture séquentielle }: dans cette architecture, l'acquisition des images est faite séquentiellement dans un ordre prédéfini, la sortie d'une modalité est généralement utilisée pour réduire le nombre des identités possibles (nombre des individus identifiés) avant d’utiliser la modalité suivante \citep{hong1998integrating} (voir figure \ref{fig:chapitre1archiseq}). Cette architecture permet de réduire le temps global de la reconnaissance par rapport à l'architecture parallèle. Car la décision finale pourrait être faite avant l'acquisition de toutes les modalités. 
+	
+	\begin{center}
+		\begin{figure}[H]
+			\centering
+			\fbox{\includegraphics[width=0.55\linewidth]{archiseq}}
+			\caption{Architecture séquentielle d'un système multimodale \citep{ross2006information}.}
+			\label{fig:chapitre1archiseq}
+		\end{figure}
+	\end{center}
+\paragraph*{Architecture parallèle }: dans cette architecture, on utilise toutes les modalités de base qui sont acquises en parallèle (voir figure \ref{fig:chapitre1archipar}). C'est l'architecture la plus utilisée car elle améliore la performance et le temps d’acquisition \citep{hong1998integrating}. Cependant, elle est coûteuse en terme de temps de traitement.
+	\begin{center}
+		\begin{figure}[H]
+			\centering
+			\fbox{\includegraphics[width=0.55\linewidth]{archipar}}
+			\caption{Architecture parallèle d'un système multimodale \citep{ross2006information}.}
+			\label{fig:chapitre1archipar}
+		\end{figure}
+	\end{center}
+
+Il est également possible de concevoir une architecture hiérarchique pour combiner les avantages de deux architectures précédentes où un sous-ensemble des modalités est acquis en parallèle et un autre en série. Cependant, ce type d'architecture n'a pas reçu beaucoup d'attention de la part des chercheurs \citep{ross2006information}.
+\subsection{Fusion multimodale}
+\label{fusionetat}
+La fusion biométrique multimodale est un sujet d'actualité, elle permet de combiner les mesures de différentes modalités biométriques, pour renforcer les points forts et réduire les points faibles de différents systèmes biométriques fusionnés. Elle peut se faire à cinq niveaux différents : niveau capteur, niveau caractéristiques, niveau score, niveau décision ou niveau rang \citep{C.SandersonandK.Paliwal.2002}. 
+
+\subsubsection{Niveau capteur}
+Les données brutes capturées à partir des différents capteurs, ou plusieurs instances d'un seul capteur sont fusionnées pour construire un vecteur de caractéristiques. La fusion à ce niveau est la moins utilisée parce qu’il est possible d'avoir des données de différentes modalités incompatibles \citep{gudavalli2012multimodal}. Les captures utilisées doivent être compatibles. Par exemple, les images de visage obtenues à partir de plusieurs caméras peuvent être combinées pour former un modèle 3D du visage \citep{noore2015fusion}.
+\subsubsection{Niveau caractéristiques}
+\label{fusionmethodesscore}
+Lorsque les vecteurs de caractéristiques sont homogènes\footnote{\textbf{Homogénéité des caractéristiques :} c'est lorsque les caractéristiques sont extraites d'une même modalité biométrique.} (exemple : plusieurs images de différentes instances d’une empreinte digitale), le vecteur de caractéristiques résultant peut être calculé par la somme pondérée des vecteurs de caractéristiques de chaque image, et si les vecteurs sont hétérogènes (exemple : deux modalités biométriques comme le visage et la géométrie de la main), ils peuvent être concaténés pour obtenir le vecteur de caractéristiques final. Néanmoins dans le cas d'incompatibilité des vecteurs de caractéristiques initiaux, la fusion n’est pas possible \citep{ross2006information}, Par exemple, les minuties d’une empreinte digitale et les coefficients de visage ("eigen-face coefficients").
+\subsubsection{Niveau score }
+On fusionne à ce niveau les scores donnés en sortie de la phase d’appariement de chaque modalité biométrique pour former un score unique qui est ensuite utilisé pour prendre la décision finale. Ce niveau est le plus utilisé.
+\\	\textbf{Normalisation des scores : }
+les scores combinés peuvent être homogènes et donc ne nécessiteraient aucun traitement, comme ils ne peuvent pas l’être. Par exemple, dans le cas de scores non homogènes : un algorithme qui donne en sortie une mesure de distance et une autre qui donne une mesure de similarité ou des scores qui suivent des différentes distributions statistiques, alors doivent d’abord être normalisés dans un domaine commun \citep{meyer2009}. Nous présentons les méthodes de normalisation les plus connues : 
+\begin{itemize}
+	\item \textbf{Min-Max (MM) : }cette méthode normalise les scores bruts appartenant à l’intervalle [0, 1] \citep{ross2006information}.
+	\begin{center}
+		\begin{equation}\label{eq:minmax}
+		n =\dfrac{(s - min (S))}{(max (S)-min (S))}
+		\end{equation}
+	\end{center}
+$ s $ : représente un score parmi l'ensemble de scores $ S $,	max (S) et min (S) définissent les points d'extrémité du domaine de définition des scores.
+	\item\textbf{Z-score (ZS) : }cette méthode transforme les scores à une distribution avec une moyenne égale 0 et un écart type égale 1 \citep{ross2006information}.
+	
+	\begin{center}
+		\begin{equation}\label{eq:ZS}
+		n =\dfrac{(s - moyenne (S)) }{(std (S))}
+		\end{equation}
+	\end{center}
+	Moyenne (S) et std (S) désignent respectivement la moyenne et le standard de déviation des scores.
+	\item \textbf{Tanh (TH) : }
+	cette méthode est parmi les techniques statistiques les plus solides. Elle trace les scores de 0 à 1 \citep{ross2006information}.
+	\begin{center}
+		
+		\begin{equation}
+		\label{eq:TH}
+		n = \frac{1}{2}(tanh(\dfrac{0.01*(s - moyenne (S)) }{std (S)})+1)
+		\end{equation}
+	\end{center}
+\end{itemize}
+
+Après la normalisation, on utilise une méthode de combinaison parmi les méthodes suivantes :
+\begin{itemize}
+	\item \textbf{Somme Simple :} le score final est égal à la moyenne des scores de différentes méthodes d'appariement.
+	\item \textbf{Somme Pondérée :} dans ce cas, nous attribuons un poids $ w $ à chaque méthode d'appariement, le calcul de poids est basé sur leur taux de erreur ERR, et le score final est égal à la somme pondérée de ces scores.	
+	\item \textbf{Min-Max :} le score final est le maximum ou le minimum score parmi l'ensemble des scores.
+	\item \textbf{Médian :} le score final est le médian de l'ensemble des scores.
+	\item \textbf{Produit :} le score final est le produit des scores.
+\end{itemize}
+\subsubsection{Niveau décision}
+Les décisions des différents systèmes biométriques sont fusionnées par une stratégie de décision, parmi plusieurs stratégies existantes comme la technique de vote majoritaire, ou en utilisant les opérateurs (ET, OU, Aléatoire, etc.). Cependant, la fusion à ce niveau est la moins performante, et elle est utilisée comme une alternative lorsque les autres niveaux sont inaccessibles \citep{jain2004multibiometric}. 
+\subsubsection{Niveau rang }
+Ce niveau de fusion est spécifique aux systèmes multi biométriques fonctionnant dans le mode d'identification, où la sortie de chaque classificateur est un sous-ensemble de correspondances possibles, triées dans un ordre décroissant de confiance. Ces sous-ensembles sont combinés pour obtenir un rang final.	
+
+\section{Conclusion}
+Nous avons présenté dans ce chapitre des généralités sur la biométrie, notamment les types de modalités biométriques, les domaines d’application, ensuite nous avons défini les systèmes biométriques ainsi que leurs diverses domaines, leurs modes de fonctionnement. Nous avons introduit la multi-biométrie, sa définition et ses formes. Et nous avons détaillé la forme qui nous intéresse le plus qu’est « la multimodalité ». C'est la combinaison de deux modalités biométriques ou plus. Elle est utilisée afin de minimiser le taux d’erreur et de bénéficier des avantages des modalités qui la composent.
+\\Parmi les systèmes multimodaux, il existe des systèmes qui fusionnent l’empreinte digitale et l’empreinte palmaire qui sont les modalités biométriques les plus connues, les plus utilisées et les plus compatibles. Les processus de reconnaissances de ses modalités seront présentés en détails dans les chapitres qui suivent.
+
+

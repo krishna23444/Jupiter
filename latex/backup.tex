@@ -1,0 +1,145 @@
+\documentclass[a4paper]{report}
+
+%====================== PACKAGES ======================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{url}
+\usepackage{multicol}
+%Refs
+\usepackage{caption}
+
+\usepackage[authoryear]{natbib}
+
+
+%pour les informations sur un document compilé en PDF et les liens externes / internes
+\usepackage{hyperref}
+%pour la mise en page des tableaux
+
+
+\usepackage{enumitem}
+\usepackage{float}%pour gérer les positionnement d'images
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{tabularx}
+\usepackage{longtable}
+%Images and figures
+\usepackage{setspace}
+\usepackage{graphicx}
+\setcounter{secnumdepth}{3}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=blue,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+% for termes
+\usepackage{tgtermes}
+%pour utiliser \floatbarrier
+%\usepackage{placeins}
+%\usepackage{floatrow}
+%espacement entre les lignes
+\usepackage{setspace}
+
+%modifier la mise en page de l'abstract
+\usepackage{abstract}
+%police et mise en page (marges) du document
+
+%Mis en page :
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+%Footer and Header
+\usepackage{fancyhdr}
+\setlength{\headheight}{13.1pt}
+\pagestyle{fancyplain}
+\lhead{}
+\cfoot{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\baselinestretch}{1.5}
+
+%Pour les galerie d'images
+\usepackage{subfig}
+%Page de garde
+\usepackage{framed}
+
+
+%Abbreviations
+\usepackage[french]{nomencl}
+\makenomenclature
+%Rotating
+ \usepackage{rotating}
+ \usepackage{tikz}
+\newcommand*\rot{\rotatebox{90}}
+%\hypersetup{urlcolor=black, colorlinks=bleu}  Colors hyperlinks in blue - change to black if annoyingv`	
+%====================== INFORMATION ET REGLES ======================
+
+%rajouter les numérotation pour les \paragraphe et \subparagraphe
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\hypersetup{							% Information sur le document
+pdfauthor = {KEBAILI Zohra Kaouter,
+		KECHIDA Fatima Zahra,
+		},			% Auteurs
+pdftitle = {Plateforme de test multicritères adapté aux solutions
+	multi-biométriques},			% Titre du document
+pdfsubject = {Mémoire de Projet},		% Sujet
+pdfkeywords = {Tag1, Tag2, Tag3, ...},	% Mots-clefs
+pdfstartview={FitH}}					% ajuste la page à la largueur de l'écran
+%pdfcreator = {MikTeX},% Logiciel qui a crée le document
+%pdfproducer = {}} % Société avec produit le logiciel
+%======================== DEBUT DU DOCUMENT ========================
+\renewcommand{\baselinestretch}{1.3}
+\renewcommand{\thetable}{\Roman{table}}
+\captionsetup[table]{name=Tableau}
+\begin{document} 
+%page de garde
+%====================== INCLUSION DES PARTIES ======================
+\input{pagegarde.tex}
+\pagenumbering{roman}
+\setcounter{page}{2}
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\contentsname}
+\tableofcontents
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\cleardoublepage
+\input{glossaire.tex}
+\pagenumbering{arabic}
+
+\input{introduction.tex}
+\pagestyle{fancy}
+\input{Partie1/chapter1.tex}
+\input{Partie1/chapter2.tex}
+\input{conclusion.tex}
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\bibname}
+
+%récupérer les citation avec "/footnotemark"
+\nocite{*}
+
+%choix du style de la biblio
+\bibliographystyle{apalike} 
+\renewcommand\bibname{Références}
+\bibliography{bibliographie}
+\begin{appendix}
+\input{annexe.tex}
+\end{appendix}
+
+%voir wiki pour plus d'information sur la syntaxe des entrées d'une bibliographie
+
+\end{document}

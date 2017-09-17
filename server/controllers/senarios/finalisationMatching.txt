@@ -1,0 +1,32 @@
+end
+toc
+psave=strcat(dirResults,'statistics\stat.json');
+psave1=strcat(dirResults,'statistics\stat1.json');
+psave2=strcat(dirResults,'statistics\stat2.json');
+done=strcat(dirResults,'done.json');
+
+if ~exist(strcat(dirResults,'statistics'),'dir' )
+mkdir(dirResults,'statistics');
+end
+json=savejson('timesPretrait',struct('totalPretrait',roundn(toc,-3),'avaragePretrait',roundn(toc/scans,-3)),psave);
+tic
+S_intra_class= getIntraClassDis(scans,scan,features,'matchToChange'); %scores of person with other scans of same person
+S_inter_class=getInterClassDis(scans,scan,features,'matchToChange'); %scores of person with other scans of same person
+[ver_rate, miss_rate, rates] =rocTochange;
+
+toc
+json=savejson('timesMatching',struct('totalMatching',roundn(toc,-3),'avarageMatching',roundn(toc/(scans*scans),-3)),psave1);
+data2json=struct('realrate',ver_rate,'missrate', miss_rate,'rates', rates);
+savejson('rates',data2json,psave2);
+json=savejson('code','OK',done);
+
+catch err
+perror=strcat(dirResults,'error.json');
+json=savejson('errorTime',toc,perror);
+done=strcat(dirResults,'done.json');
+fid = fopen('ErrorToChange','a+');
+fprintf(fid, '%s', err.getReport('extended', 'hyperlinks','off'))
+fclose(fid)
+json=savejson('code','FAIL',done);
+
+end 

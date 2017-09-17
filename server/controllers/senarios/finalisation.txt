@@ -1,0 +1,18 @@
+end
+toc
+psave=strcat(dirResults,'statistics\stat.json');
+done=strcat(dirResults,'done.json');
+if ~exist(strcat(dirResults,'statistics'),'dir' )
+mkdir(dirResults,'statistics');
+end
+json=savejson('timesPretrait',struct('totalPretrait',roundn(toc,-3),'avaragePretrait',roundn(toc/scans,-3)),psave);
+json=savejson('code','OK',done);
+catch err
+perror=strcat(dirResults,'error.json');
+json=savejson('errorTime',toc,perror);
+done=strcat(dirResults,'done.json');
+fid = fopen('ErrorToChange','a+');
+fprintf(fid, '%s', err.getReport('extended', 'hyperlinks','off'))
+fclose(fid)
+json=savejson('code','FAIL',done);
+end 

@@ -1,0 +1,42 @@
+% Chapter Template
+
+\chapter*{Bilan de stage}% Main chapter title
+Avant de clôturer notre rapport, nous exposons ce bilan récapitulatif de notre stage de fin d'études qui s'est étalé sur 12 mois entre réunions, rédaction du rapport, recherche bibliographie, phase d'état de l'art, analyse de besoins et conception, réalisation et test. Dans ce bilan, nous présentons les difficultés rencontrées et les solutions apportées, ensuite nous donnons notre analyse de l'expérience de stage de fin d'étude et notre appréciation personnelle.
+\section*{Difficultés rencontrées }
+\begin{itemize}
+\item Le périmètre des objectifs visés par rapport à la durée prévisionnelle du stage (à priori 9 mois).
+\item L'existence d'une masse énorme d'informations et d'articles autour de la biométrie, la multi-biométrie, la multimodalité, aussi les articles concernant la reconnaissance d'empreinte digitale et d'empreinte palmaire, ce qui rend la recherche bibliographique une tâche difficile.
+\item La nécessité d'apprentissage de nouveaux outils et langages (comme Angular 2, mongoDB, nodeJS et Matlab).
+\item L'obtention des bases de données de tests, que ce soit, les BDDs d'empreintes digitales, d'empreintes palmaires ou multimodales a pris beaucoup de temps, entre le contact des possesseurs des BDDs, leur acceptation et l'envoie des données.
+\item Le choix des méthodes et langage d'implémentation de ces méthodes. 
+\item les détails d'implémentation des méthodes ne sont pas cités dans les articles.
+\end{itemize}
+\section*{Les solutions apportées}
+\begin{itemize}
+	\item Les réunions avec les encadrantes, Mme K.Benatchba et Mme S. Artabaz la mise à jour de la fiche du projet de fin d'étude après une première recherche bibliographique, ont contribué à la compréhension du thème et au cernement des objectifs.
+	\item L'orientation des encadrantes et la sélection de la matière de recherche selon la qualité de l'article (la date et le nombre de fois de référencement) pour ne pas se perdre dans la littérature existante.
+	\item Au cas de bugs, consulter les forums du développement connus comme stackoverflow, communauté de Matlab et le site de researchgate pour la compréhension des méthodes et leurs algorithmes.
+	\item Pour que les bases de données de tests soient prêtes au moment de tests, la récoles des BDDs a commencé bien avant de démarrer la réalisation de « Jupiter ».
+	\item Selon nos recherches, il existe  une panoplie de méthodes et de variations de méthodes de reconnaissance d'empreinte digitale et d'empreinte palmaire, donc, il fallait  choisir un nombre limité de méthodes pour effectuer nos tests, ce choix  qui devrait respecter des critères comme la faisabilité contrôlée par le temps, les résultats issus de la méthode, et le fait à ce qu'elle soit conformes aux autres méthodes choisies pour compléter le processus biométrique à tester parce que la sortie d'une méthode d'un module est l'entrée de la méthode du module qui suit dans le processus biométrique.
+	D'autre part, le choix du langage d'implémentation des méthodes de reconnaissance parmi les langages fortement utilisés (pour choisir entre Matlab, python et C++), était effectué après un sondage dans lequel nous avons ciblé :
+	\subitem Les chercheurs de researcheGate.
+	\subitem Les forums d'échanges (stackoverflow).
+	\subitem Les étudiants de l'Esi.
+	Les 85 réponses obtenues nous ont permis de choisir Matlab (voir figure \ref{fig:servey}).
+		\begin{center}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\linewidth]{logos\servey}
+			\caption{Représentation des réponses par langage d'implémentation de méthodes.}
+			\label{fig:servey}
+		\end{figure}
+	\end{center}
+	\item Exploiter des toolbox et SDK comme MCC SDK, tool matlab pour le traitement des images, NSCT toolbox ..etc. Pour faciliter l'implémentation des méthodes.
+\end{itemize}
+\section*{Analyse de l'expérience du stage de fin d'étude}
+\begin{itemize}
+	\item Le travail en biome avec nos encadrantes au sein d'équipe, aussi avec l'équipe SURES du laboratoire LMCS, nous a permis de développer nos compétences communicationnelles et d'accepter les critiques pour améliorer notre solution.	
+	\item Pendant cette expérience, nous avons appris à fixer des objectifs et à savoir fixer des limites.
+	\item Durant ce chemin de 12 mois, nous avons rencontré des difficultés que nous avons contourné.
+	\item C'est une expérience pendant laquelle nous avons appliqué nos prérequis de notre cursus à l'ESI, est aussi très enrichissante en compétence en biométrie et en compétences techniques.
+\end{itemize}

@@ -1,0 +1,116 @@
+\documentclass[11pt,a4paper]{report}
+%====================== PACKAGES ======================
+\usepackage[utf8]{inputenc}
+\usepackage[arabic,french]{babel}
+\usepackage[LAE,T1]{fontenc}
+
+%Mis en page :
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage[Glenn]{fncychap}
+\usepackage{fancyvrb}
+\usepackage{fancyhdr}
+\setlength{\headheight}{13.1pt}
+\pagestyle{fancy}
+\fancyhead[]{}
+\lhead{\nouppercase{\textit{\leftmark}}}
+\cfoot{}
+\fancyfoot[R]{\thepage}
+
+%Biblio
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage[authoryear]{natbib}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=blue,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+%Images and figures
+%\usepackage{setspace}
+\usepackage{graphicx}
+\graphicspath{ {Resources/} }
+%Page de garde
+\usepackage{framed}
+%Rotating
+\usepackage{rotating}
+%\usepackage{tikz}
+\newcommand*\rot{\rotatebox{90}}
+%Math using equations
+\usepackage{amsmath,amsfonts,amssymb}
+%pour gérer les positionnement d'images
+\usepackage{float}
+%caption
+\usepackage{caption}
+\captionsetup[table]{aboveskip=10pt}
+\captionsetup[table]{belowskip=10pt}
+\captionsetup{justification=centering}
+\captionsetup[table]{name=Tableau}
+
+%Line break after paragraphes 
+\usepackage[raggedright]{titlesec}
+\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{0.5em}
+
+%Tables
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\usepackage{tabularx}
+\usepackage{chngcntr}\counterwithout{figure}{chapter}
+\usepackage{chngcntr}\counterwithout{table}{chapter}
+\renewcommand{\thetable}{\Roman{table}}
+\hypersetup{							% Information sur le document
+	pdfauthor = {KEBAILI Zohra Kaouter,
+		KECHIDA Fatima Zahra,
+	},			% Auteurs
+	pdftitle = {Plateforme de test multicritères adapté aux solutions
+		multi-biométriques},			% Titre du document
+	pdfsubject = {Mémoire de Projet},		% Sujet
+	pdfkeywords = {Tag1, Tag2, Tag3, ...},	% Mots-clefs
+	pdfstartview={FitH}}					% ajuste la page à la largueur de l'écran
+\begin{document} 
+	%page de garde
+	%====================== INCLUSION DES PARTIES ======================
+	\input{pagegarde.tex}
+	\pagenumbering{roman}
+	\setcounter{page}{2}
+	\cleardoublepage
+	\addcontentsline{toc}{chapter}{\contentsname}
+	\tableofcontents
+	\cleardoublepage
+	\addcontentsline{toc}{chapter}{\listfigurename}
+	\listoffigures
+	\cleardoublepage
+	\addcontentsline{toc}{chapter}{\listtablename}
+	\listoftables
+	\cleardoublepage
+	\input{glossaire.tex}
+	\pagenumbering{arabic}
+	
+	\input{introduction.tex}
+	\pagestyle{fancy}
+	\input{Partie1/chapter1.tex}
+	\input{Partie1/chapter2.tex}
+	\input{Partie1/chapter3.tex}
+	\input{conclusion.tex}
+	
+	\cleardoublepage
+	\addcontentsline{toc}{chapter}{\bibname}
+	
+	%récupérer les citation avec "/footnotemark"
+	\nocite{*}
+	
+	%choix du style de la biblio
+	\bibliographystyle{apalike} 
+	\renewcommand\bibname{Références}
+	\bibliography{bibliographie}
+	\appendix
+	\input{annexe.tex}
+	
+	
+	%voir wiki pour plus d'information sur la syntaxe des entrées d'une bibliographie
+	
+\end{document}

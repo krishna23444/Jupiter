@@ -1,0 +1,692 @@
+\part{Contribution}
+ \lhead{EXPRESSION ET ANALYSE DES BESOINS}
+\chapter{Expression et analyse des besoins }
+\label{analyse}
+\section{Introduction}
+	\tab Après l’étude non exhaustive de quelques méthodes de reconnaissance des individus à partir de leurs empreintes digitales et leurs empreintes palmaires, nous rappelons dans ce chapitre le contexte dans lequel nous nous situons, nous rappelons nos objectifs, ensuite nous présentons les besoins fonctionnels et techniques avec les différents diagrammes UML modélisant notre solution.
+\section{Contexte du projet}
+Lors du démarrage d'un nouveau projet de recherche, un défi important est de trouver un framework, un SDK ou une bibliothèque pouvant être réutilisés pour économiser l'effort de codage et évaluer la performance. Pour chaque domaine de recherche, il y a une panoplie d'outils, par exemple dans le domaine d'apprentissage (machine learning) les chercheurs peuvent faciliter leur travail en travaillant avec des outils, des bibliothèques, des SDKs et des sites de tests tels que : Weka\footnote{\href{http://www.cs.waikato.ac.nz/ml/weka/}{www.cs.waikato.ac.nz}}, RapidMiner\footnote{\href{https://rapidminer.com/}{www.rapidminer.com}}, KEEL\footnote{\href{http://sci2s.ugr.es/keel/description.php}{www.sci2s.ugr.es/keel}}, PRTools\footnote{\href{http://prtools.org/}{www.prtools.org}}...etc. 
+Cependant, un chercheur dans le domaine de la reconnaissance des empreintes digitales et palmaires est plus limité \citep{maltoni2009handbook}, pour qu'il puisse tester la performance de son algorithme, il doit trouver les bases de données (existantes ou il les capture lui-même), développer d'autres modules comme le parcours des images des empreintes, les différentes étapes de pré-traitement, le module du calcul des taux des erreurs et d'affichage des courbes (voir figure \ref{fig:classic}).
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{classic}
+	\caption{Enchaînement classique du test d'une méthode.}
+	\label{fig:classic}
+\end{figure}
+En outre, les solutions existantes dans le domaine sont soit des :
+\begin{itemize}
+	\item \textbf{Solutions non gratuites :} les utilisateurs doivent payer pour utiliser les bibliothèques ou ils doivent les utiliser avec des limitations de temps et/ou des restrictions à l'accès aux ressources.
+	\item \textbf{Solutions non extensibles :} ne traitent qu'un seul module (extraction ou appariement) ou ne supportent qu'un seul type de modalité.
+	
+	\item \textbf{Solutions non open source :} les utilisateurs n'ont pas l'accès au code source pour le réutiliser ou l'améliorer.
+	
+	\item \textbf{Solutions non personnalisées :} les utilisateurs n’ont pas le contrôle sur les ressources : créer des bases de données ou modifier celles qui existent, ajouter de nouvelles méthodes, ...etc.
+	
+	\item \textbf{Solutions ne possédant pas un protocole de tests :} les utilisateurs peuvent utiliser les algorithmes offerts par la solution, mais ils doivent créer eux-mêmes le protocole d'évaluation (voir l'annexe \ref{protocol}).
+	
+	\item \textbf{Solutions non instantanées :} les utilisateurs(chercheurs) envoient leurs implémentations des méthodes à tester vers la solutions existante de test puis, ils doivent attendre une période pour avoir les résultats des tests exécutés sur leurs algorithmes.
+\end{itemize}
+Le tableau \ref{comparaisonsolution} présente une comparaison entre des outils de reconnaissance de tests biométriques existants:
+\begin{table}[H]
+	\centering
+	
+	
+	\begin{tabular}{|l|c|c|c|c|c|c|}
+		\hline
+		\multicolumn{1}{|c|}{\textbf{Solution}} & \textbf{Gratuit} & \textbf{Extensible} & \textbf{\begin{tabular}[c]{@{}c@{}}Open \\ source\end{tabular}} & \textbf{Personnalisé} & \textbf{\begin{tabular}[c]{@{}c@{}}Protocole\\ de test\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Résultats \\ instantanés\end{tabular}} \\ \hline
+		\begin{tabular}[c]{@{}l@{}}
+			NIST Biometric \\ Image Software\end{tabular} & \checkmark & & \checkmark & \checkmark & & \\ \hline
+		FVC-onGoing & & \checkmark & & & \checkmark & \\ \hline
+		SourceAFIS SDK & \checkmark & & \checkmark & &\checkmark & \\ \hline
+		MCC SDK & \checkmark & & & \checkmark & & \checkmark \\ \hline
+		VeriFinger SDK & & & & \checkmark & &\checkmark \\ \hline
+		Fingerprint SDK & & & & \checkmark & &\checkmark \\ \hline
+		Biometric SDK & \checkmark & & \checkmark & \checkmark & &\checkmark \\ \hline
+		IDKit PC SDK & & & & \checkmark & & \checkmark \\ \hline
+	\end{tabular}
+	\caption{Comparaison entre des solutions de reconnaissance de tests biométriques existantes\label{comparaisonsolution}}
+\end{table}
+
+\begin{itemize}
+	
+	\item \textbf{NIST Biometric Image Software (NBIS)\footnote{\href{https://www.nist.gov/services-resources/software/nist-biometric-image-software-nbis}{www.nist.gov}} :} est un outil développé par l’Institut national des normes et de la technologie (NIST), dédié au Bureau fédéral d'investigation et au département de la sécurité intérieure (DHS). Il offre un algorithme de segmentation, d’appariement des minuties et une classification basée sur les réseaux de neurones. Il fournit aussi une base de données des images d’empreintes digitales. 
+	
+	\item \textbf{FVC-onGoing\footnote{\href{https://biolab.csr.unibo.it/FVCOnGoing/UI/Form/Home.aspx}{www.biolab.csr.unibo.it/FVCOnGoing}} :} est une solution web automatisée permettant l’évaluation des algorithmes de reconnaissance des empreintes digitales. Les utilisateurs ont la possibilité de tester leurs algorithmes en suivant un protocole de test. Les tests sont effectués seulement sur les bases de données offertes par le site et leurs résultats sont envoyés aux utilisateurs après une période de 30 jours. Les utilisateurs peuvent consulter ces résultats, mais non pas le code source des méthodes testées.
+	
+	\item \textbf{SourceAFIS SDK\footnote{\href{https://sourceafis.machinezoo.com/}{www.sourceafis.machinezoo.com}} :} est une bibliothèque contenant un ensemble d’algorithmes d’appariement d’empreintes digitales.
+	
+	\item \textbf{MCC SDK\footnote{\href{http://biolab.csr.unibo.it/research.asp}{www.biolab.csr.unibo.it}} :} est une bibliothèque qui aide au développement des algorithmes d’appariement de l’empreinte digitale, mais elle ne supporte que la structure (MCC)(voir section \ref{structures}.
+	
+	\item \textbf{Fingerprint SDK\footnote{\href{http://www.neurotechnology.com/free-fingerprint-verification-sdk.html}{www.neurotechnology.com}} :} est un outil développé par \textit{neurotechnology}. Il offre des méthodes dédiées aux problèmes d’authentification des empreintes digitales. Les utilisateurs n’ont le droit de tester que dix empreintes.
+	
+	\item \textbf{VeriFinger SDK\footnote{\href{http://www.neurotechnology.com/free-fingerprint-verification-sdk.html}{www.neurotechnology.com}} :} est une solution payante développée par \textit{neurotechnology} qui offre des méthodes dédiées aux problèmes d'identification d’empreintes digitales avec une période d’essai de 30 jours.
+	
+	\item \textbf{
+		Biometric SDK\footnote{\href{http://www.m2sys.com/}{www.m2sys.com}} :} est une solution payante qui permet d’intégrer des méthodes d’appariement aux systèmes de reconnaissance d’empreinte digitale ou palmaire.
+	
+	\item \textbf{IDKit PC SDK \footnote{\href{https://www.innovatrics.com/idkit-fingerprint-sdk/}{www.innovatrics.com}}:} est une solution payante offrant des méthodes d’appariement et de segmentation des empreintes digitales.
+	
+	
+\end{itemize}
+
+
+
+Ce contexte présente certains inconvénients qui sont :
+\begin{itemize}
+	\item Un effort et un temps perdus dans le codage du parcours des images des empreintes, les différentes étapes de pré-traitement, le module du calcul des taux des erreurs et d'affichage des courbes pour avoir un processus complet.
+	\item Un temps perdu dans la recherche des ressources.
+	Certains sites comme (CASIA) exigent aux demandeurs des bases de données d’attendre une période (trois jours) avant d’être capable de les télécharger .
+	\item La grande partie des articles n’offrent pas le code source de leurs algorithmes.
+	\item Pour mieux comparer les résultats de test de sa méthode avec d'autres méthodes,ces méthodes doivent passer toutes par les mêmes tests sous le même environnement et ce n'est pas le cas.
+\end{itemize}
+
+
+\section{Objectifs du projet}
+Le but de notre projet de fin d’étude est de faciliter la tâche du test des systèmes biométriques aux chercheurs en offrant une plateforme qui propose un ensemble de méthodes biométriques existantes par défaut sur la plateforme et permet d'en rajouter d'autres. Le chercheur (notre client final) a la possibilité de créer un compte. Une fois l’utilisateur est connecté, il peut ajouter et gérer les méthodes qui interviennent dans les différentes étapes de la reconnaissance de l’empreinte digitale ou l’empreinte palmaire et aussi la fusion de ces deux modalités. Il a aussi la possibilité de lancer des tests en choisissant le type de test, les méthodes nécessaires, les types de résultats et d’autres configurations. La plateforme permet de tester:
+\begin{itemize}
+	\item \textbf{Processus de reconnaissance unimodal :} il s'agit de tester un processus complet ou un sous processus de reconnaissance soit pour l'empreinte digitale ou palmaire. Un processus se compose de plusieurs modules ayant des entrées et des sorties où chaque sortie est l'entrée du module suivant.
+	
+	\item \textbf{Fusion multimodale :} ce type de test examine une fusion entre deux modalités, selon le niveau choisi par le chercheur.
+\end{itemize}
+	Après avoir obtenu les résultats de ses tests, le chercheur peut les sauvegarder pour une consultation ultérieure. Ces résultats peuvent être sous forme de courbes de performance (DET ou ROC), le temps d’exécution de chaque étape de la reconnaissance, les images des modalités après chaque traitement et d’autres métriques (par exemple : EER, FMR, ...etc).\\
+Le schéma \ref{archisysmultimodal} représente la structure d'un processus de test.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.7\linewidth]{Resources/process}}	
+	\caption{Structure d’un système biométrique.}
+	\label{archisysmultimodal}
+\end{figure}
+Tels que :
+\begin{itemize}
+	\item \textbf{Processus :} processus complet de la reconnaissance. 
+	\item \textbf{Module :} une étape d’un processus de reconnaissance (pré-traitement, extraction, appariement ou décision).
+	\item \textbf{Méthode :} implémentation d’un module.
+	\item \textbf{Catégorie :} ensemble de méthodes qui possèdent les mêmes propriétés.
+\end{itemize}
+Après l'analyse du contexte et la problématique, notre projet est mis en œuvre pour :
+
+\begin{itemize}
+	\item Réduire le temps et l’effort de codage en offrant des modules déjà implémentés.
+	\item Offrir plusieurs ressources (base de données) open source collectées.
+	\item Donner la possibilité au chercheur de comparer ses méthodes avec d’autres méthodes en les testant sous le même environnement.
+	\item Une plateforme extensible à l’ajout d'autres modalités et d'autres catégories des méthodes
+	\item La possibilité de partager des méthodes avec d’autres utilisateurs de la plateforme pour leur donner la chance de les réutiliser ou les améliorer.
+	\item Les tests sur les méthodes implémentées en Matlab (parce que c’est le langage le plus utilisé par les chercheurs en biométrie), sont décentralisés et faits sur un serveur externe, ce qui facilitera le support d'autres langages (C++, python …etc) au cas d'extention de notre solution.
+\end{itemize}
+
+
+\clearpage
+\section{Vue globale de la plateforme}
+La plateforme que nous proposons permet au chercheur (notre utilisateur final) de lancer une action à travers une interface web, qui déclenchera un traitement en communiquant avec un service de traitement. Par la suite, le service de traitements sauvegarde des données relatives à l’utilisateur, l’action lancée et les résultats du traitement seront stockés dans la base de données. A travers la même interface, le chercheur peut voir les résultats de son action en récupérant les données déjà stockées.
+La figure \ref{vueplateforme} illustre la vue globale de notre plateforme.
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.9\linewidth]{Resources/VueGlobale}}
+	\caption{Vue globale de la plateforme.}
+	\label{vueplateforme}
+\end{figure}
+
+\section{Expression de besoins}
+L'expression de besoins sert à recenser l'ensemble de spécifications qui doivent être respectées et implémentées par la solution proposée, il y a deux types de spécifications: fonctionnelles et techniques. Les besoins de notre plateforme ont été collectés à travers les entretiens tenus avec nos encadreurs. Les exigences ont été priorisées par la suite en utilisant la méthode « MoSCoW ». Le tableau \ref{moscow} présente les différents types de priorités de MoSCoW. 
+\begin{center}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ll}
+			\textbf{Priorité} & \textbf{Description}            \\
+			M (Must have) & \begin{tabular}[c]{@{}l@{}}Spécification obligatoire et fondamentale.
+			\end{tabular}   \\
+			S (Should have) & \begin{tabular}[c]{@{}l@{}}Spécification importante mais non fondamentale.\end{tabular} \\
+			C (Could have) & Spécification optionnelle mais non fondamentale.       
+			\\
+			W (Want to have) & \begin{tabular}[c]{@{}l@{}}Spécification non importante.\end{tabular}
+		\end{tabular}\\
+		\caption{Priorités de spécifications selon la méthode MoSCoW.}
+		\label{moscow}
+	\end{table}
+\end{center}
+\subsubsection{Spécifications fonctionnelles}
+Une spécification fonctionnelle exprime comment est le
+système du point de vue utilisateur. Nous rappelons que notre projet est destiné principalement à être utilisé par les chercheurs en biométrie. Nous recensons donc ce qui suit les spécifications fonctionnelles de notre système que nous avons séparé en 5 modules :
+\begin{itemize}
+	\item Gestion des comptes utilisateurs.
+	\item Gestion des catégories. 
+	\item Gestion des méthodes. 
+	\item Gestion des traitement et tests. 
+	\item Gestion des ressources (BDDs de tests et modalités). 
+\end{itemize}
+\begin{table}[H]
+	\centering
+	
+	\begin{tabular}{|l|l|p{10cm}|l|}
+		\hline
+		ID &Module& Spécification             & Priorité \\ 
+		\hline
+		SF1 & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Gestion des \\ comptes utilisateurs\end{tabular}} & La plateforme doit permettre à un chercheur de s’authentifier pour utiliser les fonctionnalités offertes par la plateforme & S \\ \cline{1-1} \cline{3-4} 
+		SF2 & & La plateforme doit permettre à un chercheur de modifier son profile & W \\ \cline{1-1} \cline{3-4} 
+		SF3 & & La plateforme doit permettre à un chercheur de tracer des opérations qu'il a faites & W \\ \cline{1-1} \cline{3-4} 
+		SF4 & & La plateforme doit permettre à un chercheur de se déconnecter avant de quitter & S \\ \hline
+		SF5 & Gestion des catégories & La plateforme doit permettre à un chercheur d'ajouter, de modifier ou de supprimer une catégorie & S \\ \hline
+		SF6 & \multirow{3}{*}{Gestion des méthodes} & La plateforme doit permettre à un chercheur d’ajouter, de modifier ou de supprimer une méthode & M \\ \cline{1-1} \cline{3-4} 
+ 
+		SF7 & & La plateforme doit permettre à un chercheur d'associer une méthode à une catégorie & S \\ \hline
+		SF8 & Gestion des ressources & La plateforme doit permettre à un chercheur d'ajouter, de supprimer ou de modifier une base de données de test & S \\ \cline{1-1} \cline{3-4} 
+ 
+		SF9 & & La plateforme doit permettre à un chercheur d'ajouter ou de supprimer une modalité & S \\ \hline
+		SF10 & \multirow{6}{*}{Gestion des tests} & La plateforme doit permettre à un chercheur de tester une méthode ou plusieurs méthodes (sous-processus) & M \\ \cline{1-1} \cline{3-4} 
+		SF11 & & La plateforme doit permettre à un chercheur de tester un processus biométrique unimodal complet & M \\ \cline{1-1} \cline{3-4} 
+		SF12 & & La plateforme doit permettre à un chercheur de tester une fusion multimodale entre plusieurs systèmes biométriques & M \\ \cline{1-1} \cline{3-4} 
+		SF13 & & La plateforme doit permettre à un chercheur de trier les résultats des tests effectués selon des critères prédéfinis tels que le temps de réponse, le taux EER et etc & S \\ \cline{1-1} \cline{3-4} 
+		SF14 & & La plateforme doit permettre à un chercheur d'afficher les courbes et les résultats de tests & S \\ \cline{1-1} \cline{3-4} 
+		SF15 & & La plateforme doit permettre à un chercheur de sauvegarder les résultats des tests & C \\ \hline
+
+	\end{tabular}
+	\caption{Les spécifications fonctionnelles de la plateforme}
+	\label{specifFonct}
+\end{table}
+
+
+
+\subsubsection{Spécifications techniques}
+Une spécification technique exprime comment est le
+système d’un point de vue interne (technique,
+technologie,…etc.). A présent, nous recensons les spécifications techniques de notre plateforme dans le tableau \ref{specifnonFonct}. 
+\begin{table}[H]
+	\centering
+	\caption{Les spécifications techniques de la plateforme.}
+	\label{specifnonFonct}
+	\begin{tabular}{|l | p{14.5cm}| }
+		\hline	ID & Spécification  \\\hline           
+		ST1	&La plateforme doit être une solution web. \\ \hline
+		ST2	&L’interface graphique de la plateforme doit être simple et intuitive. \\ \hline
+		ST3	&Temps de réponse des différents traitements réduit. \\ \hline
+		ST4	&La plateforme doit être extensible pour l'ajout des autres fonctionnalités. \\ \hline
+		ST5	&La plateforme doit être libre et open source. \\ \hline
+		ST6	&Les méthodes doivent être implémentées en Matlab. \\ \hline
+	\end{tabular}
+	
+\end{table}
+\subsection{Diagrammes des cas d'utilisation } 
+
+Un diagramme de cas d’utilisation regroupe les actions principales déclenchées par les utilisateurs
+de la plateforme qui sont dans notre cas des chercheurs en biométrie. Nous illustrons dans ce qui suit les diagrammes de cas d'utilisation des modules composant notre solution
+\clearpage
+\subsubsection{Gestion des utilisateurs }
+Le chercheur peut créer un compte, après son authentification, il peut modifier son profil, le visualiser et consulter l’historique de ses opérations effectuées sur la plateforme.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Resources/UseCasecompte}
+	
+	\caption{Cas d'utilisation de la gestion du compte chercheur.}
+	\label{usecasecompte}
+\end{figure}
+\clearpage
+\subsubsection{Gestion des bases de données de tests}
+Avant de pouvoir tester un système biométrique, il faut préparer les données biométriques.
+Le chercheur peut donc ajouter une base de données des images biométriques et il doit l’associer à une modalité, il peut exporter directement la base de test et l’associer à une modalité. La plateforme permet aussi au chercheur de modifier ou supprimer une base de test (voir figure \ref{usecasebdd}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Resources/UseCaseBdd}
+	
+	\caption{Cas d'utilisation de gestion des bases de données.}
+	\label{usecasebdd}
+\end{figure}
+\clearpage
+\subsubsection{Gestion des méthodes}
+Pour chaque modalité, le chercheur doit être capable d’ajouter une méthode, la visualiser, la supprimer après l’authentification et a la possibilité d’afficher la liste des méthodes existantes sur la plateforme,les trier ou bien chercher une méthode par son nom (voir figure \ref{usecasemethod}).
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Resources/UseCaseMethode}
+	
+	\caption{Cas d'utilisation de gestion des méthodes.}
+	\label{usecasemethod}
+\end{figure}
+\clearpage
+\subsubsection{Gestion des tests}
+Après l’ajout des bases de test, et l’ajout des méthodes nécessaires, le chercheur peut tester, séparément un sous processus du système biométrique complet, il peut tester le processus de reconnaissance complet pour une seule modalité, de plus, il peut tester la fusion de plusieurs processus de reconnaissance unimodaux pour avoir un système biométrique multimodal.
+La plateforme permet aussi au chercheur de visualiser les résultats des tests, les sauvegarder et voir les statistiques concernant tous les tests lancés auparavant. Le chercheur à travers la plateforme peut trier les résultats des tests pour trouver la combinaison des méthodes existantes sur la plateforme qui a donnée un système multimodal de bons résultats (voir figure \ref{usecasetest}).
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\linewidth]{Resources/UseCaseTest}
+	
+	\caption{Cas d'utilisation de gestion des tests.}
+	\label{usecasetest}
+\end{figure}
+\section{Analyse des besoins}
+Aprés avoir recenser les besoins d'un chercheur en biométrie, nous modélisons dans ce qui suit, notre solution pour y répondre.
+
+\subsection{Diagrammes d’activités } 
+La figure \ref{activitydiagram} nous montre l’enchainement des activités nécessaires pour lancer un test d'un processus de reconnaissance sur notre plateforme.
+\begin{landscape}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{Resources/Diagrammedactivity}
+		
+		\caption{Diagramme d'activité de lancement d'un test.}
+		\label{activitydiagram}
+	\end{figure}
+\end{landscape}
+\clearpage
+
+\subsection{Diagrammes de séquence } 
+Le flux des différentes opérations permettant d'ajouter une méthode et de lancer un test est résumé dans les deux diagrammes de séquence ci-dessous :
+\\\textbf{ Ajout d'une méthode : } l'implémentation des méthodes doivent être en Matlab et respecte un protocole que nous imposons, ce protocole facilite les tests et l'obtention des résultats, nous utilisons celui proposé par FCV-Ongoing qui est le plus utilisé par les chercheurs en biométrie (voir la section protocol sur le site Biolab\footnote{\href{https://biolab.csr.unibo.it/FVCOnGoing/UI/Form/BenchmarkAreas/BenchmarkAreaFV.aspx}{https://biolab.csr.unibo.it/} }).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Resources/DiagrammeSequenceAddMethod}
+	
+	\caption{Diagramme de séquence de l'ajout d'une méthode.}
+	\label{activitysueq2}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Resources/DiagrammeSequence}
+	
+	\caption{Diagramme de séquence du lancement d'un test.}
+	\label{activitysueq}
+\end{figure}
+\clearpage
+\section{Conclusion}
+Dans ce chapitre, nous avons présenté notre projet et ses objectifs. Ensuite, nous avons recensé les besoins de notre plateforme et les schématisé en utilisant les diagrammes de cas d'utilisations, d'activités et de séquences. Dans le chapitre suivant, nous présentons la conception qui nous permettra à mieux réaliser notre projet « Jupiter ».
+
+\chapter{Conception}
+\section{Introduction}
+Après avoir présenté le contexte de notre projet et exposer l'analyse fonctionnelle de la plateforme, nous allons présenter dans ce chapitre notre conception de Jupiter. D’abord, nous commençons par montrer la conception de l'IHM. Après, nous présentons la conception architecturale et nous schématisons différents les diagrammes : de composants, de pacquages et de classes. Ensuite, nous détaillons les modules composant un processus biométrique unimodal. Enfin, nous présentons les étapes nécessaires pour lancer un test sur notre plateforme « Jupiter ».
+ \lhead{CONCEPTION}
+\section{Conception de l'IHM}
+Les maquettes IHM que nous présentons ci-après décrivent brièvement les interfaces que nous mettrons en œuvre pour la réalisation de l’application.
+À partir de l'analyse fonctionnelle exposée précédemment (voir la section \ref{analyse}), nous schématisons les zones et les composants de l'interface de notre plateforme par les maquettes (voir les figures \ref{ihm0}-\ref{ihm2}) pour présenter la structure de la future application et pour nous guider dans la phase de développement du site web. La figure \ref{ihm0} montre la maquette de l'interface de lancement d'un test, l'utilisateur choisit un type parmi les types que nous proposons, tester une modalité, une fusion entre plusieurs modalités.
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Resources/ihm0}
+	\caption{Maquette du choix d'un type de test. }
+	\label{ihm0}
+\end{figure}
+
+Si l'utilisateur choisit de tester un processus biométrique unimodal, il doit sélectionner la modalité qu'il veut tester, ensuite sélectionner une base de données qui contient les images, parmi les BDDs existantes, après,configurer le test par la sélection des méthodes des modules qu'il composent, enfin lancer le test.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Resources/ihm1}
+	\caption{Maquette de configuration du test d'un processus de reconnaissance unimodal. }
+	\label{ihm4}
+\end{figure}
+La maquette présentée dans la figure \ref{ihm3} décrit l'onglet des statistiques qui contient les graphes de ROC/DET (déjà présentés dans la section \ref{performance}) et les résultats des tests lancés précédemment.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Resources/ihm3}
+	\caption{Maquette des statistiques. }
+	\label{ihm3}
+\end{figure}
+
+L'utilisateur qui a créé un compte par la saisie de son email a le droit d'ajouter ses propres méthodes, BDDs de tests, d'autres modalités et de les gérer. Les figures \ref{ihm1}, \ref{ihm6} représentent les interfaces de gestion des méthodes et des ressources (modalités et bases de données). 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Resources/ihm2}
+	\caption{Maquette de gestion des méthodes. }
+	\label{ihm1}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Resources/ihm6}
+	\caption{Maquette de gestion de ressources. }
+	\label{ihm6}
+\end{figure}
+La maquette suivante montre les étapes qu'il doit suivre pour ajouter une méthode.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{Resources/ihm4}
+	\caption{Maquette d'ajout d'une méthode. }
+	\label{ihm2}
+\end{figure}
+
+
+\section{Conception architecturale}
+\subsection{Architecture logicielle } 
+Une architecture est une infrastructure composée de modules actifs,
+d’un mécanisme d’interaction entre ces modules et d’un ensemble de
+règles qui gouvernent cette interaction \cite{boasson1995artistry}.
+Pour réaliser notre plateforme nous avons opté pour une architecture 3-tiers basée sur la technologie RESTful pour assurer la scalabilité, la facilité de développement, l'extensibilité et la séparation des traitements par couche. La figure \ref{globalarchi} représente l’architecture globale adoptée qui sépare la partie applicative (back end) de la partie client (front end) et des données.
+\begin{enumerate}
+	\item \textbf{La couche présentation} est chargée du traitement de l'interaction avec l'utilisateur. 
+	
+	\item \textbf{La couche application} effectue les différents traitements et tests.
+	\item \textbf{La couche données} responsable du stockage et l’accès aux données.
+	
+\end{enumerate}
+\begin{figure}[H]
+	\centering
+	\fbox{	\includegraphics[width=0.75\linewidth]{Resources/architecture}}
+	\caption{Architecture logicielle de la plateforme.}
+	\label{globalarchi}
+\end{figure}
+
+
+
+
+
+\subsubsection{Couche client}
+Elle correspond à la partie visible et interactive avec le chercheur, dans notre cas, le client est une plateforme web, la figure \ref{clientside} représente l'architecture Modèle-Vue-Vue-Modèle (MVVM) suivie pour construire la partie client de la plateforme. Cette architecture est une variation du patron de conception MVC, elle permet de séparer la vue de la logique et de l'accès aux données en accentuant les principes de binding et d’événement. Elle consiste à distinguer trois entités qui sont : le modèle, la vue et la vue-modèle ayant chacune un rôle précis dans l’interface.
+\begin{itemize}
+	\item	\textbf{Modèle:} contient l’ensemble des données qui proviennent de la couche service. 
+	\item	\textbf{Vue:} correspond à ce qui est affiché (la page web dans notre cas).Elle contient les différents composants graphiques tels que les boutons, les tableaux et etc. 
+	\item	\textbf{Vue-Modèle:} Il décrit la logique de l’application ainsi que l’interaction avec les modèles.
+\end{itemize}
+
+
+\begin{figure}[H]
+	\centering
+	\fbox{	\includegraphics[width=0.9\linewidth]{Resources/mvvm}}
+	\caption{Architecture MVVM de partie client.}
+	\label{clientside}
+\end{figure}
+
+\subsubsection{Couche application}
+Elle correspond à la partie fonctionnelle de l'application, celle qui implémente la « logique », et qui décrit les différentes opérations faites sur les données fournies par la couche de données en fonction des requêtes des utilisateurs, effectuées à travers de la couche client. Cette couche est elle-même divisée en trois couches : 
+
+\begin{enumerate}
+	\item \textbf{Couche service :} c'est la couche visible au client web et abstrait la couche métier, elle intercepte les requêtes HTTP du client et envoie la réponse sous format JSON. Nous avons réalisé cette couche en respectant les principe REST (Representational State Transfer), dont:
+	\begin{itemize}
+		\item	Chaque élément (ressource) doit avoir un Id unique.
+		\item	Utiliser les méthodes Http standard, dont GET, PUT, POST et DELETE.
+		\item	Fournir des représentations multiples des ressources JSON (JavaScript Object Notation) pour couvrir différents besoins. 
+		\item	Communiquer sans état, la requête envoyée par le client doit être auto-suffisante et ne nécessite pas une sauvegarde d’état sur le serveur pour permettre d'avoir une plus grande indépendance entre le client et le serveur. 
+	\end{itemize}
+	\item \textbf{Couche métier :} cette couche récupère les données à partir de la couche accès aux données et après, et effectue sur ces données les opérations CRUD (création, lecture, modification, suppression). Elle récupère également les résultats des traitements d’images effectués par le serveur de Matlab qui offre une interface d’échange en Json.
+
+	\item 
+\textbf{Couche accès aux données : }consiste en la partie gérant l'accès aux données stockées, elle permet de s’abstraire du support des données en mettant à disposition à la couche métier des méthodes génériques permettant d’accomplir des actions de maintenance sur les données telles que l’ajout, la modification, la lecture, la suppression d’une donnée stockée sur la BDD.
+	Nous présentons dans ce qui suit les diagrammes de pacquages et de classes qui modélisent l'implémentation de cette couche (voir les figures \ref{pquage1}, \ref{pquage2} et \ref{classdiagram}).
+
+\end{enumerate}
+\subsubsection{Couche données}
+Pour la gestion de la base de données nous avons opté pour Mongodb qui est un système de stockage de données NoSQL, openSource et il adopte un modèle de données de type document qui lui confère une grande souplesse d’utilisation et une vraie évolutivité. Les données sont modélisées sous forme de documents JSON. Le modèle de type document réduit au maximum le nombre de relations dans la base de données, ce qui simplifie sa structure et augmente sa lisibilité.
+\clearpage
+\subsection{Diagramme de composants}
+Nous montrons les composants et leurs interactions par le diagramme de composants suivant:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1 \linewidth ]{Resources/Diagrammedecomposants}
+	\caption{Diagramme de composants}
+	\label{diagramcomposants}
+\end{figure}
+
+\subsection{Diagramme de pacquages}
+La figure \ref{pquage1} et \ref{pquage1} montre l'organisation des pacquages dans la couche présentation et la couche métier respectivement.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7 \linewidth ]{Resources/paquage1}
+	\caption{Diagramme de pacquages de la couche présentation.}
+	\label{pquage1}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8 \linewidth ]{Resources/paquage2}
+	\caption{Diagramme de pacquages de la couche métier.}
+	\label{pquage2}
+\end{figure}
+\clearpage
+\subsection{Diagramme de classes}
+Nous présentons dans la figure \ref{classdiagram} le diagramme classes.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1 \linewidth ]{Resources/classdiagram}
+	\caption{Diagramme de classes}
+	\label{classdiagram}
+\end{figure}
+\clearpage 
+\section{Conception détaillée}
+Dans cette section, nous présentons la conception détaillée des modules composant le processus de reconnaissance d'empreintes digitales et palmaires. 
+\subsection{Description des modules}
+\label{modules}
+Le test d’un processus sera sur une combinaison de méthodes où chaque méthode appartient à une catégorie qui elle même est associée à un module, tel que : $module_i \in$ (prétraitement, extraction, appariement, résultats). Chaque module composant le processus possède des entrées et des sorties qui sont les entrées du module suivant (voir figure \ref{process}). Dans ce qui suit, nous définissons, pour chaque module ses entrées et ses sorties.
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.9\linewidth]{Resources/modules}}
+	\caption{Modules composant un processus.}
+	\label{process}
+\end{figure}
+\subsubsection{Base de données de tests }
+Si la base de données est unimodale, l’entrée du processus de tests est une base de données contenant un ensemble d’images en niveau de gris (un exemple d’une image sous cette représentation est montré dans la figure \ref{imagenum}). Pour les bases de données multimodales, le type des données sauvegardées dans ces bases varie selon le niveau de fusion. 
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.6\linewidth]{Resources/imagenum}}
+	\caption{Représentation d’image.}
+	\label{imagenum}
+\end{figure}
+Les images de la base de données de tests que nous allons utiliser dans nos tests ont été capturées à l’aide d’un scanner par des centres de recherche en biométrie et des universités. Les bases les plus connues sont celles disponibles au site web de :
+\begin{itemize}
+	\item L'institut national des normes et de la technologie (NIST).
+	\item Le test idéal biométrique (Biometrics Ideal Test).
+	\item les concours de vérification des empreintes digitales (Fingerprint Verification Competition FVC).
+	\item Le centre de recherche sur la perception intelligente et l'informatique de l’institut d'automatisation de l’académie chinoise de sciences CASIA.
+	\item Le centre de recherche biométrique PolyU de HongKong.
+\end{itemize}
+Ces bases contiennent des empreintes biométriques de $N$ individus et $m$ scan pour chaque individu de la population. Elles possèdent des propriétés et suivent un pattern spécifique pour le nommage des images des BDD unimodales (exemple présenté dans l'annexe \ref{exemplebddtest}). Pour les multimodaux, le type de données existante dans la base de données de tests varie en fonction du type de fusion multimodale.
+\subsubsection{Module de pré-traitement}
+Le pré-traitement est une phase essentielle dans la reconnaissance des images de basse qualité. Il réduit le bruit et les différentes altérations. Cette phase compte cinq sous-modules : la segmentation, la normalisation, le filtrage, la binarisation et la squelettisation.
+
+\begin{enumerate}
+	\item \textbf{La segmentation}\\
+	La segmentation permet d'isoler la ROI :
+	
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.7\linewidth]
+			{Resources/segmentationmodule}}
+		\caption{Les entrées et les sorties du module de segmentation.}
+		\label{segmentModule}
+	\end{figure}
+	
+	
+	\item \textbf{La normalisation}\\
+	La normalisation est un processus qui modifie la gamme des valeurs d’intensité des pixels.
+	
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.7\linewidth]
+			{Resources/normalisationmodule}}
+		
+		\caption{Les entrées et les sorties du module de normalisation.}
+		\label{normModule}
+	\end{figure}
+	
+	
+	\item\textbf{Le filtrage}\\
+	Le principe du filtrage est de modifier la valeur des pixels d'une image, généralement dans le but d'améliorer son aspect. 
+	
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.7\linewidth]
+			{Resources/filtragemodule}}
+		
+		\caption{Les entrées et les sorties du module de filtrage.}
+		\label{filterModule}
+	\end{figure}
+	
+	\item\textbf{La binarisation}\\
+	La binarisation consiste à transformer une image à plusieurs niveaux de gris en une image en noir et blanc.
+	
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.7\linewidth]
+			{Resources/binarisationmodule}}
+		
+		\caption{Les entrées et les sorties du module de binarisation.}
+		\label{binModule}
+	\end{figure}
+	
+	\item\textbf{La squelettisation}\\
+	La squelettisation est une procédure qui s’effectue sur l’image binaire pour réduire l’épaisseur des lignes à 1 pixel.
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.7\linewidth]
+			{Resources/squelmodule}}
+		\caption{Les entrées et les sorties du module de squelettisation.}
+		\label{seqModule}
+	\end{figure}
+	
+\end{enumerate}
+\subsubsection{Module d’extraction}
+Module d'extraction d'informations utiles à partir d'une image d'empreinte pré-traitée pour aider à la reconnaissance.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.7\linewidth]
+		{Resources/extractmodule}}
+	
+	\caption{Les entrées et les sorties du module d'extraction.}
+	\label{extModule}
+\end{figure}
+Dans le cas où la méthode appartient aux méthodes d'analyse des sous-espaces (voir section \ref{spacemethodes}), ces méthodes effectuent un traitement sur toutes les images de la base de données de test. La figure \ref{extModule2} illustre le module d'extraction d'une méthode appartenant à cette catégorie.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.7\linewidth]
+		{Resources/extractmodule2}}
+	\caption{Les entrées et les sorties du module d'extraction dans le cas d'une méthode d'analyse des sous-espaces.}
+	\label{extModule2}
+\end{figure}
+\subsubsection{Module d’appariement}
+Ce module permet d’apparier le fichier signature extrait avec celui de l’empreinte de référence.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.7\linewidth]
+		{Resources/appscore}}
+	\caption{Les entrées et les sorties du module d'appariement.}
+	\label{appModule}
+\end{figure}
+Si la méthode d'extraction est une méthode d'analyse des sous-espaces, les entrées et les sorties de module d'appariement doivent être comme présentées dans la figure \ref{appModule2}.
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.7\linewidth]
+		{Resources/appscore2}}
+	\caption{Les entrées et les sorties du module d'appariement d'une méthode d'analyse des sous-espaces.}
+	\label{appModule2}
+\end{figure}
+\textbf{\underline{Remarque : }}
+les méthodes d’appariement des empreintes palmaires donnent en sortie un score qui représente une distance, ce score va être normalisé dans la phase de décision. 
+\clearpage
+\subsubsection{Module de décision}
+La décision finale est prise en comparant le score de la sortie du module d’appariement avec un seuil prédéfini.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.7\linewidth]
+		{Resources/decmodule}}
+	
+	\caption{Les entrées et les sorties du module de décision.}
+	\label{decModule}
+\end{figure}
+\subsubsection{Module de résultats}
+Ce module permet d’établir des comparaisons entre les résultats de l’exécution des processus.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.7\linewidth]
+		{Resources/resultmodule}}
+	\caption{Les entrées et les sorties du module de résultats.}
+	\label{resltModule}
+\end{figure}
+\subsubsection{Fusion des modalités biométriques}
+\label{Fusion des modalités biométriques}
+La fusion biométrique multimodale permet de combiner des mesures de différents traits biométriques pour renforcer les points forts et réduire les points faibles des différents systèmes biométriques fusionnés.
+La fusion dans cette architecture peut être réalisée à plusieurs niveaux que nous avons déjà présentés (voir section \ref{fusionetat}), le chercheur a la possibilité de choisir le niveau de fusion parmi les deux niveaux suivants :
+\begin{enumerate}
+	\item Niveau de caractéristiques.
+	\item Niveau de score.
+\end{enumerate}
+La figure \ref{cenceptionfusion} illustre la structure d'un processus de tests de deux modalités et les différents niveaux de fusion.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.8\linewidth]
+		{Resources/conceptionfusion}}
+	\caption{Fusion entre empreinte digitale et palmaire.}
+	\label{cenceptionfusion}
+\end{figure}
+
+\subsection{Processus de lancement d'un test}
+L'opération clé de notre plateforme est le lancement de tests sur des méthodes en utilisant des base de données de tests. Dans ce qui suit nous présentons l’enchainement de l'ajout d'une méthode ou une base de données et le test effectué sur ces derniers.
+\subsubsection{Ajout d’une méthode ou d’une base de données de tests}
+La figure suivante présente l’enchaînement des étapes l’opération de l’ajout d’une méthode ou d’une base de données de test. 
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=1\linewidth]
+		{Resources/schemalancettestajout}}
+	\caption{Les étapes d'ajout d'une méthode ou d'une base de données de test.}
+	\label{schemalancettestajout}
+\end{figure}
+\begin{enumerate}
+	\item Le chercheur, après son authentification, a la possibilité d’ajouter : 
+	\subitem \textbf{Une méthode :} la méthode doit être implémentée en Matlab.
+
+	\subitem \textbf{Une base de données de tests :} qui peut être une base de données d'empreintes digitales, palmaires ou multimodale.
+
+	\item Après le remplissage des informations de la méthode ou de la base de données : le nom, à quelle modalité elle est associée, si elle est publique ou non, le chercheur peut télécharger le fichier de la méthode ou les images de la base de données. Le client web vérifie ces informations et confirme qu'elles respectent le protocole (voir l'annexe \ref{protocol}) pour :
+	\subitem \textbf{La méthode :} le type et le nombre des entrées et sorties de la méthode doivent être conformes avec celles des modules proposés et expliqués dans la section \ref{modules}, et le nom de la méthode ne doit pas être un mot réservé à Matlab ou une méthode existante dans la plateforme, pour ne pas créer un conflit lors de l’appel de cette méthode.
+	\subitem \textbf{La base de données :} le patron de nommage des images ou de scores (dans le cas d’une base de données de scores pour la fusion au niveau de score) doit être fait d'une manière à avoir une structuration comme présenté dans la figure suivante \ref{schemastructurebdd} qui illustre comment est structurée une base de données d’empreintes digitales qui contient $ N $ individus et $ m $ instances (scan) :
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.8\linewidth]
+			{Resources/schemastructurebdd}}
+		\caption{Structure d'une base de donnée d'empreintes digitales.}
+		\label{schemastructurebdd}
+	\end{figure}
+	
+	
+	\item Si la vérification du protocole échoue, le client web envoie un message indiquant l’erreur au chercheur, sinon il envoie les données au serveur web.
+	\item Le serveur web crée une entité et télécharge les données dans un espace de téléchargement propre au chercheur, ensuite il sauvegarde l’entité créée dans une base de données de stockage.
+	\item et 6. Si la sauvegarde échoue, le serveur web transmet le message au chercheur, sinon un message de confirmation sera affiché et le chercheur a maintenant le droit d’afficher, modifier, ou supprimer la méthode ou la base de données créée.
+
+	
+	
+\end{enumerate}
+\subsubsection{Lancement d’un test }
+La figure \ref{schemalancertestscenario} présente comment le chercheur peut tester un système biométrique unimodal (combinaison de méthodes) qui permet la reconnaissance soit des empreintes digitales ou des empreintes palmaires, ou tester un système biométrique multimodal (une fusion entre deux systèmes unimodaux). 
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=1\linewidth]
+		{Resources/schemalancertestscenario}}
+	\caption{Les étapes de lancement d'un test.}
+	\label{schemalancertestscenario}
+\end{figure}
+\begin{enumerate}
+	\item Le chercheur, après son authentification, pour lancer un test doit d’abord sélectionner une base de données de tests d'empreintes digitales, d'empreintes palmaires ou multimodale selon le type de test choisi (consulter l’annexe \ref{exemplebddtest} pour voir la différence entre les différents types de bases de données), puis il commence à ajouter les méthodes associées à chaque module nécessaires à l'exécution de son test, le chercheur peut lancer le test à n’importe quel moment pour tester un sous processus. 
+
+	\item Le client web transmet le processus de test composé par le chercheur au serveur web pour qu’il puisse effectuer ses traitements.
+	\item À partir des méthodes choisies par le chercheur et d’autres méthodes nécessaires pour compléter le scénario de test complet comme la méthode qui parcourt la base de données de test, la méthode qui crée le FNMR et le FMR, la méthode qui calcule le temps d’exécution …etc, le serveur web crée un scénario de test complet.
+
+	\item Le serveur web invoque le serveur Matlab pour exécuter le scénario créé.
+	\item Si l’exécution du scénario échoue un message d’erreur contenant la cause est envoyé au serveur web, sinon il envoie les résultats d’exécution, ces résultats sont : le temps d’exécution de chaque module, le FNMR et le FMR si le processus est complet,si le chercheur teste un sous processus, il obtiendra le temps d’exécution total et il aura la possibilité de télécharger les images résultantes.
+	\item et 7. Le serveur web transmet les résultats ou le message d’erreur au client web. Le client web affiche ses résultats au chercheur.
+\end{enumerate}
+Pendant le test, les contraintes suivantes doivent être respectées :
+\begin{itemize}
+\item Temps maximum de traitement et extraction : 5 secondes par scan.
+\item Temps maximum de comparaison : 3 secondes par comparaison.
+\item Quantité maximale de mémoire allouée : 4 MBytes.
+\end{itemize} 
+
+\subsection{Sécurité de l'authentification d'utilisateurs}
+Pour sécuriser l'accès aux ressources de la plateforme, nous allons utiliser une authentification basée sur les tickets. Le chercheur doit s'authentifier en introduisant son émail et son mot de passe (le mot de passe a été crypté lors de l'inscription du chercheur), le couple est envoyé au serveur web. Ensuite, le serveur génère un Ticket de service (token), ce ticket contient les informations de base de chercheur dont son identifiant, un ticket crypté en utilisant une clé secrète et la date d'expiration du ticket. 
+La figure \ref{fig:servicessl} illustre le processus d'accès aux données
+en utilisant un ticket.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.6\linewidth]{servicessl}}
+	\caption{Le processus d'accès aux données
+		en utilisant un ticket.	\label{fig:servicessl}}
+
+\end{figure}
+\section{Conclusion}
+Maintenant que l’architecture est détaillée, les entrées et les sorties des différents modules composants un système biométrique de reconnaissance d’empreinte digitale, d’empreinte palmaire ou de leur fusion multimodale sont définies, le chapitre suivant est consacré à la réalisation, les choix technologiques effectués, les méthodes de reconnaissances d’empreinte digitale, d’empreinte palmaire et les méthodes de fusion multimodale sélectionnées à implémenter, et le finirons avec les interfaces IHM réalisées.

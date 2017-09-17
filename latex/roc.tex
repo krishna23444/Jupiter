@@ -1,0 +1,76 @@
+
+
+
+\begin{algorithm}[H]
+	\caption{Génération des scores inter classes.}\label{inter}
+	\begin{algorithmic}[1]
+		\Function{InterClasses}{$featuresVectors,scan,scans$}
+		\State $\textit{scores} \gets \text{[\;]}$
+		\State $\textit{individuals} \gets \text{scans/scan}$
+		\State $\textit{count} \gets \text{1}$
+		\For {$i: \gets 1:individuals$} 
+		\State$\textit{featuresVector1} \gets featuresVectors[scan*(i-1)+1]$
+		\For{$j: \gets i:individuals-1$} 
+		\State $\textit{featuresVector2 \gets featuresVectors[scan*i+1]}$
+		\State $\textit{scores[count] \gets Matcher(featuresVector1,featuresVector2)}$
+		\State $\textit{count++}$
+		\EndFor
+		\State \textbf{end}
+		\EndFor
+		\State \textbf{end}
+		\State \Return $scores$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+ 
+\begin{algorithm}[H]
+\caption{Génération des scores intra classes.}\label{intra}
+\begin{algorithmic}[1]
+\Function{IntraClasses}{$featuresVectors,scan,scans$}
+\State $\textit{scores} \gets \text{[\;]}$
+\State $\textit{individuals} \gets \text{scans/scan}$
+\State $\textit{count} \gets \text{1}$
+\For {$i: \gets 1:individuals$} 
+\For{$j: \gets 1 :  scan$} 
+\State$\textit{featuresVector1} \gets featuresVectors[(i-1)*scan+j]$
+\For{$k: \gets j : scan$} 
+\State $\textit{featuresVector2 \gets featuresVectors[(i)*scan+j-k]}$
+\State $\textit{scores[count]\gets Matcher(featuresVector1,featuresVector2)}$
+\State $\textit{count++}$
+\EndFor
+\State \textbf{end}
+\EndFor
+\State \textbf{end}
+\EndFor
+\State \textbf{end}
+\State \Return $scores$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+ 
+ \begin{algorithm}[H]
+ 	\caption{Calcul des taux.}\label{euclid}
+ 	\begin{algorithmic}[1]
+ 		\Function{calculTaux}{$intraScores,interScores,comparisons$}
+ 		\State $\textit{min} \gets \text{[\;]}$
+ 		\State $\textit{individuals} \gets \text{scans/scan}$
+ 		\State $\textit{count} \gets \text{1}$
+ 		\For {$i: \gets 1:individuals$} 
+ 		\State$\textit{featuresVector1} \gets featuresVectors[scan*(i-1)+1]$
+ 		\For{$j: \gets i:individuals-1$} 
+ 		\State $\textit{featuresVector2 \gets featuresVectors[scan*i+1]}$
+ 		\State $\textit{scores[count] \gets Matcher(featuresVector1,featuresVector2)}$
+ 		\State $\textit{count++}$
+ 		\EndFor
+ 		\State \textbf{end}
+ 		\EndFor
+ 		\State \textbf{end}
+ 		\State \Return $scores$
+ 		\EndFunction
+ 	\end{algorithmic}
+ \end{algorithm}
+ 
+ 
+ 
+ 

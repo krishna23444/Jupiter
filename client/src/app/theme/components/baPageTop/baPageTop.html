@@ -1,0 +1,46 @@
+<div class="page-top clearfix" baScrollPosition maxHeight="50" (scrollChange)="scrolledChanged($event)"
+[ngClass]="{scrolled: isScrolled}">
+<a   routerLink="/pages/tests" class="al-logo clearfix">
+  <img  class=" img-responsive clearfix" alt="" width="25%" src="{{ ( 'jupiter' | baProfilePicture ) }}" />
+
+  <span class="">Jupiter</span>
+
+</a>
+<a href (click)="toggleMenu()" class="collapse-menu-link ion-navicon"></a>
+<div class="user-profile clearfix">
+  <div class="dropdown al-user-profile">
+
+    <a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
+      <img src="{{ ( 'Nasta' | baProfilePicture ) }}">
+
+    </a>
+    <ul class="dropdown-menu   multi-level top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
+      <li class="dropdown-item"><a  (click)="editUser()"><i class="fa fa-user"></i>Profile</a></li>
+      <li class="dropdown-item dropdown-submenu pull-left"><a tabindex="-1"  ><i class="fa fa-globe"></i>Languages</a>  
+           <ul class="dropdown-menu">
+            <li> 
+              <div class="lang-list">
+        <a *ngFor="let lang of languages" href class="clearfix">
+          <div class="img-area"><img [ngClass]="{'photo-lang-item': !lang.image}"
+                                     src="{{ ( lang.image ||  (lang.name | baProfilePicture)) }}"></div>
+          <div class="lang-area">
+            <div>{{ lang.text }}</div>
+           
+          </div>
+        </a>
+      </div></li>
+             
+          </ul>
+       </li>
+      <li class="dropdown-item"><a href (click)="logout()"  class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
+    </ul>
+  </div>
+
+  <div class="user-profile clearfix"> 
+
+    <label class="name" [innerHTML]="name">  </label>
+
+  </div>
+
+
+</div>

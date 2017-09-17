@@ -1,0 +1,87 @@
+<form [formGroup]='form' (ngSubmit)="onSubmit(form.value)" class="form-horizontal" method="POST" enctype="multipart/form-data" class="row">
+
+  <div class="container col-sm-4">
+
+    <div class="form-group">
+
+      <input formControlName='name' type="text" class="form-control" id="inputFirstName" placeholder="Name" required>
+    </div>
+    <div class="form-group">
+      <select formControlName='type' class="form-control" id="exampleSelect1" (change)="showFusion($event)">
+        <option value="" selected disabled>Type</option>
+        <option value="Unimodal" >Unimodal</option>
+        <option value="Scores Fusion">Score Fusion</option>
+        <option value="Features Fusion">Features Fusion</option>
+ </select>
+    </div>
+   <div *ngIf="!fusion" class="form-group">
+      <select formControlName='modality' class="form-control" id="exampleSelect1" >
+        <option value="" selected disabled>Modality</option>
+        <option value="Fingerprint" >Fingerprint</option>
+        <option value="Palmprint">Palmprint</option>
+ </select>
+    </div>
+    <div class="form-group">
+
+<p-chips formControlName="modalities" placeholder="Press enter" *ngIf="fusion"></p-chips>
+  </div>
+
+    <div class="form-group">
+     <select  formControlName='sensor' class="form-control" id="exampleSelect1">
+      <option  class="form-control"  selected disabled>Sensor type</option>
+
+      <option  class="form-control" *ngFor =" let sensor of sensors"  >{{sensor}}</option>
+    </select>
+  </div>
+
+
+  <div class="form-group">
+    <input formControlName='resolution'  type="text" class="form-control" id="inputWebsite" placeholder="Image resolution">
+  </div>
+
+  <div class="form-group">
+
+    <input formControlName='numberTot'  type="number"  min="1" step="1" class="form-control" id="inputWebsite" placeholder="Number of indivduals">
+  </div>
+  <div class="form-group">
+
+    <input formControlName='numberScans' type="number"  min="1" step="1" class="form-control" id="inputWebsite" placeholder="Number of scans by indivdual">
+  </div>
+  <div class="form-group">
+    <label for="inputWebsite">Images of this are pretraited?</label>
+    <div class="pull-right"> 
+      <ui-switch  formControlName="preTraited" size="small" color="#39527b" (change)="onChangeSwitch1($event)" [checked]="false"></ui-switch>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputWebsite">Public</label>
+    <div class="pull-right"> 
+      <ui-switch  formControlName="publicDatabase" size="small" color="#39527b" (change)="onChangeSwitch2($event)" [checked]="false"></ui-switch>
+    </div>
+  </div>
+  <div class="form-group">
+
+    <textarea type="textarea"    class="form-control" id="inputWebsite" placeholder="Note"></textarea>
+  </div>
+
+
+</div>
+<div class="col-sm-8">
+ <div class="form-group">
+  <div id="uplaod">
+    <p-fileUpload name="myfile[]"   customUpload="true"  [showUploadButton] ="false" (onProgress)="onProgress($event)" 
+    (onSelect)="onUpload($event)"  cancelLabel="Clear"    multiple="multiple"
+    accept="image/*"   maxFileSize="10000000">
+
+
+  </p-fileUpload>
+
+</div>
+</div>
+<div class="pull-right">
+ <button type="button"  class="btn btn-default "  (click)="cancel($event)">Cancel</button>
+ <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button> 
+</div>
+</div>
+
+</form>

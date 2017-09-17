@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="row">
+
+    <div id="custom-search-input col-sm-12 col-lg-12 col-md-12">
+     <div class="input-group ">
+      <input type="text" pInputText #gb class="  search-query form-control" placeholder="Enter a key word" />
+      <span class="input-group-btn">
+       <button class="btn btn-primary" type="button">
+        <span class=" fa fa-search"></span>
+      </button>
+    </span>
+  </div>
+</div>
+
+</div>
+
+</div> 
+
+<div class=" table row">
+
+     <!-- 
+ <div  class="card-header clearfix">
+      <h3 class="card-title" translate>Results results
+        <div class=" actions pull-right">
+         <i    (click)="create($event)" class="fa fa-plus-circle fa-lg"></i>
+         
+         <i class="fa fa-trash  fa-lg" data-toggle="modal" data-target="#myModal" aria-hidden="true"></i>
+       </div> 
+     </h3> 
+   </div>
+   !-->
+   <div class="card-body">
+    <div *ngIf="deleteError" class="alert alert-danger alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
+      <strong>Operation not permitted</strong> You don't have the permission to delete the selected items !.
+    </div>
+    <div *ngIf="error" class="alert alert-danger alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
+      <strong>Operation not permitted</strong> You don't have the permission to edit the selected item !.
+    </div>
+    <div class="row">
+      <div class="horizontal-scroll col-sm-8 col-lg-8 col-md-8">
+        <p-dataTable   *ngIf="load"   [value]="resultsModified"  [loading]="loading" loadingIcon="fa-spinner" [(selection)]="selectedResults"   (onRowSelect)="onSelect($event)"    [paginator]="true" rows="5" 
+        [responsive]="true"        [headerCheckboxToggleAllPages]="true" [globalFilter]="gb" #dt>
+        <p-column field="type" header="Type"    [sortable]="true" [style]="{'width':'80px'}"></p-column>
+        <p-column field="modality" header="Modality" [sortable]="true" [style]="{'width':'80px'}"></p-column>
+        <p-column field="createdAt" header="Date" [sortable]="true" [style]="{'width':'95px'}"></p-column>
+        <p-column field="time" header="Time" [sortable]="true" [style]="{'width':'80px'}"></p-column>
+        <p-column field="createdBy" header="Owner" [style]="{'width':'150px'}" [sortable]="true"></p-column>
+        <p-column field="fail" header="Status" [sortable]="true" [style]="{'width':'80px'}">  
+
+          <ng-template let-result="rowData" pTemplate="body">
+            <i  *ngIf="result.fail" class="fa fa-times  fail"  > </i>
+            <i  *ngIf="!result.fail" class="fa fa-check success"    aria-hidden="true"></i>
+
+          </ng-template></p-column>
+          <p-column [style]="{'width':'38px' ,'height':'35px','color':'white','background': '#f4f4f4','border':'0'  }" selectionMode="single"></p-column>
+
+        </p-dataTable>
+      </div>
+      <div class="col-sm-4 col-lg-4 col-md-4">
+       <p-menubar *ngIf="updateMenu" [model]="items2"></p-menubar>
+       <div class="result">
+       <div *ngIf="first"> Select a test to view results</div>
+         <div class="container" *ngIf="fail && !first"> 
+          <div baCardClass="with-scroll table-panel"> 
+
+            <label ><strong>Fail reason : </strong> </label> 
+            <div class="alert alert-danger  ">
+              {{item.errorCode}} <a href="#" class="alert-link">Go for FAQ section for more informations.</a>.
+            </div> 
+          </div> 
+        </div>
+        <!-- Not Fail -->
+        <div class="container" *ngIf="!fail"> 
+          <div baCardClass="with-scroll table-panel"> 
+            <div class="container" *ngIf="complete"> 
+              <div baCardClass="with-scroll table-panel"> 
+                <label ><strong>ERR : </strong> </label> 
+                <label   type="text" class="form-control"  >{{ EER_er}}</label> 
+                <label ><strong>Total pretraitement time (s): </strong> </label> 
+                <label   type="text" class="form-control"  >{{  totalPretrait}}</label> 
+                <label ><strong>Average pretraitement time (s): </strong> </label> 
+                <label   type="text" class="form-control"  >{{  avaragePretrait}}</label>
+                <label ><strong>Total matching time (s): </strong> </label> 
+                <label   type="text" class="form-control"  >{{ totalMatching}}</label> 
+                <label ><strong>Average matching time (s): </strong> </label> 
+                <label   type="text" class="form-control"  >{{  avarageMatching}}</label>
+               </div> 
+            </div>
+            <div class="container" *ngIf="!complete"> 
+              <div baCardClass="with-scroll table-panel"> 
+                <label ><strong>Total execution time (s): </strong> </label> 
+                <label   type="text" class="form-control"  >{{ totalPretrait}}</label> 
+                <label ><strong>Average execution time (s): </strong> </label> 
+                <label   type="text" class="form-control"  >{{  avaragePretrait}}</label>
+
+              </div> 
+            </div>
+
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+ <!-- 
+<smart-tables>
+</smart-tables>
+!-->
+</div>
+<!-- Modal -->
+
+<p-dialog header="Delete confirmation" [(visible)]="display" modal="modal" width="300" [responsive]="true">
+  <p>Are you sure you want to delete the selected test ?</p>
+  <p-footer>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+    <button type="button" class="btn btn-danger" data-dismiss="modal"  (click)="delete($event)" >Delete</button>
+  </p-footer>
+</p-dialog>
+

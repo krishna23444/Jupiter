@@ -1,0 +1,423 @@
+   \lhead{REALISATION}
+\chapter{Réalisation}
+\section{Introduction}
+Après avoir conçu notre système dans le chapitre précédent, nous passons à la réalisation de la plateforme.
+Dans ce chapitre nous présentons la méthode adoptée pour la gestion du
+projet, nous montrons ensuite les outils utilisés lors de la réalisation du projet. Nous présentons enfin
+les méthodes de reconnaissance implémentées.
+\section{Gestion de projet}
+Afin d'assurer le bon déroulement et la réussite de notre projet, nous avons suivi une démarche de gestion de projet en utilisant des outils pour organiser le travail et maximiser notre rendement. Dans cette section nous présentons les technologies et supports de communication et la méthodologie de travail appliquée.
+\subsection{Technologies et supports de communication}
+Pour l'obtention d’une communication efficace pendant le projet nous avons utilisé des outils open source dédiés : GitHub pour la gestion des versions, Google drive pour l’échange des fichiers et Leankit pour la répartition des tâches. 
+La réussite du projet est souvent reliée à la bonne communication entre les membres, c'est pour cela, nous avons organisé plusieurs réunions et de rencontres avec nos encadrantes, nous avons basé ainsi sur des outils de communication comme Gmail, Viber et Hangout (voir figure \ref{fig:demarche}).
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.5\linewidth]{logos/demarche}}
+	\caption{La gestion de projet.}
+	\label{fig:demarche}
+\end{figure}
+\subsection{Méthodologie de travail Kanban}
+Le nom Kanban est un terme japonais qui signifie « étiquette ». La méthodologie Kanban a été formalisée en 2010 par David Anderson. Elle est basée sur le principe de la limitation du nombre de travaux à faire (TAF) et d’éviter le gaspillage en assurant l’amélioration continue du processus. L’équipe définit les limites du TAF pour chaque étape du processus Kanban qui est contrôlé visuellement. Dans le cas d’un problème bloquant l’équipe peut suspendre le flux de travail afin de le résoudre \citep{anderson2010kanban}. Nous avons utilisé l'outil \textbf{LeanKit}\footnote{\href{https://leankit.com}{https://leankit.com}} qui nous permet d'avoir un tableau kanban (voir la figure \ref{fig:kanbanexmple}).
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.8\linewidth]{logos/tableaukanban}}
+	\caption{La gestion de projet.}
+	\label{fig:kanbanexmple}
+\end{figure}
+
+\section{Choix technologiques}
+Dans ce que suit, nous présentons les technologies, les framework et les bibliothèques utilisés dans le développement de chaque couche composant notre plateforme. 
+\subsection{Couche présentation}
+\subsubsection{Angular}
+\begin{wrapfigure}{R}{3cm}	
+	\vspace{-20px}
+	\includegraphics[width=3cm]{logos/angular}
+\end{wrapfigure} 
+Angular\footnote{\href{https://angular.io/docs}{https://angular.io/docs}} est une plateforme du développement des applications web, mobile ou bureau (desktop). Il se caractérise par la vitesse, la performance et l’extensibilité. La version courante de Angular est développée en TS, TypeScript, qui est un langage de programmation libre et open-source développé par Microsoft pour améliorer et sécuriser la production de code en JavaScript.\\
+\textbf{Version utilisée :} 4.3.2.
+\clearpage
+\subsubsection{Bootstrap }
+\begin{wrapfigure}{R}{3cm}	\vspace{-20px}
+	\includegraphics[width=2cm]{logos/bootstrap}
+\end{wrapfigure} 
+Bootstrap\footnote{\href{https://v4-alpha.getbootstrap.com/}{https://v4-alpha.getbootstrap.com/}} est un framework utilisé pour la création du design des sites web. Il contient des codes HTML et CSS, des formulaires, ainsi que des extensions JavaScript.\\
+\textbf{Version utilisée :} 4.0.0-alpha.6.
+
+\subsubsection{CodeMirror}
+\begin{wrapfigure}{R}{3cm}	\vspace{-20px}
+	\includegraphics[width=3cm]{logos/codeMirro}
+	
+\end{wrapfigure} 
+
+CodeMirror\footnote{\href{https://codemirror.net/}{https://codemirror.net/}} est une bibliothèque Javascript qui permet de créer un éditeur de code pour un site Web. Il fonctionne avec des modes qui correspondent à des modules écrits pour gérer les différents langages de programmation. Il permet, selon le mode choisi, la coloration syntaxique, l'affichage de la correspondance des balises ouvrantes/fermantes, la validation syntaxique du code, l'auto-indentation, la numérotation des lignes, etc.
+Il est utilisé par Firefox, Chrome et Safari, dans Light Table, Adobe Brackets, Bitbucket, GitHub et bien d'autres projets.
+Nous avons utilisé ce module pour la coloration syntaxique des méthodes Matlab, lors de la visualisation, l’ajout ou la modification d’une méthode par le chercheur comme présenté dans la figure \ref{fig:codemirror}.\\
+\textbf{Version utilisée :} 1.1.3.
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.8\linewidth]{logos/codemirroexmple}}
+	\caption{Exemple d'utilisation de CodeMirror dans plateforme.}
+	\label{fig:codemirror}
+\end{figure}
+
+
+\subsection{Couche traitements}
+\subsubsection{NodeJS} 
+%------------------------------------------
+\begin{wrapfigure}{R}{3cm}	\vspace{-20px}
+	
+	\includegraphics[width=3cm]{logos/nodejs}
+\end{wrapfigure} 
+%------------------------------------------
+NodeJS\footnote{\href{https://nodejs.org/fr/}{https://nodejs.org/}} est un environnement d’exécution JavaScript construit sur le moteur JavaScript V8 de Chrome\footnote{\textbf{Moteur JavaScript V8 de Chrome }: un moteur JavaScript libre et open-source développé par Google et concerne les navigateurs Chromium et Google Chrome.} . NodeJs se base sur une approche asynchrone d’exécution, il utilise un modèle basé sur l’événementiel et des entrées/sorties non bloquantes, i.e., on peut lancer plusieurs opérations (lecture fichiers, connexions et requêtes concurrentes, etc.) en parallèle sans avoir besoin d’attendre la réponse de la première opération, ce qui le rend léger et efficace. Il est utilisé généralement dans les applications qui doivent répondre à de nombreuses requêtes rapidement et efficacement en temps réel.
+En ce qui concerne notre projet, nous avons exploité cette technologie pour le développement du serveur web de la plateforme.
+\\
+\textbf{Version utilisée :} 6.11.1 (LTS support à long terme).
+\subsubsection{Express.js }
+\begin{wrapfigure}{R}{3cm}	\vspace{-20px}
+	\includegraphics[width=3cm]{logos/express}
+\end{wrapfigure} 
+Express.js\footnote{\href{https://expressjs.com/}{https://expressjs.com/}} est considéré comme le framework standard pour le développement de serveurs en NodeJS. Il facilite la création de services REST et fournit une interface de gestion simple des routes.\\
+\textbf{Version utilisée :} 4.11.1.
+\subsubsection{Passportjs}
+\begin{wrapfigure}{R}{3cm}	\vspace{-20px}
+	\includegraphics[width=2cm]{logos/passport}
+\end{wrapfigure} 
+
+Passportjs\footnote{\href{http://passportjs.org/}{http://passportjs.org/}} est un middleware d'authentification fonctionnant avec Express.js. Il offre plus de 300 stratégies d’authentification. Nous avons utilisé une stratégie locale basée sur les jetons Web en JSON.\\
+\textbf{Version utilisée :} 0.2.2.
+\subsubsection{Formidable}
+
+Formidable\footnote{\href{https://www.npmjs.com/package/formidable}{https://www.npmjs.com/package/formidable}} est un module Node.js pour l'analyse des données et des téléchargements de fichiers. Nous avons utilisé ce module dans le téléchargement des bases de données de tests vers le serveur.\\
+\textbf{Version utilisée :} 1.0.17.
+\subsubsection{Mongoose}
+\begin{wrapfigure}{R}{3cm}	\vspace{-20px}
+	\includegraphics[width=3cm]{logos/mongoose}
+\end{wrapfigure} 
+Mongoose\footnote{\href{http://mongoosejs.com/}{http://mongoosejs.com/}} est un ODM (Object Document Mapper) qui fournit une solution simple et schématique pour modéliser les données de l’application.\\
+\textbf{Version utilisée :} 4.10.5.
+\subsubsection{Shelljs}
+\begin{wrapfigure}{R}{3cm}
+	\vspace{-30px}
+	\includegraphics[width=3cm]{logos/shelljs}
+	
+\end{wrapfigure} 
+
+Shelljs\footnote{\href{http://documentup.com/shelljs/shelljs}{http://documentup.com/shelljs/}} est un module de Node.js permettant l’exécution des commandes sous (Windows, Linux et OS X). Nous avons utilisé ce module pour lancer des commandes Matlab.\\
+\textbf{Version utilisée :} 0.7.8.
+
+
+
+\subsection{Couche données}
+
+\subsubsection{MongoDB}
+\begin{wrapfigure}{R}{3cm}	\vspace{-20px}
+	
+	\includegraphics[width=3cm]{logos/mongo}
+\end{wrapfigure} 
+MongoDB\footnote{\href{https://www.mongodb.com/}{https://www.mongodb.com/}} est un système de gestion de base de données orientée documents, répartissable sur un nombre quelconque d'ordinateurs et ne nécessite pas de schéma prédéfini des données. En d'autres termes, des clés peuvent être ajoutées à tout moment sans reconfiguration de la base. Il est écrit en C++. Le serveur et les outils sont distribués sous licence AGPL, les pilotes sous licence Apache et la documentation sous licence Creative Commons. Il fait partie de la famille NoSQL. Nous avons choisi MongoDb, car il nous permet de concevoir des schémas dynamiques, flexibles et évolutifs. Un exemple de l'utilisation de cet avantage est présenté dans la figure \ref{fig:mongoschema}, où trois résultats des tests différents en cas d'un test échoué, d'un test d'un sous-processus unimodal et d'un test d'un processus complet de la reconnaissance unimodal sont sauvegardés dans la base de données. \\
+\textbf{Version utilisée :} 3.4.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{logos/mongoschema}
+	\caption{Exemple des documents sauvegardés de l'entité résultat.}
+	\label{fig:mongoschema}
+\end{figure}
+\subsection{Environnement d'exécution des méthodes}	
+\subsubsection{Matlab} 
+\begin{wrapfigure}{R}{3cm}	\vspace{-20px}
+	\includegraphics[width=3cm]{logos/matlab}
+\end{wrapfigure} 
+Pour que nous soyons arrivés à notre solution actuelle qui nous permet de lancer des tests sur des méthodes, nous avons testé plusieurs pistes de solution possible qui sont :
+\begin{itemize}
+\item \textbf{Matlab Production Server :} c'est un produit de MathWork qui permet la création d'un serveur qui exécute des fonctions écrites en Matlab. La version publiée en 2016 offre une interface Restful pour autoriser la communication avec des clients web. Nous avons implémenté le service de la communication dans Nodejs en utilisant le module socket.io. Le temps de réponse des requêtes synchrone et asynchrone de Nodejs était réduit, mais, le problème c'est qu'il ne nous permet pas d'ajouter des méthodes dynamiquement et le manque de documentation et tutoriels dans le cas des bugs.
+\item \textbf{Matlab Distributed Computing Server :} un outil qui permet d'exécuter des programmes Matlab qui exigent des calculs complexes sur des clusters d'ordinateurs. L’outil est très coûteux, il existe une version d'essai que nous avons demandé, mais, la demande n’était pas acceptée. 
+\item \textbf{Matlab Online :} un produit Matlab qui nous permet d’exécuter et de lancer les fonctions Matlab à partir du navigateur. La solution est payante et pour des problèmes de connexion, nous ne l’avons pas utilisée.
+\item \textbf{Matlab Standalone}\footnote{\href{https://in.mathworks.com/products/matlab.html}{https://mathworks.com/}} : est un environnement d'exécution des fonctions écrites en Matlab. Il est considéré comme l’environnement scientifique préféré par la communauté des chercheurs dans le domaine du traitement d’images et de reconnaissance, car il permet de manipuler des matrices, d'afficher des courbes et des données, de mettre en œuvre des algorithmes, de créer des interfaces utilisateurs, et peut s’interfacer avec d’autres langages comme le C, C++, Java, Fortran, ...etc.
+\end{itemize}
+Voir les avantages et les inconvénients présentés par chacune des solutions présentées, nous avons opté pour le Matlab standalone pour pouvoir exécuter les scénarios générés et les lier avec Nodejs à travers le module Shelljs. 
+\\
+\textbf{Version utilisée :} r2016a.
+\subsubsection{JSONLap }
+\begin{wrapfigure}{R}{3cm}	\vspace{-20px}
+	\includegraphics[width=3cm]{logos/jsonLab}
+\end{wrapfigure} 
+JSONLab\footnote{\href{https://github.com/fangq/jsonlab}{https://github.com/fangq/jsonlab}} est une bibliothèque permettant la traduction des objets Matlab vers JSON et vice versa. Nous l’avons utilisé pour la sauvegarde des résultats de l’exécution des fonctions en Matlab. \\
+\textbf{Version utilisée :} 2.
+\subsubsection{Image Processing Toolbox™}
+Image Processing Toolbox\footnote{\href{https://fr.mathworks.com/products/image.html}{https://fr.mathworks.com/products/image.html}} est un outil de Matlab qui propose un ensemble complet d’algorithmes standards de référence et d’applications pour le traitement d’images, l’analyse, la visualisation et le développement d’algorithmes. Il a facilité beaucoup l’implémentation de méthodes de phase de prétraitement tels que la segmentation des images, l’amélioration des images, la réduction du bruit, les transformations géométriques, la manipulation des régions d’intérêt (ROI) et d’autres opérations.
+\subsubsection{Computer Vision System Toolbox ™}
+Computer Vision System Toolbox ™ est un autre outil de Matlab qui offre des algorithmes, des fonctions et des applications pour concevoir et simuler des systèmes de visualisation et de traitement de vidéos et des images. Il permet aussi d’effectuer la détection, l'extraction et l’appariement des caractéristiques. Nous avons exploité ce toolbox dans l’implémentation de deux méthodes DCT et SIFT.
+
+\subsection{Outils}	
+\subsubsection{Sublime Text}
+\begin{wrapfigure}{R}{3cm}	\vspace{-20px}
+	\includegraphics[width=2cm]{logos/sublime}
+\end{wrapfigure} 
+Sublime Text\footnote{\href{www.sublimetext.com}{https:\\www.sublimetext.com}} est un éditeur de texte générique codé en C++ et Python, disponible sur Windows, Mac et Linux. Nous avons choisi cet éditeur pour sa faible consommation de mémoire et processeur. \\
+\textbf{Version utilisée :} 3 build 3126.
+
+
+\subsubsection{Postman}
+
+Postman\footnote{\href{https://www.getpostman.com/postman}{https://www.getpostman.com/postman}} est un outil (une extension chrome) qui permet de construire et de tester rapidement des requêtes HTTP.\\
+\textbf{Version utilisée :} 4.11.0.
+
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.8\linewidth]{logos/postmancapture}}
+	\caption{Aperçu de l’outil Postman.}
+	\label{fig:chapitre2fingerstat}
+\end{figure}
+\subsubsection{Npm} 
+\begin{wrapfigure}{R}{3cm}
+	\vspace{-20px}
+	\includegraphics[width=3cm]{logos/npm}
+\end{wrapfigure}
+Npm\footnote{\href{https://www.npmjs.com/}{https://www.npmjs.com/}} est le gestionnaire de paquets officiel de Node.js. Il fait partie de l'environnement et il est installé par défaut. npm fonctionne avec un terminal et gère les dépendances pour une application. Il permet également d'installer des applications Node.js disponibles sur le dépôt npm.\\
+\textbf{Version utilisée }: 3.10.10.
+
+\subsection{Qualité du code }
+Pour avoir un code propre, uniforme et plus lisible, facile à comprendre et donc maintenable, nous avons utilisé les deux outils d'analyse statique du code source suivants 
+\begin{itemize}
+	\item \textbf{ESLint :}\footnote{\href{http://eslint.org}{http://eslint.org}} est un linter\footnote{\textbf{Un linter :} est un programme qui analyse le code pour des erreurs potentielles.} utilisé pour analyser le code avec Node.js. Il vérifier si le code écrit suit une charte de codage qui contient des règles prédéfinies.\\
+	\textbf{Version utilisée :} 4.3.0.
+	\\
+	Un exemple d’une sortie d'exécution de la commande « eslint » est illustré par la figure \ref{fig:realisationeslint}.
+	\begin{figure}[H]
+		\centering
+		\fbox{\includegraphics[width=0.8\linewidth]{logos/eslinoutput}}
+		\caption{Aperçu d’une sortie d'exécution de Eslint.}
+		\label{fig:realisationeslint}
+	\end{figure}
+	
+
+\end{itemize}
+\subsection{Documentation du code}
+Pour documenter notre code nous avons utilisé l'outil EsDoc\footnote{\href{https://esdoc.org/}{https://esdoc.org/}} qui nous a permis une génération automatisée de la documentation.
+\section{Architecture technique de la plateforme}
+Le schéma présenté dans la figure \ref{fig:architechnique} illustre la mise en place des technologies citées précédemment dans notre
+plateforme.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{logos/architechnique}
+	\caption{Architecture technique de la plateforme.}
+	\label{fig:architechnique}
+\end{figure}
+\underline{\textbf{Remarques :}}
+\begin{enumerate}
+	\item La communication entre les contrôleurs de la couche traitement et MongoDb est faite à travers le ODM Mongoose.
+	\item Le contrôleur de tests lance une instance de Matlab pour exécuter le scénario créé en utilisant le module ShellJs.
+	\item Après l'exécution de scénario, nous avons développé une méthode qui sauvegarde les résultats de tests faites sous format JSON en utilisant la bibliothèque JSONLab. À la création de ces fichiers le contrôleur de tests est averti pour qu'il puisse les transmettre à la couche présentation.
+\end{enumerate}
+
+
+\section{Gestion de versions}
+Un gestionnaire de version est un système qui enregistre l'évolution d'un fichier ou d'un ensemble de fichiers au cours du temps de manière à ce qu'on puisse rappeler une version antérieure d'un fichier à tout moment. Nous avons utilisé le GitHub comme un service web d'hébergement qui se base sur le logiciel de gestion de versions Git. Le code source, les tests et le rapport sont accessibles à travers le lien \href{https://github.com/ketimaBU/Jupiter}{\textit{github.com/ketimaBU/Jupiter}}. La figure \ref{fig:commits} représente la fréquence des commits durant la période
+de développement.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.8\linewidth]{logos/commits}}
+	\caption{Fréquence des commits durant la période de développement du projet.}
+	\label{fig:commits}
+\end{figure}
+
+
+
+\section{Méthodes implémentées}
+Un processus de reconnaissance uni-modal ou multimodale est composé de plusieurs modules. Les chercheurs ont proposé plusieurs types de méthodes dans chaque module (voir le chapitre 2 et 3 de l’état de l’art).
+
+\subsection{Pré-traitement des empreintes}
+Pour le prétraitement nous avons implémenté les méthodes de phase de pré-traitement en utilisant les approches proposées dans \citep{khan2011fingerprint}, \citep{hong1998fingerprint} et les fonctions déjà intégrées dans le toolbox de traitement d’images de Matlab (voir le tableau \ref{pretraimethodes}).
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[H]
+	\centering
+	
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Module} & \textbf{Catégorie} \\ \hline
+		Segmentation & Basée sur le seuillage adaptatif \\ \hline
+		Normalisation & Méthode de MinMax \\ \hline
+		Filtrage & Filtre de transformée de Fourier (FTF) \\ \hline
+		\multirow{3}{*}{Binarisation} & Seuillage global \\ \cline{2-2} 
+		& Seuillage local \\ \cline{2-2} 
+		& Seuillage adaptatif \\ \hline
+		Squelettisation & Non itérative \\ \hline
+	\end{tabular}
+	
+	\caption{Les méthodes du prétraitement mises en œuvre.\label{pretraimethodes}}
+\end{table}
+\subsection{Extraction et appariement}
+Dans la littérature, il existe plusieurs et différentes méthodes pour la reconnaissance des empreintes digitales et palmaires, comme nous l'avons déjà présenté dans l'état d'art (partie \ref{part1}). Dans ce présent travail, nous avons essayé de mettre en œuvre une méthode de chaque type de méthodes (voir le tableau \ref{reconnaissancemethodesimplementd}).
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{center}
+	\begin{table}[H]
+		\centering
+		
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			\textbf{Module} & \textbf{Modalité} & \textbf{Catégorie} & \textbf{Description} \\ \hline
+			\multirow{2}{*}{Extraction} & Empreinte digitale & Le nombre de connexions & \begin{tabular}[c]{@{}l@{}}Section \ref{chp2cn}, nous avons\\donné au chercheur la possibilité \\ d'exécuter cette méthode \\ en passant par une phase \\ d'élimination des fausses\\ minuties qu'on a expliquée\\ dans l'annexe \ref{posttrait}\end{tabular} \\ \cline{2-4} 
+			& Empreinte palmaire & Basée sur la codification & Section \ref{codificationchp2} \\ \hline
+			\multirow{4}{*}{Appariement} & \multirow{3}{*}{Empreinte digitale} & \begin{tabular}[c]{@{}l@{}}Globale basée sur\\ la transformée de Hough\end{tabular} & Section \ref{chp2hough} \\ \cline{3-4} 
+			& & Locale MCC & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Section \ref{structures}, ces méthodes \\ sont implémentée en utilisant\\ le SDK MCC.\end{tabular}} \\ \cline{3-3}
+			& & \begin{tabular}[c]{@{}l@{}}Locale P-MCC\\ (extension de MCC)\end{tabular} & \\ \cline{2-4} 
+			& Empreinte palmaire & Distance euclidienne & - \\ \hline
+			\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}Méthodes \\d’analyse des\\sous-espaces\end{tabular}} & \multirow{3}{*}{Empreinte palmaire} & ACP & Section \ref{ACP} \\ \cline{3-4} 
+			& & ADL & Section \ref{ADL} \\ \cline{3-4} 
+			& & ACI & Section \ref{ACI} \\ \hline
+		\end{tabular}
+		\caption{Les méthodes d'extraction et d'appariement mises en œuvre.\label{reconnaissancemethodesimplementd}}
+	\end{table}
+\end{center}
+\subsection{Fusion}
+Pour la fusion multimodale, nous avons implémenté les méthodes présentées dans le tableau \ref{fusionmethods}.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Niveau de fusion} & \textbf{Catégorie} & \textbf{Description} \\ \hline
+\multirow{2}{*}{Caractéristiques} & Transformée en cosinus discrète (DCT) & Annexe \ref{dct} \\ \cline{2-3} 
+& \begin{tabular}[c]{@{}l@{}}Transformation de caractéristiques visuelles\\ invariante à l'échelle (SIFT)\end{tabular} & Annexe \ref{sift} \\ \hline
+\multirow{5}{*}{Scores} & Somme & \multirow{5}{*}{Section \ref{fusionmethodesscore}} \\ \cline{2-2}
+& Somme pondérée & \\ \cline{2-2}
+& Max & \\ \cline{2-2}
+& Min & \\ \cline{2-2}
+& Produit & \\ \hline
+	\end{tabular}
+	\caption{Les méthodes de fusion mises en œuvre.\label{fusionmethods}}
+\end{table}
+\subsection{Calcul des taux d'erreurs}
+Le trois pseudo-algorithmes présentés ci-dessous, génèrent les scores intra classes en comparant les vecteurs de caractéristiques deux à deux, à partir des vecteurs du même individu. Pour les scores inter classes, nous comparons le premier vecteur de chaque individu avec les premiers vecteurs des autres individus. Ensuite, à partir de ces scores nous calculons les taux de FNMR, FMR, EER et le TR. 
+\begin{algorithm}[H]
+	\caption{Génération des scores inter classes.}\label{inter}
+	\begin{algorithmic}[1]
+		\Function{InterClasses}{$vctsCaracteristiques,m,N$}
+		\State $\textit{scores}:=\textit{[\;]}$
+		\State $\textit{individuals}:=\textit{N/m}$
+		\State $\textit{count}:=\textit{1}$
+		\For {$i:=1:individuals$} 
+		\State$\textit{vctCaracteristiques1}:=\textit{vctsCaracteristiques[m*(i-1)+1]}$
+		\For{$j:=\textit{i:individuals-1}$} 
+		\State $\textit{vctCaracteristiques2}:=\textit{vctsCaracteristiques[m*i+1]}$
+		\State $\textit{scores[count]}:=\textit{appariement(vctCaracteristiques1,vctCaracteristiques2)}$
+		\State $\textit{count:=count+1}$
+		\EndFor
+		\State \textbf{end}
+		\EndFor
+		\State \textbf{end}
+		\State \Return $scores$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+	\caption{Génération des scores intra classes.}\label{intra}
+	\begin{algorithmic}[1]
+		\Function{IntraClasses}{$vctsCaracteristiques,m,N$}
+		\State $\textit{scores}:=\textit{[\;]}$
+		\State $\textit{individuals}=\textit{N/m}$
+		\State $\textit{count}:=\textit{1}$
+		\For {$ \textit{i:=1:individuals}$} 
+		\For{$j:=1 : m$} 
+		\State$\textit{vctCaracteristiques1}:=\textit{vctsCaracteristiques[(i-1)*m+j]}$
+		\For{$k:=j : m$} 
+		\State $\textit{vctCaracteristiques2}:=\textit{vctsCaracteristiques[(i)*m+j-k]}$
+		\State $\textit{scores[count]}:= \textit{appariement(vctCaracteristiques1,vctCaracteristiques2)}$
+		\State $\textit{count:=count+1}$
+		\EndFor
+		\State \textbf{end}
+		\EndFor
+		\State \textbf{end}
+		\EndFor
+		\State \textbf{end}
+		\State \Return $scores$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+
+
+\begin{algorithm}[H]
+	\caption{Calcul des taux.}\label{euclid}
+	\begin{algorithmic}[1]
+		\Function{calculTaux}{$intraScores,interScores,comparaisons$}
+		\State $\textit{FMR:=[comparaisons] \quad}$
+		\State $\textit{FNMR:=[comparaisons]\quad }$
+		\State $\textit{min:=min(intraScores)}$
+		\State $\textit{max:=max(interScores)}$
+		\State $\textit{delta:=(max-min)/comparaisons} $
+		\State $\textit{seuil:=min }$
+		\State $\textit{EERIndx:=1 }$
+		\For {$i=1:comparaisons$} 
+		\State$\textit{intrafauxScores:=somme(intraScores>seuil) \quad /* nombre de faux rejets */}$
+		\State$\textit{interfauxScores:=somme(interScores<seuil) \quad /* nombre de fausses acceptations */}$
+		\State$\textit{FNMR[i]:=somme(intraScores>seuil)}$
+		\State$\textit{FMR[i]:=somme(interScores<seuil)}$
+		\State$\textit{count:=count+1}$
+		\State$\textit{seuil:=seuil+delta}$
+		\State $/*\textit{Trouver le EER et le TR}*/$
+		\If {$\textit{|FNMR[i]-FMR[i]|<EERIndx}$}
+		\State$\textit{EERIndx:=|FNMR[i]-FMR[i]|}$
+		\State$\textit{EER:=(FNMR[i]+FMR[i])/2}$
+		\State$\textit{TR:=1-FNMR[i]}$
+		\EndIf
+		\State \textbf{end} 
+		\EndFor
+		\State \textbf{end} 
+		\State \Return $FNMR,FMR,EER,TR$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+
+\section{Présentation de l'IHM}	
+Nous présentons dans cette partie les différentes fonctionnalités que nous avons développées pour répondre aux besoins exprimés précédemment.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{captures/1}
+	\caption{Page d’authentification du chercheur.}
+	\label{}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{captures/6}
+	\caption{Interface d'ajout d'une base de données de tests.}
+	\label{}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{captures/4}
+	\caption{Interface d'ajout d'une méthode.}
+	\label{}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{captures/3}
+	\caption{Interface d'affichage des méthodes.}
+	\label{}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{captures/7}
+	\caption{Interface de test d'un processus.}
+	\label{}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{captures/results}
+	\caption{Interface des résultats de test d'un processus.}
+	\label{}
+\end{figure}
+
+\section{Conclusion}
+Dans ce chapitre nous avons présenté comment nous avons géré notre projet, nous avons ensuite montré les outils utilisés dans le développement de notre plateforme. Enfin, nous avons introduit les méthodes de reconnaissance implémentées. Dans le chapitre suivant nous allons présenter les résultats de différents tests d'évaluation faits sur notre plateforme.
