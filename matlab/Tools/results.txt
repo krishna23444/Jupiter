@@ -1,0 +1,489 @@
+ Le volume dans le lecteur E s'appelle Fun
+ Le num‚ro de s‚rie du volume est 6235-0275
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools
+
+07/25/2017  11:13 PM               958 getAllFiles.m
+08/01/2017  09:52 AM               297 getInterClassDis.m
+08/01/2017  12:06 AM               336 getIntraClassDis.m
+08/03/2017  09:23 PM            17,206 rocPalm.m
+07/31/2017  06:44 PM               186 saveOutPutImage.m
+07/18/2017  11:39 PM               694 transform.m
+06/24/2017  01:43 AM               556 transform2.m
+               7 fichier(s)           20,233 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\FExtraction
+
+02/12/2014  03:38 PM             2,688 angular_filter_bank.m
+02/12/2014  03:38 PM             1,072 compute_coherence.m
+02/12/2014  03:38 PM               820 dist2.m
+02/12/2014  03:38 PM            10,655 fft_enhance_cubs.m
+02/12/2014  03:38 PM             3,640 freqest.m
+02/12/2014  03:38 PM             2,313 normalise.m
+02/12/2014  03:38 PM               712 p.m
+02/12/2014  03:38 PM             4,774 ridgefilter.m
+02/12/2014  03:38 PM             2,993 ridgefreq.m
+02/12/2014  03:38 PM             4,185 ridgeorient.m
+02/12/2014  03:38 PM             2,321 ridgesegment.m
+02/12/2014  03:38 PM             2,272 smoothen_frequency_image.m
+02/12/2014  03:38 PM             1,058 smoothen_orientation_image.m
+02/12/2014  03:38 PM             5,940 test_bifurcation.m
+              14 fichier(s)           45,443 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\nsct_toolbox
+
+07/27/2017  02:30 PM             1,234 atrousdec.m
+07/27/2017  02:30 PM            19,406 atrousfilters.m
+07/27/2017  02:30 PM             1,012 atrousrec.m
+07/27/2017  02:30 PM             3,214 decdemo.m
+07/27/2017  02:30 PM             1,495 dfbdecdemo.m
+07/27/2017  02:30 PM            13,234 dfilters.m
+07/27/2017  02:30 PM             2,607 dmaxflat.m
+07/27/2017  02:30 PM             1,103 efilter2.m
+07/27/2017  02:30 PM             1,861 extend2.m
+07/27/2017  02:30 PM               856 ld2quin.m
+07/27/2017  02:30 PM               662 ldfilter.m
+07/27/2017  02:30 PM               854 mctrans.m
+07/27/2017  02:30 PM               775 modulate2.m
+07/27/2017  02:30 PM             4,662 nsctdec.m
+07/27/2017  02:30 PM             3,257 nsctrec.m
+07/27/2017  02:30 PM             5,046 nsdfbdec.m
+07/27/2017  02:30 PM             4,931 nsdfbrec.m
+07/27/2017  02:30 PM               889 nsfbdec.m
+07/27/2017  02:30 PM               821 nsfbrec.m
+07/27/2017  02:30 PM             2,424 nssfbdec.m
+07/27/2017  02:30 PM             2,785 nssfbrec.m
+07/27/2017  02:30 PM             1,552 parafilters.m
+07/27/2017  02:30 PM             1,161 qupz.m
+07/27/2017  02:30 PM             1,981 resampz.m
+07/27/2017  02:30 PM             1,001 shownsct.m
+07/27/2017  02:30 PM               888 symext.m
+07/27/2017  02:30 PM               161 upsample2df.m
+07/27/2017  02:30 PM             3,326 wfilters.m
+              28 fichier(s)           83,198 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\sepspyr
+
+07/29/2017  01:59 PM             8,513 demo_sepspyr.m
+07/29/2017  01:59 PM               997 set_paths.m
+               2 fichier(s)            9,510 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\sepspyr\+sepspyr
+
+07/29/2017  01:59 PM             1,597 build.m
+07/29/2017  01:59 PM             4,743 filters.m
+07/29/2017  01:59 PM               982 reconstruct.m
+07/29/2017  01:59 PM               830 show.m
+07/29/2017  01:59 PM               717 steer.m
+               5 fichier(s)            8,869 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\sepspyr\+sepspyr\+util
+
+07/29/2017  01:59 PM               835 padarray.m
+               1 fichier(s)              835 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\sepspyr\deps\matlabPyrTools-1.3
+
+07/29/2017  01:59 PM               309 binomialFilter.m
+07/29/2017  01:59 PM               811 blur.m
+07/29/2017  01:59 PM             1,364 blurDn.m
+07/29/2017  01:59 PM             1,931 buildGpyr.m
+07/29/2017  01:59 PM             2,632 buildLpyr.m
+07/29/2017  01:59 PM             2,713 buildSCFpyr.m
+07/29/2017  01:59 PM             2,187 buildSCFpyrLevs.m
+07/29/2017  01:59 PM             3,256 buildSFpyr.m
+07/29/2017  01:59 PM             1,896 buildSFpyrLevs.m
+07/29/2017  01:59 PM             2,017 buildSpyr.m
+07/29/2017  01:59 PM               861 buildSpyrLevs.m
+07/29/2017  01:59 PM             2,605 buildWpyr.m
+07/29/2017  01:59 PM             1,325 cconv2.m
+07/29/2017  01:59 PM               814 clip.m
+07/29/2017  01:59 PM               482 compile_mex.m
+07/29/2017  01:59 PM             5,715 Contents.m
+07/29/2017  01:59 PM               676 entropy2.m
+07/29/2017  01:59 PM               273 factorial.m
+07/29/2017  01:59 PM               905 G3.m
+07/29/2017  01:59 PM               858 histoMatch.m
+07/29/2017  01:59 PM               407 ifftshift.m
+07/29/2017  01:59 PM             1,296 imGradient.m
+07/29/2017  01:59 PM             1,107 imStats.m
+07/29/2017  01:59 PM               394 innerProd.m
+07/29/2017  01:59 PM               551 kurt2.m
+07/29/2017  01:59 PM             1,008 lplot.m
+07/29/2017  01:59 PM               233 lpyrHt.m
+07/29/2017  01:59 PM               603 maxPyrHt.m
+07/29/2017  01:59 PM                97 mean2.m
+07/29/2017  01:59 PM               788 mkAngle.m
+07/29/2017  01:59 PM               845 mkAngularSine.m
+07/29/2017  01:59 PM             1,428 mkDisc.m
+07/29/2017  01:59 PM               843 mkFract.m
+07/29/2017  01:59 PM             1,480 mkGaussian.m
+07/29/2017  01:59 PM               529 mkImpulse.m
+07/29/2017  01:59 PM               775 mkR.m
+07/29/2017  01:59 PM             1,110 mkRamp.m
+07/29/2017  01:59 PM             1,725 mkSine.m
+07/29/2017  01:59 PM             2,344 mkSquare.m
+07/29/2017  01:59 PM               633 mkZonePlate.m
+07/29/2017  01:59 PM               461 modulateFlip.m
+07/29/2017  01:59 PM             2,241 mpt_corrDn.m
+07/29/2017  01:59 PM             1,835 mpt_histo.m
+07/29/2017  01:59 PM               259 mpt_mod.m
+07/29/2017  01:59 PM             1,207 mpt_pointOp.m
+07/29/2017  01:59 PM               523 mpt_range2.m
+07/29/2017  01:59 PM             2,779 mpt_upConv.m
+07/29/2017  01:59 PM             3,207 namedFilter.m
+07/29/2017  01:59 PM               363 nextFig.m
+07/29/2017  01:59 PM             1,259 pgmRead.m
+07/29/2017  01:59 PM             3,119 pgmWrite.m
+07/29/2017  01:59 PM             1,983 pixelAxes.m
+07/29/2017  01:59 PM                86 pwd2path.m
+07/29/2017  01:59 PM               395 pyrBand.m
+07/29/2017  01:59 PM               589 pyrBandIndices.m
+07/29/2017  01:59 PM               287 pyrLow.m
+07/29/2017  01:59 PM             1,435 rconv2.m
+07/29/2017  01:59 PM             1,122 rcosFn.m
+07/29/2017  01:59 PM             2,049 reconLpyr.m
+07/29/2017  01:59 PM             4,475 reconSCFpyr.m
+07/29/2017  01:59 PM             3,114 reconSFpyr.m
+07/29/2017  01:59 PM             2,016 reconSFpyrLevs.m
+07/29/2017  01:59 PM             2,665 reconSpyr.m
+07/29/2017  01:59 PM             1,120 reconSpyrLevs.m
+07/29/2017  01:59 PM             3,992 reconWpyr.m
+07/29/2017  01:59 PM             1,043 setPyrBand.m
+07/29/2017  01:59 PM               438 shift.m
+07/29/2017  01:59 PM             6,111 showIm.m
+07/29/2017  01:59 PM             5,421 showLpyr.m
+07/29/2017  01:59 PM             5,213 showSpyr.m
+07/29/2017  01:59 PM               234 showSpyrLevel.m
+07/29/2017  01:59 PM             5,491 showWpyr.m
+07/29/2017  01:59 PM               478 skew2.m
+07/29/2017  01:59 PM             6,140 sp0Filters.m
+07/29/2017  01:59 PM             9,435 sp1Filters.m
+07/29/2017  01:59 PM            17,188 sp3Filters.m
+07/29/2017  01:59 PM             6,949 sp5Filters.m
+07/29/2017  01:59 PM               819 spyrBand.m
+07/29/2017  01:59 PM               189 spyrHigh.m
+07/29/2017  01:59 PM               305 spyrHt.m
+07/29/2017  01:59 PM               668 spyrLev.m
+07/29/2017  01:59 PM               480 spyrNumBands.m
+07/29/2017  01:59 PM             1,990 steer.m
+07/29/2017  01:59 PM             1,803 steer2HarmMtx.m
+07/29/2017  01:59 PM               420 subMtx.m
+07/29/2017  01:59 PM             1,213 upBlur.m
+07/29/2017  01:59 PM               390 var2.m
+07/29/2017  01:59 PM               186 vectify.m
+07/29/2017  01:59 PM               873 wpyrBand.m
+07/29/2017  01:59 PM               270 wpyrHt.m
+07/29/2017  01:59 PM               729 wpyrLev.m
+07/29/2017  01:59 PM             1,164 zconv2.m
+              92 fichier(s)          170,047 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\sepspyr\deps\matlabPyrTools-1.3\TUTORIALS
+
+07/29/2017  01:59 PM             3,902 matlabPyrTools.m
+07/29/2017  01:59 PM            37,863 pyramids.m
+               2 fichier(s)           41,765 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\tensor_toolbox_2.6
+
+02/06/2015  02:08 PM             2,202 Contents.m
+01/26/2015  03:30 PM             6,610 cp_als.m
+01/26/2015  03:30 PM            61,623 cp_apr.m
+01/26/2015  03:30 PM             4,976 cp_nmu.m
+01/26/2015  03:30 PM             4,347 cp_opt.m
+01/26/2015  03:30 PM            12,713 cp_wopt.m
+01/26/2015  05:00 PM             5,420 create_guess.m
+01/26/2015  03:30 PM            15,796 create_problem.m
+01/26/2015  05:00 PM            10,591 eig_geap.m
+01/26/2015  05:00 PM             6,061 eig_sshopm.m
+01/26/2015  05:00 PM             5,270 eig_sshopmc.m
+01/26/2015  03:30 PM             3,457 export_data.m
+01/26/2015  03:30 PM             3,172 import_data.m
+01/26/2015  03:30 PM             2,668 khatrirao.m
+01/26/2015  05:00 PM             1,189 matrandcong.m
+01/26/2015  03:30 PM             1,246 matrandnorm.m
+01/26/2015  05:00 PM             1,982 matrandorth.m
+01/26/2015  03:30 PM             1,026 parafac_als.m
+01/26/2015  03:30 PM             1,279 sptendiag.m
+01/26/2015  03:30 PM             1,706 sptenrand.m
+01/26/2015  03:30 PM             1,253 tendiag.m
+01/26/2015  03:30 PM            14,333 teneye.m
+01/26/2015  03:30 PM               894 tenones.m
+01/26/2015  03:30 PM               957 tenrand.m
+01/26/2015  03:30 PM               998 tenzeros.m
+01/26/2015  03:30 PM             2,164 tt_cp_fg.m
+01/26/2015  03:30 PM             1,020 tt_cp_fun.m
+01/26/2015  03:30 PM             1,038 tt_cp_vec_to_fac.m
+01/26/2015  03:30 PM             2,615 tt_dimscheck.m
+01/26/2015  03:30 PM             1,066 tt_fac_to_vec.m
+01/26/2015  03:30 PM               962 tt_ind2sub.m
+02/06/2015  01:50 PM               697 tt_intvec2str.m
+01/26/2015  03:30 PM               815 tt_matrix2cellstr.m
+01/26/2015  03:30 PM               783 tt_size2str.m
+01/26/2015  03:30 PM             1,179 tt_sizecheck.m
+01/26/2015  03:30 PM               907 tt_sub2ind.m
+01/26/2015  03:30 PM             1,227 tt_subscheck.m
+01/26/2015  03:30 PM               676 tt_subsubsref.m
+01/26/2015  03:30 PM               958 tt_valscheck.m
+01/26/2015  03:30 PM             4,967 tucker_als.m
+02/06/2015  01:50 PM             4,589 tucker_sym.m
+              41 fichier(s)          197,432 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\tensor_toolbox_2.6\@ktensor
+
+01/26/2015  04:42 PM             1,594 arrange.m
+01/26/2015  03:07 PM             3,162 datadisp.m
+01/26/2015  03:07 PM             1,111 disp.m
+01/26/2015  03:07 PM               704 display.m
+01/26/2015  04:42 PM               834 double.m
+01/26/2015  03:07 PM               940 end.m
+01/26/2015  03:07 PM               964 extract.m
+01/26/2015  03:07 PM             3,162 fixsigns.m
+01/26/2015  04:42 PM               875 full.m
+01/26/2015  03:07 PM             1,540 innerprod.m
+01/26/2015  04:42 PM             1,304 isequal.m
+01/26/2015  03:07 PM             1,274 issymmetric.m
+02/06/2015  02:06 PM             4,722 ktensor.m
+01/26/2015  03:07 PM             1,197 minus.m
+01/26/2015  03:07 PM             1,055 mtimes.m
+01/26/2015  03:07 PM             1,213 mttkrp.m
+01/26/2015  03:07 PM               705 ncomponents.m
+01/26/2015  03:07 PM               675 ndims.m
+01/26/2015  03:07 PM               882 norm.m
+01/26/2015  04:42 PM             2,827 normalize.m
+01/26/2015  03:07 PM             1,850 nvecs.m
+01/26/2015  03:07 PM             1,015 permute.m
+01/26/2015  03:07 PM             1,036 plus.m
+01/26/2015  03:07 PM               888 redistribute.m
+02/05/2015  02:06 PM             5,141 score.m
+01/26/2015  03:07 PM               893 size.m
+01/26/2015  03:07 PM             1,537 subsasgn.m
+01/26/2015  03:07 PM             1,883 subsref.m
+01/26/2015  04:42 PM             1,728 symmetrize.m
+01/26/2015  03:07 PM             1,060 times.m
+01/26/2015  03:07 PM             1,048 tocell.m
+01/26/2015  04:42 PM             3,551 ttm.m
+01/26/2015  03:07 PM             2,354 ttv.m
+01/26/2015  03:07 PM               613 uminus.m
+01/26/2015  03:07 PM               621 uplus.m
+              35 fichier(s)           55,958 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\tensor_toolbox_2.6\@sptenmat
+
+01/26/2015  03:08 PM             1,075 aatx.m
+01/26/2015  03:08 PM             1,900 disp.m
+01/26/2015  03:08 PM               681 display.m
+01/26/2015  03:08 PM               838 double.m
+01/26/2015  03:08 PM               797 end.m
+01/26/2015  03:08 PM               983 full.m
+01/26/2015  03:08 PM               671 nnz.m
+01/26/2015  03:08 PM               701 norm.m
+01/26/2015  03:08 PM               891 size.m
+02/06/2015  02:06 PM             7,570 sptenmat.m
+01/26/2015  03:08 PM             2,157 subsasgn.m
+01/26/2015  03:08 PM             1,343 subsref.m
+01/26/2015  03:08 PM               990 tsize.m
+01/26/2015  03:08 PM               614 uminus.m
+01/26/2015  03:08 PM               622 uplus.m
+              15 fichier(s)           21,833 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\tensor_toolbox_2.6\@sptensor
+
+01/26/2015  03:08 PM             1,526 and.m
+01/26/2015  03:08 PM             2,084 collapse.m
+01/26/2015  03:08 PM             1,964 contract.m
+01/26/2015  03:08 PM               665 ctranspose.m
+01/26/2015  03:08 PM             2,308 disp.m
+01/26/2015  03:08 PM               694 display.m
+01/26/2015  05:00 PM             1,193 divide.m
+01/26/2015  03:08 PM               728 double.m
+01/26/2015  03:08 PM             1,255 elemfun.m
+01/26/2015  03:08 PM               811 end.m
+01/26/2015  03:08 PM             2,372 eq.m
+01/26/2015  03:08 PM             1,040 find.m
+01/26/2015  03:08 PM             1,002 full.m
+01/26/2015  03:08 PM             1,718 ge.m
+01/26/2015  03:08 PM             1,792 gt.m
+01/26/2015  03:08 PM             1,860 innerprod.m
+01/26/2015  03:08 PM               932 isequal.m
+01/26/2015  03:08 PM               776 ldivide.m
+01/26/2015  03:08 PM             2,304 le.m
+01/26/2015  03:08 PM             2,161 lt.m
+01/26/2015  03:08 PM             1,812 minus.m
+01/26/2015  03:08 PM             1,133 mldivide.m
+01/26/2015  03:08 PM             1,133 mrdivide.m
+01/26/2015  03:08 PM             1,162 mtimes.m
+01/26/2015  03:08 PM             1,415 mttkrp.m
+01/26/2015  03:08 PM               776 ndims.m
+01/26/2015  03:08 PM             2,401 ne.m
+01/26/2015  03:08 PM               728 nnz.m
+01/26/2015  03:08 PM               695 norm.m
+01/26/2015  03:08 PM               917 not.m
+01/26/2015  03:08 PM             1,801 nvecs.m
+01/26/2015  03:08 PM               778 ones.m
+01/26/2015  03:08 PM             1,266 or.m
+01/26/2015  03:08 PM             1,232 permute.m
+01/26/2015  03:08 PM             1,765 plus.m
+01/26/2015  03:08 PM             2,871 rdivide.m
+01/26/2015  03:08 PM             1,350 reshape.m
+01/26/2015  03:08 PM             1,726 scale.m
+01/26/2015  03:08 PM               806 size.m
+01/26/2015  03:08 PM               972 spmatrix.m
+02/06/2015  02:06 PM            10,151 sptensor.m
+01/26/2015  03:08 PM             1,369 squeeze.m
+01/26/2015  03:08 PM            12,129 subsasgn.m
+01/26/2015  03:08 PM             5,197 subsref.m
+01/26/2015  03:08 PM             2,077 times.m
+01/26/2015  03:08 PM               662 transpose.m
+01/26/2015  03:08 PM             3,996 ttm.m
+01/26/2015  03:08 PM             4,362 ttt.m
+01/26/2015  03:08 PM             3,122 ttv.m
+01/26/2015  03:08 PM               614 uminus.m
+01/26/2015  03:08 PM               624 uplus.m
+01/26/2015  03:08 PM             1,424 xor.m
+              52 fichier(s)          101,651 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\tensor_toolbox_2.6\@sptensor\private
+
+01/26/2015  03:08 PM             1,002 allsubs.m
+01/26/2015  03:08 PM             1,486 extract.m
+01/26/2015  03:08 PM               951 irenumber.m
+01/26/2015  03:08 PM             1,606 renumber.m
+01/26/2015  03:08 PM             1,949 subdims.m
+               5 fichier(s)            6,994 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\tensor_toolbox_2.6\@tenmat
+
+01/26/2015  03:13 PM               766 ctranspose.m
+01/26/2015  03:13 PM             1,342 disp.m
+01/26/2015  03:13 PM               620 display.m
+01/26/2015  03:13 PM               608 double.m
+01/26/2015  03:13 PM               803 end.m
+01/26/2015  03:13 PM             1,000 minus.m
+01/26/2015  03:13 PM             1,551 mtimes.m
+01/26/2015  03:13 PM               694 norm.m
+01/26/2015  03:13 PM               995 plus.m
+01/26/2015  03:13 PM               986 size.m
+01/26/2015  03:13 PM               973 subsasgn.m
+01/26/2015  03:13 PM             1,446 subsref.m
+02/06/2015  02:06 PM             6,383 tenmat.m
+01/26/2015  03:13 PM               970 tsize.m
+01/26/2015  03:13 PM               610 uminus.m
+01/26/2015  03:13 PM               620 uplus.m
+              16 fichier(s)           20,367 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\tensor_toolbox_2.6\@tensor
+
+01/26/2015  03:17 PM               613 and.m
+01/26/2015  03:17 PM             1,903 collapse.m
+01/26/2015  03:17 PM             2,058 contract.m
+01/26/2015  03:17 PM               649 ctranspose.m
+01/26/2015  03:17 PM             1,304 disp.m
+01/26/2015  03:17 PM               683 display.m
+01/26/2015  03:17 PM               685 double.m
+01/26/2015  03:17 PM               800 end.m
+01/26/2015  03:17 PM               603 eq.m
+01/26/2015  03:17 PM             1,289 find.m
+01/26/2015  05:11 PM               685 full.m
+01/26/2015  03:17 PM               619 ge.m
+01/26/2015  03:17 PM               609 gt.m
+01/26/2015  03:17 PM             1,365 innerprod.m
+01/26/2015  03:17 PM               841 isequal.m
+01/26/2015  05:11 PM             2,498 issymmetric.m
+01/26/2015  03:17 PM               846 ldivide.m
+01/26/2015  03:17 PM               615 le.m
+01/26/2015  03:17 PM               605 lt.m
+01/26/2015  03:17 PM               819 minus.m
+01/26/2015  03:17 PM               892 mldivide.m
+01/26/2015  03:17 PM               892 mrdivide.m
+01/26/2015  03:17 PM             1,171 mtimes.m
+01/26/2015  03:17 PM             2,507 mttkrp.m
+01/26/2015  03:17 PM               840 ndims.m
+01/26/2015  03:17 PM               607 ne.m
+01/26/2015  03:17 PM               622 nnz.m
+01/26/2015  03:17 PM               694 norm.m
+01/26/2015  03:17 PM               621 not.m
+01/26/2015  05:11 PM             2,028 nvecs.m
+01/26/2015  03:17 PM               607 or.m
+01/26/2015  03:17 PM             1,555 permute.m
+01/26/2015  03:17 PM               806 plus.m
+01/26/2015  03:17 PM               635 power.m
+01/26/2015  03:17 PM               832 rdivide.m
+01/26/2015  05:11 PM               851 reshape.m
+01/26/2015  03:17 PM             2,071 scale.m
+01/26/2015  03:17 PM             1,128 size.m
+01/26/2015  05:11 PM             1,280 squeeze.m
+01/26/2015  03:17 PM             4,539 subsasgn.m
+01/26/2015  03:17 PM             4,402 subsref.m
+01/26/2015  05:11 PM             3,075 symmetrize.m
+01/26/2015  03:17 PM             3,836 tenfun.m
+02/06/2015  02:06 PM             6,418 tensor.m
+01/26/2015  03:17 PM               900 times.m
+01/26/2015  05:11 PM               654 transpose.m
+02/06/2015  02:01 PM             3,624 ttm.m
+01/26/2015  05:11 PM             1,489 ttsv.m
+01/26/2015  03:17 PM             2,597 ttt.m
+01/26/2015  03:17 PM             3,291 ttv.m
+01/26/2015  03:17 PM               611 uminus.m
+01/26/2015  03:17 PM               621 uplus.m
+01/26/2015  03:17 PM               617 xor.m
+              53 fichier(s)           77,402 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\tensor_toolbox_2.6\@ttensor
+
+01/26/2015  03:24 PM             1,006 disp.m
+01/26/2015  03:24 PM               621 display.m
+01/26/2015  03:24 PM               687 double.m
+01/26/2015  03:24 PM               823 end.m
+01/26/2015  03:24 PM               890 full.m
+01/26/2015  03:24 PM             2,117 innerprod.m
+01/26/2015  05:00 PM             1,193 isequal.m
+01/26/2015  03:24 PM               813 mtimes.m
+01/26/2015  03:24 PM             1,249 mttkrp.m
+01/26/2015  03:24 PM               686 ndims.m
+01/26/2015  03:24 PM               818 norm.m
+01/26/2015  03:24 PM             2,146 nvecs.m
+01/26/2015  03:24 PM             1,061 permute.m
+01/26/2015  03:24 PM               890 size.m
+01/26/2015  03:24 PM             1,549 subsasgn.m
+01/26/2015  03:24 PM             1,387 subsref.m
+02/06/2015  02:06 PM             3,672 ttensor.m
+01/26/2015  03:24 PM             3,537 ttm.m
+01/26/2015  03:24 PM             2,359 ttv.m
+01/26/2015  03:24 PM               607 uminus.m
+01/26/2015  03:24 PM               616 uplus.m
+              21 fichier(s)           28,727 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\tensor_toolbox_2.6\doc
+
+08/04/2010  03:24 PM             7,273 A1_tensor_doc.m
+08/04/2010  03:24 PM             7,002 A2_sptensor_doc.m
+08/04/2010  03:24 PM             3,212 B1_tenmat_doc.m
+08/04/2010  03:24 PM             3,321 B2_sptenmat_doc.m
+08/04/2010  03:24 PM             2,892 C_ttensor_doc.m
+08/04/2010  03:24 PM             5,867 D_ktensor_doc.m
+08/04/2010  03:24 PM            10,482 M1_multiply_doc.m
+08/04/2010  03:24 PM             7,052 M2_identities_doc_future.m
+08/04/2010  03:24 PM             1,598 N_nvecs_doc.m
+08/04/2010  03:24 PM             2,069 Q_collapse_scale_doc.m
+10/29/2014  01:36 PM             8,577 S_test_problems_doc.m
+02/01/2012  10:48 AM             1,399 T1_algorithms_doc.m
+02/01/2012  10:48 AM             3,397 T2_opt_algorithms_doc.m
+02/01/2012  12:01 PM             4,934 T3_wopt_algorithms_doc.m
+02/01/2012  10:48 AM             1,136 T4_cpapr_doc.m
+02/06/2015  02:01 PM             1,039 V_SSHOPM_doc.m
+              16 fichier(s)           71,250 octets
+
+ R‚pertoire de E:\PFE\PFE\PlateForme\PFEV0\Jupiter\server\uploads\methods\Jupiter\Tools\tensor_toolbox_2.6\met
+
+02/06/2015  02:06 PM               329 Contents.m
+08/04/2010  03:24 PM             4,085 ttm_me.m
+08/04/2010  03:24 PM             2,373 ttm_me_mem.m
+08/04/2010  03:24 PM             1,250 ttm_me_partition.m
+08/04/2010  03:24 PM             4,560 tucker_me.m
+08/04/2010  03:24 PM             3,079 tucker_me_test.m
+               6 fichier(s)           15,676 octets
+
+     Total des fichiers list‚sÿ:
+             411 fichier(s)          977,190 octets
+               0 R‚p(s)  13,830,602,752 octets libres

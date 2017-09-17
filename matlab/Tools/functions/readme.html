@@ -1,0 +1,142 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="Luis B. Almeida">
+  <meta name="GENERATOR"
+ content="Microsoft FrontPage 4.0">
+  <title>MI-Based Linear and Nonlinear ICA Toolbox</title>
+</head>
+<body>
+&nbsp;
+<center>
+<p><b><font size="+1">MISEP Linear and Nonlinear ICA Toolbox<br>
+</font></b></p>
+<p><b><font size="+1"><small>Version 1.2</small><br>
+</font></b></p>
+</center>
+<p><span style="font-weight: bold;">0. What's new in this version<br>
+</span></p>
+<p>Version 1.2 introduced two kinds of naming changes, to make the toolbox
+compatible with Matlab 7:</p>
+<ul>
+  <li>All filenames were changed to lowercase. This eliminated a number of
+    warnings that Matlab 7 generated (version 7 of Matlab is sensitive to
+    upper/lowercase in filenames, contrary to what happened with previous
+    versions).<br>
+    <br>
+  </li>
+  <li>The script named 'report' was changed to 'reportresults', to eliminate a
+    conflict with a function named 'report' that appeared in Matlab version 7
+    and didn't exist in previous versions of Matlab.<br>
+<br>
+  </li>
+</ul>
+<h3> 1. Introduction</h3>
+This page briefly describes a MATLAB toolbox for Independent Component
+Analysis (ICA) and Blind Source Separation (BSS), based on the MISEP
+method.
+<p>The toolbox can perform both linear and nonlinear ICA, and is named 'MIToolbox'.. <br>
+&nbsp; </p>
+<h3> 2. Toolbox download</h3>
+The toolbox can be downloaded <a href="http://neural.inesc-id.pt/~lba/ICA/MIToolbox.zip">here</a> (zip
+file, around 50 kBytes). <br>
+&nbsp;
+<h3> 3. Installation</h3>
+To install the toolbox simply unzip all the files contained in the zip
+archive into a directory of your choice. <br>
+&nbsp;
+<h3> 4. Documentation</h3>
+<h4> 4.1 ICA method</h4>
+Papers that describe the ICA method can be downloaded <a href="http://neural.inesc-id.pt/~lba//research.html#misep">here</a>. <br>
+&nbsp;
+<h4> 4.2 Detailed documentation</h4>
+A manual is included with the toolbox. <br>
+&nbsp;
+<h4> 4.3 Brief usage instructions</h4>
+<ol>
+  <li><big> <font size="-1"><big>In MATLAB, '<tt>cd</tt>' to the
+directory containing the toolbox files.</big></font></big></li>
+  <br>
+&nbsp; <li><big> <font size="-1"><big>Give the command '<tt>netpar</tt>'
+(this initializes the toolbox parameters).</big></font></big></li>
+  <br>
+&nbsp; <li><big> <font size="-1"><big>Create an array named <tt>'trpattern'</tt>
+with the data to be analyzed.</big></font></big></li>
+  <big><br>
+  <font size="-1"><big>The array should have one mixture component per
+row and one mixture pattern (mixture vector) per column.</big></font> <br>
+  <font size="-1"><big>Give the commands:</big></font></big>
+  <ol>
+    <big><tt><font size="-1"><big>ninputs = &lt;number of mixture
+components&gt;</big></font></tt> <br>
+    <tt><font size="-1"><big>ntrain = &lt;number of training
+patterns&gt;</big></font></tt> <br>
+&nbsp;</big>
+  </ol>
+  <big><font size="-1"><big>Note: For a quick test of the toolbox just
+give the command '<tt>generate'</tt>, which will generate a nonlinear
+mixture of two supergaussian random sources, with <tt>ntrain</tt>
+training patterns. The variable <tt>'ntrain'</tt> is initially set to
+1000, by the <tt>'netpar'</tt> command.</big></font> </big><br>
+&nbsp; <li><big> <font size="-1"><big>Give the command '<tt>netinit</tt>'
+(this initializes the analysis network's weights and auxiliary data).</big></font></big></li>
+  <br>
+&nbsp; <li><big> <font size="-1"><big>Give the command '<tt>train</tt>'.</big></font></big></li>
+</ol>
+<big><font size="-1"><big><br>
+Training should start. The value of the cost function, the cost
+function improvement and epoch number should start being reported, one
+epoch per line.</big></font></big>
+<p><big><font size="-1"><big>A figure should be displayed, and should
+be updated once every five epochs. Resize this figure so that the left
+and center plots are square. The figure shows:</big></font> </big></p>
+<ul>
+  <big> </big><li><big> <font size="-1"><big>Left: Scatter plot of the
+extracted components (1<sup>st</sup> and 2<sup>nd</sup> components only).</big></font></big></li>
+  <big> </big><li><big> <font size="-1"><big>Middle: Scatter plot of
+the auxiliary (<i>z</i>) outputs (1<sup>st</sup> and 2<sup>nd</sup>
+components only).</big></font></big></li>
+  <big> </big><li><big> <font size="-1"><big>Right: Estimated
+cumulative probability functions of the extracted components(1<sup>st</sup>
+and 2<sup>nd</sup> components only, scaled to [-1,1] instead of [0,1]).</big></font></big></li>
+  <big> </big>
+</ul>
+<big><font size="-1"><big>If you want to stop the training before
+reaching the set number of training epochs, press Ctrl-C (you may also
+set a desired number of training epochs by setting the variable '<tt>nepochs</tt>'
+before giving the <tt>train</tt> command).</big></font></big>
+<p><big><font size="-1"><big>To process test data with the resulting
+ICA system:</big></font> </big></p>
+<ol>
+  <big> </big><li><big> <font size="-1"><big>Create an array named '<tt>mixeddata'</tt>
+with the mixture to be processed. The format is the same as for '<tt>trpattern</tt>'
+above, except that the number of columns doesn't need to be equal to <tt>'ntrain'</tt>.</big></font></big></li>
+  <big> </big><li><big> <font size="-1"><big>Give the command '<tt>processdata</tt>'.</big></font></big></li>
+  <big> </big><li><big> <font size="-1"><big>The extracted components
+will be available in an array called '<tt>separdata</tt>', with the same
+format as '<tt>mixeddata'</tt>.</big></font></big></li>
+  <big> </big>
+</ol>
+&nbsp;
+<h3> 5. Contact</h3>
+Toolbox author:
+<p>Luis B. Almeida <br>
+INESC-ID <br>
+R. Alves Redol, 9 <br>
+1000-029 Lisboa <br>
+Portugal </p>
+<p>E-mail (delete the first two c's, which are there to prevent
+spamming: <a href="mailto:ccluis.almeida@inesc-id.pt">ccluis.almeida@inesc-id.pt</a> </p>
+<p>Home page: <a href="http://neural.inesc.pt/%7Elba/">http://neural.inesc.pt/~lba/</a> <br>
+&nbsp; </p>
+<h3> 6. Acknowledgement</h3>
+The development of this toolbox has been partially supported by the
+European IST project BLISS and by Praxis project P/EEI/14091/1998.
+<p> </p>
+<br>
+&nbsp; <br>
+&nbsp;
+</body>
+</html>
