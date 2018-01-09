@@ -32,15 +32,12 @@ let numberScans=req.body.numberScans;
 let numberTot=req.body.numberTot;
 let DistDir=__dirname+"\\..\\uploads\\results\\"+req.body.createdBy+"\\"+senario._id+"\\";
 let  pathBDD= __dirname+"\\."+req.body.url;
-//// console.log('matlab'+pathBDD);
 // If user wants to save results 
 let savingResults=req.body.savingResults;
 
 
 if(req.body.needBDD==false)
 {
-//  // console.log("hiiiiiiiiiiii neeeed : "+req.body.needBDD);
-
   // Replacing strings in file : 
   var map = {
     'pathBDDToReplace' :pathBDD,
