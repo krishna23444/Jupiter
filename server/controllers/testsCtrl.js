@@ -11,7 +11,6 @@ var mkdirp = require('mkdirp');
 var fs = require('fs');
 var Promise = require('bluebird');
 exports.get = function (req, res) {
-
  Test.findOne({_id: req.params._id}, function(err, db) {
   if (err)
     res.send(err);
@@ -75,7 +74,6 @@ else
   };
 }
   // Replacing strings in file : 
-
   var prepText= fs.readFileSync(__dirname+'\\senarios\\'+'preperationSpace.txt', 'utf-8');
 }
 var prepText = replaceAll(prepText, map);
@@ -98,14 +96,12 @@ switch(item.module.toLowerCase())
   if(req.body.modality=="Fingerprint")
   {
     prepText=prepText+"\n  [minutiae,img] ="+item.name+"(img,mask,orient_img,orient_img_m,cimg);  \n  features{a}=minutiae; \n";
-
   }
   else
   {
     prepText=prepText+"\n  [feature] ="+item.name+"(img);  \n  features{a}=feature; \n";
   }
   break;
-
   default:
   prepText=prepText+"\n  img="+item.name+"(img); \n ";
   break;
@@ -138,13 +134,9 @@ else
         'rocTochange':"rocPalm(S_intra_class,S_inter_class)",
         'ErrorToChange':DistDir+"\\error.txt"};
       }
-
-
       prepText =prepText+ replaceAll(txt, map);
     }
   }
-
-
   tesintPath=DistDir+"\\"+nameSenario;
   mkdirp(DistDir, function(err) { 
 // path exists unless there was an error
@@ -188,7 +180,6 @@ stream.once('open', function(fd) {
        var codeError = jsonErr.code.toUpperCase() === "fail".toUpperCase();
        var errorMsg="";
      // // console.log("here i am ");
-    // res.json({ message: 'post created!' });
     if(codeError==1)
     {
       var  times1=fs.readFileSync(filedir+"error.json", 'utf-8');
@@ -204,7 +195,6 @@ stream.once('open', function(fd) {
           // si no fail 
           var  times1=fs.readFileSync(filedir+"statistics\\stat.json", 'utf-8');
           var timesPretrait=JSON.parse(times1).timesPretrait;
-         // // console.log("here i am "+timesPretrait);
           if(req.body.complete==true) // if we are testing a process
           {
            var times2=fs.readFileSync(filedir+"statistics\\stat1.json", 'utf-8');
@@ -292,25 +282,19 @@ nameSenarioToExe="Senario"+senario._id;
 var logPath=__dirname+"\\error.txt";
  var cmd = ['matlab -nojvm -nosplash -nodesktop -noFigureWindows  -minimize -r  \"  addpath(genpath(\''+ __dirname+'\\..\\uploads\')); '+ nameSenarioToExe+'(); exit; \"'];///
  shell.exec(cmd, function (code, stdout, stderr) {
-  // console.log('matlab exit');
 }); 
  filedir = DistDir,
  filename = "done.json";
-//res.send('OK');  
- //.timeout(2000)
  var p = Promise.resolve(DistDir)
  .catch(console.error.bind(console, 'Failed to load config!'))
  .then( fs.watch(DistDir, function(event, who) {
-  //// console.log("me is  "+who);
-    if (event == "rename" && who == "done.json") { // && who === filename
+    if (event == "rename" && who == "done.json") { 
 
       /************NOW WE CREATE OUR MODELS**********/
       var test =new Test({  type:req.body.type, savingResults: req.body.savingResults,  complete: req.body.complete,
         needBDD: req.body.needBDD,  beforeRoutine: req.body.beforeRoutine,  url:DistDir , modality: req.body.modality,
         matcher:req.body.matcher,   nameBDD:req.body.nameBDD, createdBy:req.body.createdBy, numberScans:req.body.numberScans, numberTot:req.body.numberTot,
         methodNames: req.body.methodNames});
-      // console.log('after');
-
       test.save(function (err) {
        if (err) {
         return res.send('Fail');
@@ -337,7 +321,6 @@ var logPath=__dirname+"\\error.txt";
  // si no fail 
  var  times1=fs.readFileSync(filedir+"statistics\\stat.json", 'utf-8');
  var timesPretrait=JSON.parse(times1).timesPretrait;
-         // // console.log("here i am "+timesPretrait);
          var times2=fs.readFileSync(filedir+"statistics\\stat1.json", 'utf-8');
          var timesMatching=JSON.parse(times2).timesMatching;
          var ratesJSon=fs.readFileSync(filedir+"statistics\\stat2.json", 'utf-8');
@@ -371,7 +354,6 @@ function checkFile(currentPath, fileContents) {
   var fileContents = fs.readFileSync(currentPath);
   zlib.gunzip(fileContents, function(err, buff) {
     if (buff.toString().indexOf("position") !== -1) {
-      // console.log("The file '%s' has an odometer reading.", currentPath);
       return;
     }
   });
@@ -389,16 +371,10 @@ function replaceAll(str, map){
 }
 
 
-function onFileChange(type, current, previous) {
-  // console.log(type);
-}
-
 function appendFile(dest,data)
 {
-//writeStream=fs.createWriteStream(dest);
 fs.appendFile(dest, data, function (err) {
   if (err) throw err;
-  // console.log('Saved!');
 });
 
 }
@@ -435,8 +411,6 @@ function initFile(destDir)
 function getFiles (url, files_){
   files_ = files_ || [];
   // console.log('i am  here!'+url);
-
-
   var files = fs.readdirSync(url);
   for (var i in files){
     var name = url + '/' + files[i];
@@ -446,9 +420,5 @@ function getFiles (url, files_){
       files_.push(name);
     }
   }
- // res.json(db);
- 
-
-
  return files_;
 }
